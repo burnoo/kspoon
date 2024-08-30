@@ -1,6 +1,5 @@
 package dev.burnoo.ksoup
 
-import com.fleeksoft.ksoup.Ksoup
 import dev.burnoo.ksoup.serializer.DataHtmlString
 import dev.burnoo.ksoup.serializer.InnerHtmlString
 import dev.burnoo.ksoup.serializer.OuterHtmlString
@@ -8,7 +7,7 @@ import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Serializable
 import kotlin.test.Test
 
-class HtmlDecoderTextModeTest {
+class KspoonTextModeTest {
 
     @Test
     fun shouldParseTextByDefault() {
@@ -19,8 +18,7 @@ class HtmlDecoderTextModeTest {
         )
 
         val body = "<div><p><span>text</span></p></div>"
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model("text")
     }
@@ -34,8 +32,7 @@ class HtmlDecoderTextModeTest {
         )
 
         val body = "<div><p><span>text</span></p></div>"
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model("<p><span>text</span></p>")
     }
@@ -49,8 +46,7 @@ class HtmlDecoderTextModeTest {
         )
 
         val body = "<div><p><span>text</span></p></div>"
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model("<span>text</span>")
     }
@@ -64,8 +60,7 @@ class HtmlDecoderTextModeTest {
         )
 
         val body = "<script>console.log('burnoo')</script>"
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model("console.log('burnoo')")
     }
@@ -79,8 +74,7 @@ class HtmlDecoderTextModeTest {
         )
 
         val body = "<style>p { width: 20px; }</style>"
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model("p { width: 20px; }")
     }
@@ -94,8 +88,7 @@ class HtmlDecoderTextModeTest {
         )
 
         val body = "<!--comment-->"
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model("comment")
     }

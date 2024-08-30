@@ -1,11 +1,10 @@
 package dev.burnoo.ksoup
 
-import com.fleeksoft.ksoup.Ksoup
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Serializable
 import kotlin.test.Test
 
-class HtmlDecoderNullValueTest {
+class KspoonNullValueTest {
 
     @Test
     fun shouldGetNullNotFoundSelector() {
@@ -16,8 +15,7 @@ class HtmlDecoderNullValueTest {
         )
 
         val body = ""
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model(null)
     }
@@ -31,8 +29,7 @@ class HtmlDecoderNullValueTest {
         )
 
         val body = "<p>text</p>"
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model(null)
     }

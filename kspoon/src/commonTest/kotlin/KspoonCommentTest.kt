@@ -1,13 +1,12 @@
 package dev.burnoo.ksoup
 
-import com.fleeksoft.ksoup.Ksoup
 import dev.burnoo.ksoup.serializer.CommentList
 import dev.burnoo.ksoup.serializer.StringCommentList
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Serializable
 import kotlin.test.Test
 
-class HtmlDecoderCommentTest {
+class KspoonCommentTest {
 
     @Test
     fun shouldParseCommentList() {
@@ -18,8 +17,7 @@ class HtmlDecoderCommentTest {
         )
 
         val body = "<p><!--a--><!--b--></p><!--c-->"
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model.comments.map { it.getData() } shouldBe listOf("a", "b")
     }
@@ -33,8 +31,7 @@ class HtmlDecoderCommentTest {
         )
 
         val body = "<p><!--a--><!--b--></p><!--c-->"
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model(listOf("a", "b"))
     }

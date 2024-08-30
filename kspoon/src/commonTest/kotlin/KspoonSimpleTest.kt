@@ -1,12 +1,11 @@
 package dev.burnoo.ksoup
 
-import com.fleeksoft.ksoup.Ksoup
 import io.kotest.matchers.shouldBe
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
 import kotlin.test.Test
 
-class HtmlDecoderSimpleTest {
+class KspoonSimpleTest {
 
     @Test
     fun shouldParseDate() {
@@ -20,8 +19,7 @@ class HtmlDecoderSimpleTest {
             """
             <span>1996-04-11</span>
             """.trimIndent()
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model(LocalDate(1996, 4, 11))
     }
@@ -39,8 +37,7 @@ class HtmlDecoderSimpleTest {
             <p class="class1"><span>text</span>1</p>
             <p class="class1"><span>text</span>2</p>
             """.trimIndent()
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model("text1")
     }
@@ -64,8 +61,7 @@ class HtmlDecoderSimpleTest {
             <p class="class1"><span>text</span>1</p>
             <p class="class1"><span>text</span>2</p>
             """.trimIndent()
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model(Span("text"))
     }
@@ -85,8 +81,7 @@ class HtmlDecoderSimpleTest {
         )
 
         val body = """<p class="class1">text1</p>"""
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model(Root("text1"))
     }
@@ -104,8 +99,7 @@ class HtmlDecoderSimpleTest {
             <p class="class1"><span>text</span>10</p>
             <p class="class1"><span>text</span>20</p>
             """.trimIndent()
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model("ext1")
     }
@@ -123,8 +117,7 @@ class HtmlDecoderSimpleTest {
             <p>1</p>
             <p>2</p>
             """.trimIndent()
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model(2)
     }

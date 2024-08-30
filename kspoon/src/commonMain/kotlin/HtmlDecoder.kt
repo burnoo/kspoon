@@ -26,8 +26,6 @@ class HtmlDecoder internal constructor(
     private val textMode: HtmlTextMode,
 ) : TaggedDecoder<HtmlTag>() {
 
-    constructor(element: Element) : this(Elements(element), textMode = HtmlTextMode.Text)
-
     override val serializersModule = SerializersModule {
         @Suppress("UNCHECKED_CAST")
         contextual(ElementSerializer as KSerializer<Element>)

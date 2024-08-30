@@ -1,12 +1,11 @@
 package dev.burnoo.ksoup
 
-import com.fleeksoft.ksoup.Ksoup
 import io.kotest.matchers.shouldBe
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
 import kotlin.test.Test
 
-class HtmlDecoderDefaultValueTest {
+class KspoonDefaultValueTest {
 
     @Test
     fun shouldGetFallbackDate() {
@@ -17,8 +16,7 @@ class HtmlDecoderDefaultValueTest {
         )
 
         val body = ""
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model(LocalDate(1996, 4, 11))
     }
@@ -32,8 +30,7 @@ class HtmlDecoderDefaultValueTest {
         )
 
         val body = "<p>text</p>"
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model("not-found")
     }
@@ -47,8 +44,7 @@ class HtmlDecoderDefaultValueTest {
         )
 
         val body = ""
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model("not-found")
     }

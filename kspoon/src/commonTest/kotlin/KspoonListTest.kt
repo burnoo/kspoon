@@ -1,11 +1,10 @@
 package dev.burnoo.ksoup
 
-import com.fleeksoft.ksoup.Ksoup
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Serializable
 import kotlin.test.Test
 
-class HtmlDecoderListTest {
+class KspoonListTest {
 
     @Test
     fun shouldParsePrimitiveList() {
@@ -23,8 +22,7 @@ class HtmlDecoderListTest {
                 <li>3</li>
             </ul>
             """.trimIndent()
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model(listOf(1, 2, 3))
     }
@@ -51,8 +49,7 @@ class HtmlDecoderListTest {
                 <li>3<p>d</p></li>
             </ul>
             """.trimIndent()
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model(
             listOf(
@@ -85,8 +82,7 @@ class HtmlDecoderListTest {
                 <li>3</li>
             </ul>
             """.trimIndent()
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model(
             listOf(

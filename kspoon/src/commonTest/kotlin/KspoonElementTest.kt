@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
 import kotlin.test.Test
 
 @OptIn(ExperimentalSerializationApi::class)
-class HtmlDecoderElementTest {
+class KspoonElementTest {
 
     @Test
     fun shouldParseElements() {
@@ -31,8 +31,7 @@ class HtmlDecoderElementTest {
                 <li>3</li>
             </ul>
             """.trimIndent()
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model.elements.map { it.outerHtml() } shouldBe listOf(
             "<li>1</li>",
@@ -58,8 +57,7 @@ class HtmlDecoderElementTest {
                 <li>3</li>
             </ul>
             """.trimIndent()
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model.element.outerHtml() shouldBe "<li>1</li>"
     }
@@ -74,8 +72,7 @@ class HtmlDecoderElementTest {
         )
 
         val body = ""
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model shouldBe Model(null)
     }
@@ -96,8 +93,7 @@ class HtmlDecoderElementTest {
                 <li>3</li>
             </ul>
             """.trimIndent()
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model.elements.map { it.outerHtml() } shouldBe listOf(
             "<li>1</li>",
@@ -109,8 +105,7 @@ class HtmlDecoderElementTest {
     @Test
     fun shouldParseDocument() {
         val body = """<html><head></head><body></body></html>""".trimIndent()
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val document = decoder.decodeSerializableValue(ContextualSerializer(Document::class))
+        val document = Kspoon.decodeFromString(ContextualSerializer(Document::class), body)
 
         document.html() shouldBe Ksoup.parse(body).html()
     }
@@ -124,8 +119,7 @@ class HtmlDecoderElementTest {
         )
 
         val body = """<html><head></head><body></body></html>""".trimIndent()
-        val decoder = HtmlDecoder(Ksoup.parse(body))
-        val model = decoder.decodeSerializableValue(Model.serializer())
+        val model = Kspoon.decodeFromString<Model>(body)
 
         model.document.html() shouldBe Ksoup.parse(body).html()
     }

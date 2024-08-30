@@ -1,6 +1,6 @@
 package dev.burnoo.ksoup.serializer
 
-import dev.burnoo.ksoup.HtmlDecoder
+import dev.burnoo.ksoup.HtmlTreeDecoder
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.PrimitiveKind
@@ -15,7 +15,7 @@ internal object StringCommentListSerializer : KSerializer<List<String>> {
         PrimitiveSerialDescriptor("DataHtmlString", PrimitiveKind.STRING)
 
     override fun deserialize(decoder: Decoder): List<String> {
-        return (decoder as HtmlDecoder).SerializerDecoder()
+        return (decoder as HtmlTreeDecoder).SerializerDecoder()
             .decodeCommentList()
             .map { it.getData() }
     }

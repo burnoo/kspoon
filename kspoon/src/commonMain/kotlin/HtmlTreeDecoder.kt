@@ -22,7 +22,7 @@ import kotlinx.serialization.modules.contextual
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
-class HtmlDecoder internal constructor(
+internal class HtmlTreeDecoder internal constructor(
     private val elements: Elements,
     private val textMode: HtmlTextMode,
     extraSerializersModule: SerializersModule = EmptySerializersModule()
@@ -54,7 +54,7 @@ class HtmlDecoder internal constructor(
     override fun beginStructure(descriptor: SerialDescriptor): CompositeDecoder {
         val tag = currentTagOrNull ?: return this
         val selectedElements = selectElements(tag)
-        return HtmlDecoder(selectedElements, textMode = textMode)
+        return HtmlTreeDecoder(selectedElements, textMode = textMode)
     }
 
     override fun decodeCollectionSize(descriptor: SerialDescriptor): Int = elements.size

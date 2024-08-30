@@ -1,6 +1,6 @@
 package dev.burnoo.ksoup.serializer
 
-import dev.burnoo.ksoup.HtmlDecoder
+import dev.burnoo.ksoup.HtmlTreeDecoder
 import dev.burnoo.ksoup.HtmlTextMode
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -16,7 +16,7 @@ internal object OuterHtmlSerializer : KSerializer<String> {
         PrimitiveSerialDescriptor("OuterHtmlString", PrimitiveKind.STRING)
 
     override fun deserialize(decoder: Decoder): String {
-        return (decoder as HtmlDecoder).SerializerDecoder().decodeStringWithTextMode(HtmlTextMode.OuterHtml)
+        return (decoder as HtmlTreeDecoder).SerializerDecoder().decodeStringWithTextMode(HtmlTextMode.OuterHtml)
     }
 
     override fun serialize(encoder: Encoder, value: String) {

@@ -1,7 +1,7 @@
 package dev.burnoo.ksoup.serializer
 
 import com.fleeksoft.ksoup.nodes.Document
-import dev.burnoo.ksoup.HtmlDecoder
+import dev.burnoo.ksoup.HtmlTreeDecoder
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.PrimitiveKind
@@ -16,7 +16,7 @@ internal object DocumentSerializer : KSerializer<Document> {
         PrimitiveSerialDescriptor("com.fleeksoft.ksoup.nodes.Document", PrimitiveKind.STRING)
 
     override fun deserialize(decoder: Decoder): Document {
-        return (decoder as HtmlDecoder).SerializerDecoder().decodeDocument()
+        return (decoder as HtmlTreeDecoder).SerializerDecoder().decodeDocument()
     }
 
     override fun serialize(encoder: Encoder, value: Document) {

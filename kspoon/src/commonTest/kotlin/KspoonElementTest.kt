@@ -104,7 +104,7 @@ class KspoonElementTest {
 
     @Test
     fun shouldParseDocument() {
-        val body = """<html><head></head><body></body></html>""".trimIndent()
+        val body = """<html><head></head><body></body></html>"""
         val document = Kspoon.decodeFromString(ContextualSerializer(Document::class), body)
 
         document.html() shouldBe Ksoup.parse(body).html()
@@ -118,7 +118,7 @@ class KspoonElementTest {
             val document: Document,
         )
 
-        val body = """<html><head></head><body></body></html>""".trimIndent()
+        val body = """<html><head></head><body></body></html>"""
         val model = Kspoon.decodeFromString<Model>(body)
 
         model.document.html() shouldBe Ksoup.parse(body).html()

@@ -67,7 +67,7 @@ class KspoonAttributeTest {
     fun shouldParseTextWithRegex() {
         @Serializable
         data class Model(
-            @Selector("a", attr = "text", regex = "Cli[a-z][a-z]")
+            @Selector("a", attr = "textHtml", regex = "Cli[a-z][a-z]")
             val text: String,
         )
 

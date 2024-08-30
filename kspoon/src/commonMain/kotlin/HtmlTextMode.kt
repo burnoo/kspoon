@@ -10,7 +10,7 @@ enum class HtmlTextMode {
     internal companion object {
 
         fun fromAttribute(attribute: String?) = when (attribute) {
-            "text" -> Text
+            "textHtml" -> Text
             "innerHtml", "html" -> InnerHtml
             "outerHtml" -> OuterHtml
             "dataHtml" -> Data

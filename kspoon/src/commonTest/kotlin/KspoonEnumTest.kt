@@ -1,5 +1,6 @@
 package dev.burnoo.ksoup
 
+import dev.burnoo.ksoup.annotation.Selector
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

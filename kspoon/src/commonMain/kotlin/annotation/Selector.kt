@@ -1,4 +1,4 @@
-package dev.burnoo.ksoup
+package dev.burnoo.ksoup.annotation
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialInfo

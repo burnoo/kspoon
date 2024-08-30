@@ -1,5 +1,6 @@
 package dev.burnoo.ksoup
 
+import dev.burnoo.ksoup.annotation.Selector
 import dev.burnoo.ksoup.type.CommentList
 import dev.burnoo.ksoup.type.StringCommentList
 import io.kotest.matchers.shouldBe

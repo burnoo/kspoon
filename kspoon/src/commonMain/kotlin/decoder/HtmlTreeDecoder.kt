@@ -7,7 +7,7 @@ import com.fleeksoft.ksoup.nodes.Document
 import com.fleeksoft.ksoup.nodes.Element
 import com.fleeksoft.ksoup.select.Elements
 import dev.burnoo.ksoup.HtmlTextMode
-import dev.burnoo.ksoup.Selector
+import dev.burnoo.ksoup.annotation.Selector
 import dev.burnoo.ksoup.serializer.DocumentSerializer
 import dev.burnoo.ksoup.serializer.ElementSerializer
 import dev.burnoo.ksoup.serializer.ElementsSerializer

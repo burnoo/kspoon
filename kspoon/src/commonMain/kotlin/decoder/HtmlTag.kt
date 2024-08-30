@@ -1,7 +1,7 @@
 package dev.burnoo.ksoup.decoder
 
-import dev.burnoo.ksoup.Selector
-import dev.burnoo.ksoup.handleNullability
+import dev.burnoo.ksoup.annotation.Selector
+import dev.burnoo.ksoup.annotation.handleNullability
 
 internal sealed class HtmlTag {
 

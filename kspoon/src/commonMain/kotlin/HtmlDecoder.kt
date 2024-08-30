@@ -151,7 +151,8 @@ class HtmlDecoder internal constructor(
 
         fun decodeCommentList(): List<Comment> {
             val element = selectElement(tag = currentTag)
-            return element?.childNodes()
+            return element?.nodeStream()
+                ?.toList()
                 ?.filterIsInstance<Comment>()
                 .orEmpty()
         }

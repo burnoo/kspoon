@@ -23,6 +23,20 @@ class KspoonCommentTest {
     }
 
     @Test
+    fun shouldParseAllCommentList() {
+        @Serializable
+        data class Model(
+            @Selector(":root")
+            val comments: CommentList,
+        )
+
+        val body = "<p><!--a--><!--b--></p><!--c-->"
+        val model = Kspoon.decodeFromString<Model>(body)
+
+        model.comments.map { it.getData() } shouldBe listOf("a", "b", "c")
+    }
+
+    @Test
     fun shouldParseStringCommentList() {
         @Serializable
         data class Model(

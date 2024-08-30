@@ -21,7 +21,11 @@ sealed class Kspoon(
 
     final override fun <T> decodeFromString(deserializer: DeserializationStrategy<T>, string: String): T {
         val document = configuration.parse(Ksoup, string)
-        val decoder = HtmlDecoder(Elements(document), textMode = configuration.defaultTextMode)
+        val decoder = HtmlDecoder(
+            elements = Elements(document),
+            textMode = configuration.defaultTextMode,
+            extraSerializersModule = serializersModule,
+        )
         return decoder.decodeSerializableValue(deserializer)
     }
 

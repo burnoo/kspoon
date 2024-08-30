@@ -16,6 +16,7 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.elementNames
 import kotlinx.serialization.encoding.CompositeDecoder
 import kotlinx.serialization.internal.TaggedDecoder
+import kotlinx.serialization.modules.EmptySerializersModule
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
 import kotlin.contracts.ExperimentalContracts
@@ -24,6 +25,7 @@ import kotlin.contracts.contract
 class HtmlDecoder internal constructor(
     private val elements: Elements,
     private val textMode: HtmlTextMode,
+    extraSerializersModule: SerializersModule = EmptySerializersModule()
 ) : TaggedDecoder<HtmlTag>() {
 
     override val serializersModule = SerializersModule {
@@ -31,6 +33,7 @@ class HtmlDecoder internal constructor(
         contextual(ElementSerializer as KSerializer<Element>)
         contextual(ElementsSerializer)
         contextual(DocumentSerializer)
+        this.include(extraSerializersModule)
     }
     private var elementIndex = 0
 

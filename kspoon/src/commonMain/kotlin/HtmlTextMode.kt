@@ -13,7 +13,7 @@ enum class HtmlTextMode {
             "text" -> Text
             "innerHtml", "html" -> InnerHtml
             "outerHtml" -> OuterHtml
-            "data" -> Data
+            "dataHtml" -> Data
             else -> null
         }
     }

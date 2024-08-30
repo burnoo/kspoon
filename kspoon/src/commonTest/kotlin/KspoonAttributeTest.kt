@@ -50,6 +50,20 @@ class KspoonAttributeTest {
     }
 
     @Test
+    fun shouldSupportDataHtml() {
+        @Serializable
+        data class Model(
+            @Selector("script", attr = "dataHtml")
+            val link: String,
+        )
+
+        val body = "<script>console.log('burnoo')</script>"
+        val model = Kspoon.decodeFromString<Model>(body)
+
+        model shouldBe Model("console.log('burnoo')")
+    }
+
+    @Test
     fun shouldParseTextWithRegex() {
         @Serializable
         data class Model(

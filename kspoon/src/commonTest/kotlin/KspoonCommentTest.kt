@@ -1,7 +1,7 @@
 package dev.burnoo.ksoup
 
-import dev.burnoo.ksoup.serializer.CommentList
-import dev.burnoo.ksoup.serializer.StringCommentList
+import dev.burnoo.ksoup.type.CommentList
+import dev.burnoo.ksoup.type.StringCommentList
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Serializable
 import kotlin.test.Test

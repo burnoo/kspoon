@@ -1,8 +1,8 @@
 package dev.burnoo.ksoup
 
-import dev.burnoo.ksoup.serializer.DataHtmlString
-import dev.burnoo.ksoup.serializer.InnerHtmlString
-import dev.burnoo.ksoup.serializer.OuterHtmlString
+import dev.burnoo.ksoup.type.DataHtmlString
+import dev.burnoo.ksoup.type.InnerHtmlString
+import dev.burnoo.ksoup.type.OuterHtmlString
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Serializable
 import kotlin.test.Test

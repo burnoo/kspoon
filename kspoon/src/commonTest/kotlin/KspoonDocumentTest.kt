@@ -4,7 +4,7 @@ package dev.burnoo.ksoup
 
 import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
-import dev.burnoo.ksoup.serializer.KspoonDocument
+import dev.burnoo.ksoup.type.KspoonDocument
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.ContextualSerializer

@@ -132,7 +132,7 @@ internal class HtmlTreeDecoder internal constructor(
         if (tag !is HtmlTag.Selector) return this
         if (tag.regex == null) return this
         val matchResult = tag.regex.find(this) ?: error("Regex ${tag.regex} not found for tag ${tag.selector}")
-        return matchResult.value
+        return if(matchResult.groupValues.size > 1) matchResult.groupValues[1] else matchResult.value
     }
 
     private fun SerialDescriptor.getSelectorAnnotations(index: Int): Selector? {

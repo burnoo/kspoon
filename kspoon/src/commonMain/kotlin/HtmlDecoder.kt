@@ -21,7 +21,7 @@ import kotlinx.serialization.modules.contextual
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
-class HtmlDecoder private constructor(
+class HtmlDecoder internal constructor(
     private val elements: Elements,
     private val textMode: HtmlTextMode,
 ) : TaggedDecoder<HtmlTag>() {

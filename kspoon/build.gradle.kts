@@ -35,9 +35,13 @@ kotlin {
     mingwX64()
 }
 
-kotlin.sourceSets.commonMain {
-    dependencies {
-        implementation(libs.kotlinx.serialization.core)
-        implementation(libs.ksoup)
-    }
+tasks.withType<Test> { useJUnitPlatform() }
+
+dependencies {
+    commonMainImplementation(libs.kotlinx.serialization.core)
+    commonMainImplementation(libs.ksoup)
+
+    commonTestImplementation(libs.kotlin.test)
+    commonTestImplementation(libs.kotlinx.datetime)
+    commonTestImplementation(libs.kotest.assertions)
 }

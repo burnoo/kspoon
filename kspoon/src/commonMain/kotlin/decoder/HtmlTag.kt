@@ -1,6 +1,9 @@
-package dev.burnoo.ksoup
+package dev.burnoo.ksoup.decoder
 
-sealed class HtmlTag {
+import dev.burnoo.ksoup.Selector
+import dev.burnoo.ksoup.handleNullability
+
+internal sealed class HtmlTag {
 
     data class Selector(
         val selector: String,

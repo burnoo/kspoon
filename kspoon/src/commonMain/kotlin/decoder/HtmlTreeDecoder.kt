@@ -1,11 +1,13 @@
 @file:OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
 
-package dev.burnoo.ksoup
+package dev.burnoo.ksoup.decoder
 
 import com.fleeksoft.ksoup.nodes.Comment
 import com.fleeksoft.ksoup.nodes.Document
 import com.fleeksoft.ksoup.nodes.Element
 import com.fleeksoft.ksoup.select.Elements
+import dev.burnoo.ksoup.HtmlTextMode
+import dev.burnoo.ksoup.Selector
 import dev.burnoo.ksoup.serializer.DocumentSerializer
 import dev.burnoo.ksoup.serializer.ElementSerializer
 import dev.burnoo.ksoup.serializer.ElementsSerializer

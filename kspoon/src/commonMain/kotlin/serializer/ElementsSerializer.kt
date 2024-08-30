@@ -1,7 +1,7 @@
 package dev.burnoo.ksoup.serializer
 
 import com.fleeksoft.ksoup.select.Elements
-import dev.burnoo.ksoup.HtmlTreeDecoder
+import dev.burnoo.ksoup.decoder.HtmlTreeDecoder
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor

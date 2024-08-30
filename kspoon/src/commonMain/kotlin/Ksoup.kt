@@ -5,6 +5,7 @@ package dev.burnoo.ksoup
 import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
 import com.fleeksoft.ksoup.select.Elements
+import dev.burnoo.ksoup.decoder.HtmlTreeDecoder
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.StringFormat

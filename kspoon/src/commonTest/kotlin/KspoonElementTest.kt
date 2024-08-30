@@ -4,6 +4,7 @@ import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
 import com.fleeksoft.ksoup.nodes.Element
 import com.fleeksoft.ksoup.select.Elements
+import dev.burnoo.ksoup.serializer.KspoonDocument
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.ContextualSerializer
@@ -100,6 +101,14 @@ class KspoonElementTest {
             "<li>2</li>",
             "<li>3</li>",
         )
+    }
+
+    @Test
+    fun shouldParseKspoonDocument() {
+        val body = """<html><head></head><body></body></html>"""
+        val kspoonDocument = Kspoon.decodeFromString<KspoonDocument>(body)
+
+        kspoonDocument.document.html() shouldBe Ksoup.parse(body).html()
     }
 
     @Test

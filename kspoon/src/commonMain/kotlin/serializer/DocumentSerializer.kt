@@ -3,6 +3,7 @@ package dev.burnoo.ksoup.serializer
 import com.fleeksoft.ksoup.nodes.Document
 import dev.burnoo.ksoup.HtmlDecoder
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -22,3 +23,9 @@ internal object DocumentSerializer : KSerializer<Document> {
         error("Serialization is not supported")
     }
 }
+
+@Serializable
+data class KspoonDocument(
+    @Serializable(DocumentSerializer::class)
+    val document: Document
+)

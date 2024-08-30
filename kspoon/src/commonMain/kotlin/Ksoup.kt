@@ -3,8 +3,9 @@
 package dev.burnoo.ksoup
 
 import com.fleeksoft.ksoup.Ksoup
-import com.fleeksoft.ksoup.nodes.Document
 import com.fleeksoft.ksoup.select.Elements
+import dev.burnoo.ksoup.configuration.KspoonBuilder
+import dev.burnoo.ksoup.configuration.KspoonConfiguration
 import dev.burnoo.ksoup.decoder.HtmlTreeDecoder
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationStrategy
@@ -42,19 +43,6 @@ fun Kspoon(from: Kspoon = Kspoon.Default, builderAction: KspoonBuilder.() -> Uni
     builder.builderAction()
     val configuration = builder.build()
     return KspoonImpl(configuration, builder.serializersModule)
-}
-
-data class KspoonConfiguration internal constructor(
-    val defaultTextMode: HtmlTextMode = HtmlTextMode.Text,
-    val parse: Ksoup.(html: String) -> Document = { parse(it) },
-)
-
-class KspoonBuilder internal constructor(kspoon: Kspoon) {
-    var defaultTextMode = kspoon.configuration.defaultTextMode
-    var parse = kspoon.configuration.parse
-    var serializersModule: SerializersModule = kspoon.serializersModule
-
-    internal fun build() = KspoonConfiguration(defaultTextMode, parse)
 }
 
 private class KspoonImpl(configuration: KspoonConfiguration, module: SerializersModule) : Kspoon(configuration, module)

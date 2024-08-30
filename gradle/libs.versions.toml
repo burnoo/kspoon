@@ -1,7 +1,7 @@
 [versions]
 kotlin = "2.0.20"
 kotlinxSerialization = "1.7.2"
-ksoup = "0.1.6"
+ksoup = "0.1.5"
 
 [libraries]
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerialization" }

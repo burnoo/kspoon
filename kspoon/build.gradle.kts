@@ -44,7 +44,7 @@ dependencies {
         "okio" -> libs.ksoup.okio
         else -> libs.ksoup.default
     }
-    commonMainImplementation(ksoupDependency)
+    commonMainApi(ksoupDependency)
     commonMainImplementation(libs.kotlinx.serialization.core)
 
     commonTestImplementation(libs.kotlin.test)

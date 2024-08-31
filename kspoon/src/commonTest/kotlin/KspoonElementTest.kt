@@ -29,7 +29,7 @@ class KspoonElementTest {
                 <li>3</li>
             </ul>
             """.trimIndent()
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model.elements.map { it.outerHtml() } shouldBe listOf(
             "<li>1</li>",
@@ -55,7 +55,7 @@ class KspoonElementTest {
                 <li>3</li>
             </ul>
             """.trimIndent()
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model.element.outerHtml() shouldBe "<li>1</li>"
     }
@@ -70,7 +70,7 @@ class KspoonElementTest {
         )
 
         val body = ""
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model(null)
     }
@@ -91,7 +91,7 @@ class KspoonElementTest {
                 <li>3</li>
             </ul>
             """.trimIndent()
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model.elements.map { it.outerHtml() } shouldBe listOf(
             "<li>1</li>",

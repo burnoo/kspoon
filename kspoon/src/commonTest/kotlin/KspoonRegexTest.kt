@@ -20,7 +20,7 @@ class KspoonRegexTest {
             <p class="class1"><span>text</span>10</p>
             <p class="class1"><span>text</span>20</p>
             """.trimIndent()
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("ext1")
     }
@@ -38,7 +38,7 @@ class KspoonRegexTest {
             <p class="class1"><span>text</span>10</p>
             <p class="class1"><span>text</span>20</p>
             """.trimIndent()
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("te")
     }

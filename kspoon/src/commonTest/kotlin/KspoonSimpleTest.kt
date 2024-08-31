@@ -20,7 +20,7 @@ class KspoonSimpleTest {
             """
             <span>1996-04-11</span>
             """.trimIndent()
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model(LocalDate(1996, 4, 11))
     }
@@ -38,7 +38,7 @@ class KspoonSimpleTest {
             <p class="class1"><span>text</span>1</p>
             <p class="class1"><span>text</span>2</p>
             """.trimIndent()
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("text1")
     }
@@ -62,7 +62,7 @@ class KspoonSimpleTest {
             <p class="class1"><span>text</span>1</p>
             <p class="class1"><span>text</span>2</p>
             """.trimIndent()
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model(Span("text"))
     }
@@ -82,7 +82,7 @@ class KspoonSimpleTest {
         )
 
         val body = """<p class="class1">text1</p>"""
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model(Root("text1"))
     }
@@ -100,7 +100,7 @@ class KspoonSimpleTest {
             <p class="class1"><span>text</span>10</p>
             <p class="class1"><span>text</span>20</p>
             """.trimIndent()
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("ext1")
     }
@@ -118,7 +118,7 @@ class KspoonSimpleTest {
             <p>1</p>
             <p>2</p>
             """.trimIndent()
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model(2)
     }

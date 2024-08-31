@@ -19,7 +19,7 @@ class KspoonTextModeTest {
         )
 
         val body = "<div><p><span>text</span></p></div>"
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("text")
     }
@@ -33,7 +33,7 @@ class KspoonTextModeTest {
         )
 
         val body = "<div><p><span>text</span></p></div>"
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("<p><span>text</span></p>")
     }
@@ -47,7 +47,7 @@ class KspoonTextModeTest {
         )
 
         val body = "<div><p><span>text</span></p></div>"
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("<span>text</span>")
     }
@@ -61,7 +61,7 @@ class KspoonTextModeTest {
         )
 
         val body = "<script>console.log('burnoo')</script>"
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("console.log('burnoo')")
     }
@@ -75,7 +75,7 @@ class KspoonTextModeTest {
         )
 
         val body = "<style>p { width: 20px; }</style>"
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("p { width: 20px; }")
     }
@@ -89,7 +89,7 @@ class KspoonTextModeTest {
         )
 
         val body = "<!--comment-->"
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("comment")
     }

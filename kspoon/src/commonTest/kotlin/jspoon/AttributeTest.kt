@@ -62,7 +62,7 @@ class AttributeTest {
     }
 
     private inline fun <reified T : Any> createObjectFromHtml(): T {
-        return Kspoon.decodeFromString<T>(HTML_CONTENT)
+        return Kspoon.parse<T>(HTML_CONTENT)
     }
 
     companion object {

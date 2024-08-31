@@ -16,7 +16,7 @@ class KspoonAttributeTest {
         )
 
         val body = """<a href="https://github.com/burnoo">Click here</a>"""
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("https://github.com/burnoo")
     }
@@ -30,7 +30,7 @@ class KspoonAttributeTest {
         )
 
         val body = """<a href="https://github.com/burnoo">Click <span>here</span></a>"""
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("""<a href="https://github.com/burnoo">Click <span>here</span></a>""")
     }
@@ -44,7 +44,7 @@ class KspoonAttributeTest {
         )
 
         val body = """<a href="https://github.com/burnoo">Click <span>here</span></a>"""
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("""Click <span>here</span>""")
     }
@@ -58,7 +58,7 @@ class KspoonAttributeTest {
         )
 
         val body = "<script>console.log('burnoo')</script>"
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("console.log('burnoo')")
     }
@@ -72,7 +72,7 @@ class KspoonAttributeTest {
         )
 
         val body = """<a href="https://github.com/burnoo">Click <span>here</span></a>"""
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("Click")
     }

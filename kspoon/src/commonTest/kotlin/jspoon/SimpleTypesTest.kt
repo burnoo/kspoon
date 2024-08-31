@@ -167,7 +167,7 @@ class SimpleTypesTest {
     }
 
     private inline fun <reified T : Any> createObjectFromHtml(): T {
-        return Kspoon.decodeFromString(HTML_CONTENT)
+        return Kspoon.parse(HTML_CONTENT)
     }
 
     companion object {

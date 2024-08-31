@@ -20,7 +20,7 @@ class KspoonEnumTest {
         )
 
         val body = "<p>b</p>"
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model(Enum.B)
     }

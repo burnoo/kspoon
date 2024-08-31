@@ -23,7 +23,7 @@ class KspoonListTest {
                 <li>3</li>
             </ul>
             """.trimIndent()
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model(listOf(1, 2, 3))
     }
@@ -50,7 +50,7 @@ class KspoonListTest {
                 <li>3<p>d</p></li>
             </ul>
             """.trimIndent()
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model(
             listOf(
@@ -83,7 +83,7 @@ class KspoonListTest {
                 <li>3</li>
             </ul>
             """.trimIndent()
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model(
             listOf(

@@ -18,7 +18,7 @@ class KspoonCommentTest {
         )
 
         val body = "<p><!--a--><!--b--></p><!--c-->"
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model.comments.map { it.getData() } shouldBe listOf("a", "b")
     }
@@ -32,7 +32,7 @@ class KspoonCommentTest {
         )
 
         val body = "<p><!--a--><!--b--></p><!--c-->"
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model.comments.map { it.getData() } shouldBe listOf("a", "b", "c")
     }
@@ -46,7 +46,7 @@ class KspoonCommentTest {
         )
 
         val body = "<p><!--a--><!--b--></p><!--c-->"
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model(listOf("a", "b"))
     }

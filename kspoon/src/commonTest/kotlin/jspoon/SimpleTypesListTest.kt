@@ -58,7 +58,7 @@ class SimpleTypesListTest {
     }
 
     private inline fun <reified T : Any> KClass<T>.createObjectFromHtml(): T {
-        return Kspoon.decodeFromString<T>(HTML_CONTENT)
+        return Kspoon.parse<T>(HTML_CONTENT)
     }
 
     companion object {

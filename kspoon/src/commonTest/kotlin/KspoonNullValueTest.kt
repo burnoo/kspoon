@@ -16,7 +16,7 @@ class KspoonNullValueTest {
         )
 
         val body = ""
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model(null)
     }
@@ -30,7 +30,7 @@ class KspoonNullValueTest {
         )
 
         val body = "<p>text</p>"
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model(null)
     }

@@ -20,7 +20,7 @@ class KspoonCoerceTest {
         )
 
         val body = "<p></p>"
-        val model = kspoon.decodeFromString<Model>(body)
+        val model = kspoon.parse<Model>(body)
 
         model shouldBe Model("not found")
     }
@@ -34,7 +34,7 @@ class KspoonCoerceTest {
         )
 
         val body = "<p></p>"
-        val model = kspoon.decodeFromString<Model>(body)
+        val model = kspoon.parse<Model>(body)
 
         model shouldBe Model(null)
     }
@@ -48,7 +48,7 @@ class KspoonCoerceTest {
         )
 
         val body = "<p>text</p>"
-        val model = kspoon.decodeFromString<Model>(body)
+        val model = kspoon.parse<Model>(body)
 
         model shouldBe Model("not found")
     }
@@ -68,7 +68,7 @@ class KspoonCoerceTest {
         )
 
         val body = "<div></div>"
-        val model = kspoon.decodeFromString<Model>(body)
+        val model = kspoon.parse<Model>(body)
 
         model shouldBe Model()
     }
@@ -88,7 +88,7 @@ class KspoonCoerceTest {
         )
 
         val body = "<div>text</div>"
-        val model = kspoon.decodeFromString<Model>(body)
+        val model = kspoon.parse<Model>(body)
 
         model shouldBe Model(text2 = "text")
     }

@@ -21,7 +21,7 @@ sealed class Kspoon(
 
     companion object Default : Kspoon(KspoonConfiguration(), EmptySerializersModule())
 
-    final override fun <T> decodeFromString(deserializer: DeserializationStrategy<T>, string: String): T {
+    fun <T> parse(deserializer: DeserializationStrategy<T>, string: String): T {
         val document = configuration.parse(Ksoup, string)
         val decoder = HtmlTreeDecoder(
             elements = Elements(document),
@@ -31,7 +31,11 @@ sealed class Kspoon(
         return decoder.decodeSerializableValue(deserializer)
     }
 
-    inline fun <reified T> decodeFromString(string: String): T = decodeFromString(serializersModule.serializer(), string)
+    inline fun <reified T> parse(string: String): T = decodeFromString(serializersModule.serializer(), string)
+
+    final override fun <T> decodeFromString(deserializer: DeserializationStrategy<T>, string: String): T {
+        return parse(deserializer, string)
+    }
 
     final override fun <T> encodeToString(serializer: SerializationStrategy<T>, value: T): String {
         return configuration.encodeStringFormatDelegate?.encodeToString(serializer, value) ?:

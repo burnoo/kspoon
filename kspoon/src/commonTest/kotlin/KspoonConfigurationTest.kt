@@ -18,7 +18,7 @@ class KspoonConfigurationTest {
             defaultTextMode = HtmlTextMode.OuterHtml
         }
 
-        val text = kspoon.decodeFromString<Model>("<p>text</p>")
+        val text = kspoon.parse<Model>("<p>text</p>")
 
         text shouldBe Model("<p>text</p>")
     }
@@ -34,7 +34,7 @@ class KspoonConfigurationTest {
             parse = { parse(it, baseUri = "https://github.com") }
         }
 
-        val text = kspoon.decodeFromString<Model>("""<a href="burnoo">Click</a>""")
+        val text = kspoon.parse<Model>("""<a href="burnoo">Click</a>""")
 
         text shouldBe Model("https://github.com/burnoo")
     }

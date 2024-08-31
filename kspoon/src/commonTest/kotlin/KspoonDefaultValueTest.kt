@@ -17,7 +17,7 @@ class KspoonDefaultValueTest {
         )
 
         val body = ""
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model(LocalDate(1996, 4, 11))
     }
@@ -31,7 +31,7 @@ class KspoonDefaultValueTest {
         )
 
         val body = "<p>text</p>"
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("not-found")
     }
@@ -45,7 +45,7 @@ class KspoonDefaultValueTest {
         )
 
         val body = ""
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model shouldBe Model("not-found")
     }

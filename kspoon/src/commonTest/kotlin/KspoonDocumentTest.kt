@@ -17,7 +17,7 @@ class KspoonDocumentTest {
     @Test
     fun shouldParseKspoonDocument() {
         val body = """<html><head></head><body></body></html>"""
-        val kspoonDocument = Kspoon.decodeFromString<KspoonDocument>(body)
+        val kspoonDocument = Kspoon.parse<KspoonDocument>(body)
 
         kspoonDocument.document.html() shouldBe Ksoup.parse(body).html()
     }
@@ -25,7 +25,7 @@ class KspoonDocumentTest {
     @Test
     fun shouldParseDocument() {
         val body = """<html><head></head><body></body></html>"""
-        val document = Kspoon.decodeFromString(ContextualSerializer(Document::class), body)
+        val document = Kspoon.parse(ContextualSerializer(Document::class), body)
 
         document.html() shouldBe Ksoup.parse(body).html()
     }
@@ -39,7 +39,7 @@ class KspoonDocumentTest {
         )
 
         val body = """<html><head></head><body></body></html>"""
-        val model = Kspoon.decodeFromString<Model>(body)
+        val model = Kspoon.parse<Model>(body)
 
         model.document.html() shouldBe Ksoup.parse(body).html()
     }

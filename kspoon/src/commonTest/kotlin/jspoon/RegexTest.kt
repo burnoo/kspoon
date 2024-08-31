@@ -23,7 +23,7 @@ class RegexTest {
 
     @Test
     fun regexTest() {
-        val regexModel: RegexModel = Kspoon.decodeFromString(HTML_CONTENT)
+        val regexModel: RegexModel = Kspoon.parse(HTML_CONTENT)
 
         regexModel.number shouldBe "three"
     }
@@ -31,7 +31,7 @@ class RegexTest {
 
     @Test
     fun regexDefaultTest() {
-        val regexModel: RegexModelDefault = Kspoon.decodeFromString(HTML_CONTENT)
+        val regexModel: RegexModelDefault = Kspoon.parse(HTML_CONTENT)
 
         regexModel.number shouldBe 1
     }

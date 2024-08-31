@@ -13,6 +13,21 @@ plugins {
 group = "dev.burnoo.kspoon"
 version = "0.0.1-SNAPSHOT"
 
+data class Variant(
+    val type: Type,
+    val ksoupDependency: Provider<MinimalExternalModuleDependency>,
+    val suffix: String,
+) {
+    enum class Type { Default, Korlibs, Ktor2, Okio }
+}
+
+val currentVariant = when (properties["variant"]?.toString()) {
+    "korlibs" -> Variant(Variant.Type.Korlibs, libs.ksoup.korlibs, "-korlibs")
+    "ktor2" -> Variant(Variant.Type.Ktor2, libs.ksoup.ktor2, "-ktor2")
+    "okio" -> Variant(Variant.Type.Okio, libs.ksoup.okio, "-okio")
+    else -> Variant(Variant.Type.Default, libs.ksoup.default, "")
+}
+
 kotlin {
     jvm()
 
@@ -20,11 +35,13 @@ kotlin {
         browser()
         nodejs()
     }
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        browser()
-        nodejs()
-        d8()
+    if (currentVariant.type != Variant.Type.Ktor2) {
+        @OptIn(ExperimentalWasmDsl::class)
+        wasmJs {
+            browser()
+            nodejs()
+            d8()
+        }
     }
 
     linuxX64()
@@ -41,18 +58,6 @@ kotlin {
 }
 
 tasks.withType<Test> { useJUnitPlatform() }
-
-data class Variant(
-    val ksoupDependency: Provider<MinimalExternalModuleDependency>,
-    val suffix: String
-)
-
-val currentVariant = when (properties["variant"]?.toString()) {
-    "korlibs" -> Variant(libs.ksoup.korlibs, "-korlibs")
-    "ktor2" -> Variant(libs.ksoup.ktor2, "-ktor2")
-    "okio" -> Variant(libs.ksoup.okio, "-okio")
-    else -> Variant(libs.ksoup.default, "")
-}
 
 dependencies {
     commonMainApi(currentVariant.ksoupDependency)

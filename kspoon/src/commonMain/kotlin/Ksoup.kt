@@ -34,7 +34,8 @@ sealed class Kspoon(
     inline fun <reified T> decodeFromString(string: String): T = decodeFromString(serializersModule.serializer(), string)
 
     final override fun <T> encodeToString(serializer: SerializationStrategy<T>, value: T): String {
-        error("Serialization is not supported")
+        return configuration.encodeStringFormatDelegate?.encodeToString(serializer, value) ?:
+            error("Serialization is not supported")
     }
 }
 

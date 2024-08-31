@@ -8,6 +8,7 @@ import com.fleeksoft.ksoup.nodes.Element
 import com.fleeksoft.ksoup.select.Elements
 import dev.burnoo.ksoup.HtmlTextMode
 import dev.burnoo.ksoup.annotation.Selector
+import dev.burnoo.ksoup.configuration.KspoonConfiguration
 import dev.burnoo.ksoup.serializer.DocumentSerializer
 import dev.burnoo.ksoup.serializer.ElementSerializer
 import dev.burnoo.ksoup.serializer.ElementsSerializer
@@ -15,6 +16,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.descriptors.StructureKind
 import kotlinx.serialization.descriptors.elementNames
 import kotlinx.serialization.encoding.CompositeDecoder
 import kotlinx.serialization.internal.TaggedDecoder
@@ -26,9 +28,12 @@ import kotlin.contracts.contract
 
 internal class HtmlTreeDecoder internal constructor(
     private val elements: Elements,
-    private val textMode: HtmlTextMode,
-    extraSerializersModule: SerializersModule = EmptySerializersModule()
+    private val configuration: KspoonConfiguration,
+    extraSerializersModule: SerializersModule = EmptySerializersModule(),
 ) : TaggedDecoder<HtmlTag>() {
+
+    private val textMode = configuration.defaultTextMode
+    private val coerceInputValues: Boolean = configuration.coerceInputValues
 
     override val serializersModule = SerializersModule {
         @Suppress("UNCHECKED_CAST")
@@ -49,14 +54,37 @@ internal class HtmlTreeDecoder internal constructor(
     }
 
     override fun decodeElementIndex(descriptor: SerialDescriptor): Int {
-        if (elementIndex == descriptor.elementsCount) return CompositeDecoder.DECODE_DONE
+        val isList = descriptor.kind == StructureKind.LIST
+        val maxCount = if (isList) elements.size else descriptor.elementsCount
+        while (shouldCoerceInputValue(maxCount, descriptor)) {
+            elementIndex++
+        }
+        if (elementIndex == maxCount) return CompositeDecoder.DECODE_DONE
         return elementIndex++
+    }
+
+    private fun shouldCoerceInputValue(maxCount: Int, descriptor: SerialDescriptor): Boolean {
+        // ensure coerceInputValues from config is enabled
+        if (!coerceInputValues) return false
+        // ensure current structure hasn't ended
+        if (elementIndex == maxCount) return false
+        // ensure current structure is a class (and not a list)
+        if (descriptor.kind != StructureKind.CLASS) return false
+        // check if the element is optional - if the instance can be created with Kotlin default value
+        if (!descriptor.isElementOptional(0)) return false
+        val tag = descriptor.getTag(elementIndex)
+        if (tag !is HtmlTag.Selector) return false
+        // check if default value was set in selector - then we skip selecting element here, as default value
+        // will be returned instead
+        if (tag.defaultValue != null) return false
+        // finally checking if the selected element is empty
+        return selectElement(tag) == null
     }
 
     override fun beginStructure(descriptor: SerialDescriptor): CompositeDecoder {
         val tag = currentTagOrNull ?: return this
         val selectedElements = selectElements(tag)
-        return HtmlTreeDecoder(selectedElements, textMode = textMode)
+        return HtmlTreeDecoder(selectedElements, configuration)
     }
 
     override fun decodeCollectionSize(descriptor: SerialDescriptor): Int = elements.size
@@ -67,7 +95,7 @@ internal class HtmlTreeDecoder internal constructor(
         return selectElement(tag) != null
     }
 
-    override fun decodeSequentially() = true
+    override fun decodeSequentially() = !configuration.coerceInputValues
 
     override fun decodeTaggedLong(tag: HtmlTag) = getText(tag).toLong()
     override fun decodeTaggedShort(tag: HtmlTag) = getText(tag).toShort()
@@ -132,7 +160,7 @@ internal class HtmlTreeDecoder internal constructor(
         if (tag !is HtmlTag.Selector) return this
         if (tag.regex == null) return this
         val matchResult = tag.regex.find(this) ?: error("Regex ${tag.regex} not found for tag ${tag.selector}")
-        return if(matchResult.groupValues.size > 1) matchResult.groupValues[1] else matchResult.value
+        return if (matchResult.groupValues.size > 1) matchResult.groupValues[1] else matchResult.value
     }
 
     private fun SerialDescriptor.getSelectorAnnotations(index: Int): Selector? {

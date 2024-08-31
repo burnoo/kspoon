@@ -25,7 +25,7 @@ sealed class Kspoon(
         val document = configuration.parse(Ksoup, string)
         val decoder = HtmlTreeDecoder(
             elements = Elements(document),
-            textMode = configuration.defaultTextMode,
+            configuration = configuration,
             extraSerializersModule = serializersModule,
         )
         return decoder.decodeSerializableValue(deserializer)

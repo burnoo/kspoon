@@ -38,8 +38,14 @@ kotlin {
 tasks.withType<Test> { useJUnitPlatform() }
 
 dependencies {
+    val ksoupDependency = when(properties["ksoupVariant"]?.toString()) {
+        "korlibs" -> libs.ksoup.korlibs
+        "ktor2" -> libs.ksoup.ktor2
+        "okio" -> libs.ksoup.okio
+        else -> libs.ksoup.default
+    }
+    commonMainImplementation(ksoupDependency)
     commonMainImplementation(libs.kotlinx.serialization.core)
-    commonMainImplementation(libs.ksoup)
 
     commonTestImplementation(libs.kotlin.test)
     commonTestImplementation(libs.kotlinx.datetime)

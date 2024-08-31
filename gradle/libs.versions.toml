@@ -1,7 +1,7 @@
 [versions]
 kotlin = "2.0.20"
 kotlinxSerialization = "1.7.2"
-ksoup = "0.1.5"
+ksoup = "0.1.6-alpha1"
 
 # Test dependencies
 kotlinxDatetime = "0.6.1"
@@ -11,7 +11,10 @@ kotest = "5.9.1"
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
-ksoup = { module = "com.fleeksoft.ksoup:ksoup", version.ref = "ksoup" }
+ksoup-default = { module = "com.fleeksoft.ksoup:ksoup", version.ref = "ksoup" }
+ksoup-korlibs = { module = "com.fleeksoft.ksoup:ksoup-korlibs", version.ref = "ksoup" }
+ksoup-ktor2 = { module = "com.fleeksoft.ksoup:ksoup-ktor2", version.ref = "ksoup" }
+ksoup-okio = { module = "com.fleeksoft.ksoup:ksoup-okio", version.ref = "ksoup" }
 
 # Test dependencies
 kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }

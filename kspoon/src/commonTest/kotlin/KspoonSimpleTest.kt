@@ -122,5 +122,4 @@ class KspoonSimpleTest {
 
         model shouldBe Model(2)
     }
-
 }

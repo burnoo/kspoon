@@ -28,7 +28,7 @@ class AttributeTest {
         @Selector("div")
         var text: String? = null
 
-        //"default" by javadocs attr value should have the same result as no attr value above
+        // "default" by javadocs attr value should have the same result as no attr value above
         @Selector(value = "div", attr = "textHtml")
         var text2: String? = null
 
@@ -66,11 +66,13 @@ class AttributeTest {
     }
 
     companion object {
-        private const val HTML_CONTENT = ("<img "
-            + "id='id' "
-            + "src='/img.jpg' "
-            + "alt='alt-text' "
-            + "class='A B C' />"
-            + "<div><p>test</p></div>")
+        private const val HTML_CONTENT = (
+            "<img " +
+                "id='id' " +
+                "src='/img.jpg' " +
+                "alt='alt-text' " +
+                "class='A B C' />" +
+                "<div><p>test</p></div>"
+        )
     }
 }

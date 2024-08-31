@@ -4,7 +4,7 @@ enum class HtmlTextMode {
     Text,
     InnerHtml,
     OuterHtml,
-    Data // script, style, comment
+    Data, // script, style, comment
     ;
 
     internal companion object {

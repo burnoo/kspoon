@@ -12,7 +12,7 @@ class KspoonConfigurationTest {
         @Serializable
         data class Model(
             @Selector("p")
-            val text: String
+            val text: String,
         )
         val kspoon = Kspoon {
             defaultTextMode = HtmlTextMode.OuterHtml
@@ -28,7 +28,7 @@ class KspoonConfigurationTest {
         @Serializable
         data class Model(
             @Selector("a", attr = "abs:href")
-            val url: String
+            val url: String,
         )
         val kspoon = Kspoon {
             parse = { parse(it, baseUri = "https://github.com") }

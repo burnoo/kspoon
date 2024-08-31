@@ -20,14 +20,12 @@ class RegexTest {
         var number: Int = 0
     }
 
-
     @Test
     fun regexTest() {
         val regexModel: RegexModel = Kspoon.parse(HTML_CONTENT)
 
         regexModel.number shouldBe "three"
     }
-
 
     @Test
     fun regexDefaultTest() {
@@ -37,8 +35,10 @@ class RegexTest {
     }
 
     companion object {
-        private const val HTML_CONTENT = ("<div>"
-            + "ONE, TwO, three,"
-            + "</div>")
+        private const val HTML_CONTENT = (
+            "<div>" +
+                "ONE, TwO, three," +
+                "</div>"
+        )
     }
 }

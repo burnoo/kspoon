@@ -171,23 +171,25 @@ class SimpleTypesTest {
     }
 
     companion object {
-        private const val HTML_CONTENT = ("<div>"
-            + "<span id='string1'>Test1</span>"
-            + "<span id='int1'>-200</span>"
-            + "<span id='float1'>4.1</span>"
-            + "<span id='boolean1'>true</span>"
-            + "<span id='date1'>2017-07-14</span>"
-            + "<div id='string2'></div>"
-            + "<div id='int2'>4</div>"
-            + "<div id='float2'>-10.00001</div>"
-            + "<div id='boolean2'>false</div>"
-            + "<div id='date2'>2137-04-01</div>"
-            + "<p id='string3'>Test2 </p>"
-            + "<p id='int3'>32000</p>"
-            + "<p id='float3'>-32.123456</p>"
-            + "<p id='boolean3'>test</p>"
-            + "<p id='date3'>1444-07-30</p>"
-            + "<div id='element-test' data-test='test'/>"
-            + "</div>")
+        private const val HTML_CONTENT = (
+            "<div>" +
+                "<span id='string1'>Test1</span>" +
+                "<span id='int1'>-200</span>" +
+                "<span id='float1'>4.1</span>" +
+                "<span id='boolean1'>true</span>" +
+                "<span id='date1'>2017-07-14</span>" +
+                "<div id='string2'></div>" +
+                "<div id='int2'>4</div>" +
+                "<div id='float2'>-10.00001</div>" +
+                "<div id='boolean2'>false</div>" +
+                "<div id='date2'>2137-04-01</div>" +
+                "<p id='string3'>Test2 </p>" +
+                "<p id='int3'>32000</p>" +
+                "<p id='float3'>-32.123456</p>" +
+                "<p id='boolean3'>test</p>" +
+                "<p id='date3'>1444-07-30</p>" +
+                "<div id='element-test' data-test='test'/>" +
+                "</div>"
+        )
     }
 }

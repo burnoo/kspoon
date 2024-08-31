@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class KspoonDocument(
     @Serializable(DocumentSerializer::class)
-    val document: Document
+    val document: Document,
 )

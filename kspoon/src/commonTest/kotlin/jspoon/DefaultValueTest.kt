@@ -31,9 +31,9 @@ class DefaultValueTest {
         val model: Model = Kspoon {
             coerceInputValues = true
         }.parse("<div></div>")
-        model.text shouldBe "DEFAULT_VALUE"  // since defValue explicitly defined
-        model.text2 shouldBe "hello"  // defValue takes precedent as its whatever would be parsed from Element
-        model.text3 shouldBe  "hello world" // no defValue, let's leave whatever is set
+        model.text shouldBe "DEFAULT_VALUE" // since defValue explicitly defined
+        model.text2 shouldBe "hello" // defValue takes precedent as its whatever would be parsed from Element
+        model.text3 shouldBe "hello world" // no defValue, let's leave whatever is set
         model.text4 shouldBe null // should not be set to anything silently if developer did not set a defValue
         model.number shouldBe -100
     }

@@ -28,7 +28,7 @@ class SimpleTypesListTest {
     }
 
     @Serializable
-    private  class StringModel {
+    private class StringModel {
         @Selector(".string")
         var stringList: List<String>? = null
 
@@ -62,16 +62,18 @@ class SimpleTypesListTest {
     }
 
     companion object {
-        private const val HTML_CONTENT = ("<div>"
-                + "<span class='string'>Test1</span>"
-                + "<span class='int'>-200</span>"
-                + "<span class='boolean'>true</span>"
-                + "<div class='string'></div>"
-                + "<div class='int'>4</div>"
-                + "<div class='boolean'>false</div>"
-                + "<p class='string'>Test2 </p>"
-                + "<p class='int'>32000</p>"
-                + "<p class='boolean'>test</p>"
-                + "</div>")
+        private const val HTML_CONTENT = (
+            "<div>" +
+                "<span class='string'>Test1</span>" +
+                "<span class='int'>-200</span>" +
+                "<span class='boolean'>true</span>" +
+                "<div class='string'></div>" +
+                "<div class='int'>4</div>" +
+                "<div class='boolean'>false</div>" +
+                "<p class='string'>Test2 </p>" +
+                "<p class='int'>32000</p>" +
+                "<p class='boolean'>test</p>" +
+                "</div>"
+        )
     }
 }

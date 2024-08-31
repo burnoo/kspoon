@@ -59,10 +59,8 @@ class KspoonCoerceTest {
         data class Model(
             @Selector("p")
             val text: String = "not found",
-
             @Selector("p")
             val text2: String = "not found",
-
             @Selector("p")
             val text3: String = "not found",
         )
@@ -79,10 +77,8 @@ class KspoonCoerceTest {
         data class Model(
             @Selector("p")
             val text: String = "not found",
-
             @Selector("div")
             val text2: String = "not found",
-
             @Selector("p")
             val text3: String = "not found",
         )

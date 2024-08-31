@@ -7,7 +7,13 @@ import kotlinx.serialization.Serializable
 import kotlin.test.Test
 
 @Serializable
-private enum class Enum { @SerialName("a") A, @SerialName("b") B, @SerialName("c") C }
+private enum class Enum {
+    @SerialName("a") A,
+
+    @SerialName("b") B,
+
+    @SerialName("c") C,
+}
 
 class KspoonEnumTest {
 

@@ -2,10 +2,15 @@
 kotlin = "2.0.20"
 kotlinxSerialization = "1.7.2"
 ksoup = "0.1.6-alpha1"
+logback = "1.5.6"
 
 # Test dependencies
 kotlinxDatetime = "0.6.1"
 kotest = "5.9.1"
+
+# Example
+ktor = "3.0.0-beta-2"
+retrofit = "2.11.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -15,9 +20,18 @@ ksoup-default = { module = "com.fleeksoft.ksoup:ksoup", version.ref = "ksoup" }
 ksoup-korlibs = { module = "com.fleeksoft.ksoup:ksoup-korlibs", version.ref = "ksoup" }
 ksoup-ktor2 = { module = "com.fleeksoft.ksoup:ksoup-ktor2", version.ref = "ksoup" }
 ksoup-okio = { module = "com.fleeksoft.ksoup:ksoup-okio", version.ref = "ksoup" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 
 # Test dependencies
 kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+
+# Example
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx = { module = "io.ktor:ktor-serialization-kotlinx", version.ref = "ktor" }
+retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-converter-kotlinxSerialization = { module = "com.squareup.retrofit2:converter-kotlinx-serialization", version.ref = "retrofit" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

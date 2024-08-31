@@ -15,4 +15,5 @@ dependencyResolutionManagement {
     }
 }
 
+include(":example")
 include(":kspoon")

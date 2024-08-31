@@ -151,7 +151,7 @@ internal class HtmlTreeDecoder internal constructor(
 
     private fun selectElementOrThrow(tag: HtmlTag): Element {
         return when (val element = selectElement(tag)) {
-            null -> throw IllegalStateException("Element not found for tag ${tag.selector} at index ${tag.index}")
+            null -> throw IllegalStateException("Element not found for tag \"${tag.selector}\" at index ${tag.index}")
             else -> element
         }
     }

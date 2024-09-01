@@ -1,5 +1,8 @@
+
 import dev.burnoo.ksoup.Kspoon
-import model.FakeProfileLite
+import dev.burnoo.ksoup.annotation.Selector
+import kotlinx.serialization.Serializable
+import model.GithubProfile
 
 private const val HTML_CONTENT = """
     <h1>burnoo - GitHub</h1>
@@ -10,13 +13,25 @@ private const val HTML_CONTENT = """
     </ul>
 """
 
+@Serializable
+data class FakeGitHubProfile(
+    @Selector("h1", regex = "(.*) - GitHub")
+    val username: String,
+    @Selector("img[id=avatar]", attr = "abs:src")
+    val avatarUrl: String,
+    @Selector("li")
+    val interests: List<String>,
+    @Selector(".pinned-repositories")
+    val pinnedRepositories: List<GithubProfile.PinnedRepository> = emptyList(),
+)
+
 fun simpleExample() {
     val ksoup = Kspoon {
         parse = { html -> parse(html, baseUri = "https://github.com/") }
         coerceInputValues = true
     }
 
-    val profile = ksoup.parse<FakeProfileLite>(HTML_CONTENT)
+    val profile = ksoup.parse<FakeGitHubProfile>(HTML_CONTENT)
 
     println("Display name: ${profile.username}")
     println("Avatar url: ${profile.avatarUrl}")

@@ -16,6 +16,7 @@ data class GithubProfile(
     data class PinnedRepository(
         @Selector("span.repo")
         val name: String,
+
         @Selector("a.pinned-item-meta", regex = "[0-9]+")
         val starNumbers: Int,
     )

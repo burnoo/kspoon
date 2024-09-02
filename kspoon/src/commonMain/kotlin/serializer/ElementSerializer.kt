@@ -9,16 +9,16 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-internal object ElementSerializer : KSerializer<Element?> {
+internal object ElementSerializer : KSerializer<Element> {
 
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("com.fleeksoft.ksoup.select.Element", PrimitiveKind.STRING)
 
-    override fun deserialize(decoder: Decoder): Element? {
-        return (decoder as HtmlTreeDecoder).SerializerDecoder().decodeElement()
+    override fun deserialize(decoder: Decoder): Element {
+        return (decoder as HtmlTreeDecoder).SerializerDecoder().decodeElementOrThrow()
     }
 
-    override fun serialize(encoder: Encoder, value: Element?) {
+    override fun serialize(encoder: Encoder, value: Element) {
         error("Serialization is not supported")
     }
 }

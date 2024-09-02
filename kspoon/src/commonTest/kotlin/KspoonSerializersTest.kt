@@ -1,6 +1,7 @@
 package dev.burnoo.ksoup
 
 import dev.burnoo.ksoup.annotation.Selector
+import dev.burnoo.ksoup.decoder.HtmlTreeDecoder
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.KSerializer
@@ -30,6 +31,21 @@ object StringWrapperSerializer : KSerializer<StringWrapper> {
     }
 }
 
+object TagSerializer : KSerializer<String> {
+    override val descriptor: SerialDescriptor =
+        PrimitiveSerialDescriptor("dev.burnoo.ksoup.type.CustomString", PrimitiveKind.STRING)
+
+    override fun deserialize(decoder: Decoder): String {
+        val element = (decoder as HtmlTreeDecoder).SerializerDecoder().decodeElement()
+        val tag = element?.tag()?.name ?: "tag not found"
+        return tag
+    }
+
+    override fun serialize(encoder: Encoder, value: String) {
+        error("serialization is not supported")
+    }
+}
+
 class SerializersModuleTest {
 
     @Test
@@ -49,5 +65,25 @@ class SerializersModuleTest {
         val model = kspoon.parse<Model>("<p>text</p>")
 
         model shouldBe Model(StringWrapper("text"))
+    }
+
+    @Test
+    fun shouldUseCustomSerializer() {
+        @Serializable
+        data class Model(
+            @Selector(".class1")
+            @Serializable(TagSerializer::class)
+            val tag: String,
+        )
+
+        val kspoon = Kspoon {
+            serializersModule = SerializersModule {
+                contextual(StringWrapperSerializer)
+            }
+        }
+
+        val model = kspoon.parse<Model>("""<p class="class1">text</p>""")
+
+        model shouldBe Model("p")
     }
 }

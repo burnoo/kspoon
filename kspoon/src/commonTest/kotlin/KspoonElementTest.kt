@@ -5,11 +5,9 @@ import com.fleeksoft.ksoup.select.Elements
 import dev.burnoo.ksoup.annotation.Selector
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Contextual
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlin.test.Test
 
-@OptIn(ExperimentalSerializationApi::class)
 class KspoonElementTest {
 
     @Test

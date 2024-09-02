@@ -14,7 +14,6 @@ import dev.burnoo.ksoup.serializer.ElementSerializer
 import dev.burnoo.ksoup.serializer.ElementsSerializer
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.StructureKind
 import kotlinx.serialization.descriptors.elementNames
@@ -36,8 +35,7 @@ internal class HtmlTreeDecoder internal constructor(
     private val coerceInputValues: Boolean = configuration.coerceInputValues
 
     override val serializersModule = SerializersModule {
-        @Suppress("UNCHECKED_CAST")
-        contextual(ElementSerializer as KSerializer<Element>)
+        contextual(ElementSerializer)
         contextual(ElementsSerializer)
         contextual(DocumentSerializer)
         this.include(extraSerializersModule)
@@ -169,9 +167,11 @@ internal class HtmlTreeDecoder internal constructor(
 
     private fun Elements.getAtAsElements(index: Int) = getOrNull(index)?.let(::Elements) ?: Elements()
 
-    internal inner class SerializerDecoder {
+    inner class SerializerDecoder {
 
         fun decodeElement(): Element? = selectElement(tag = currentTag)
+
+        fun decodeElementOrThrow(): Element = selectElementOrThrow(tag = currentTag)
 
         fun decodeElements(): Elements = selectElements(tag = currentTag)
 

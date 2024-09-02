@@ -1,9 +1,6 @@
 package dev.burnoo.ksoup
 
 import dev.burnoo.ksoup.annotation.Selector
-import dev.burnoo.ksoup.type.DataHtmlString
-import dev.burnoo.ksoup.type.InnerHtmlString
-import dev.burnoo.ksoup.type.OuterHtmlString
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Serializable
 import kotlin.test.Test
@@ -14,7 +11,7 @@ class KspoonTextModeTest {
     fun shouldParseTextByDefault() {
         @Serializable
         data class Model(
-            @Selector("p")
+            @Selector("p", textMode = SelectorHtmlTextMode.Default)
             val text: String,
         )
 
@@ -25,11 +22,27 @@ class KspoonTextModeTest {
     }
 
     @Test
+    fun shouldParseText() {
+        @Serializable
+        data class Model(
+            @Selector("p", textMode = SelectorHtmlTextMode.Text)
+            val text: String,
+        )
+
+        val body = "<div><p><span>text</span></p></div>"
+        val model = Kspoon {
+            defaultTextMode = HtmlTextMode.OuterHtml
+        }.parse<Model>(body)
+
+        model shouldBe Model("text")
+    }
+
+    @Test
     fun shouldParseOuterHtml() {
         @Serializable
         data class Model(
-            @Selector("p")
-            val outerHtml: OuterHtmlString,
+            @Selector("p", textMode = SelectorHtmlTextMode.OuterHtml)
+            val outerHtml: String,
         )
 
         val body = "<div><p><span>text</span></p></div>"
@@ -42,8 +55,8 @@ class KspoonTextModeTest {
     fun shouldParseInnerHtml() {
         @Serializable
         data class Model(
-            @Selector("p")
-            val innerHtml: InnerHtmlString,
+            @Selector("p", textMode = SelectorHtmlTextMode.InnerHtml)
+            val innerHtml: String,
         )
 
         val body = "<div><p><span>text</span></p></div>"
@@ -56,8 +69,8 @@ class KspoonTextModeTest {
     fun shouldParseScript() {
         @Serializable
         data class Model(
-            @Selector("script")
-            val script: DataHtmlString,
+            @Selector("script", textMode = SelectorHtmlTextMode.Data)
+            val script: String,
         )
 
         val body = "<script>console.log('burnoo')</script>"
@@ -70,8 +83,8 @@ class KspoonTextModeTest {
     fun shouldParseStyle() {
         @Serializable
         data class Model(
-            @Selector("style")
-            val script: DataHtmlString,
+            @Selector("style", textMode = SelectorHtmlTextMode.Data)
+            val script: String,
         )
 
         val body = "<style>p { width: 20px; }</style>"
@@ -84,8 +97,8 @@ class KspoonTextModeTest {
     fun shouldParseComment() {
         @Serializable
         data class Model(
-            @Selector("*")
-            val script: DataHtmlString,
+            @Selector("*", textMode = SelectorHtmlTextMode.Data)
+            val script: String,
         )
 
         val body = "<!--comment-->"

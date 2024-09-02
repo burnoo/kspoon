@@ -134,10 +134,10 @@ internal class HtmlTreeDecoder internal constructor(
         return try {
             val element = selectElementOrThrow(tag)
             val attribute = (tag as? HtmlTag.Selector)?.attribute
-            val textModeFromAttribute = HtmlTextMode.fromAttribute(attribute)
-            if (attribute != null && textModeFromAttribute == null) {
+            val textModeFromSelector = (tag as? HtmlTag.Selector)?.textMode
+            if (attribute != null) {
                 element.attr(attribute)
-            } else when (textModeFromAttribute ?: currentTextMode) {
+            } else when (textModeFromSelector ?: currentTextMode) {
                 HtmlTextMode.Text -> element.text()
                 HtmlTextMode.InnerHtml -> element.html()
                 HtmlTextMode.OuterHtml -> element.outerHtml()
@@ -174,10 +174,6 @@ internal class HtmlTreeDecoder internal constructor(
         fun decodeElement(): Element? = selectElement(tag = currentTag)
 
         fun decodeElements(): Elements = selectElements(tag = currentTag)
-
-        fun decodeStringWithTextMode(textMode: HtmlTextMode): String {
-            return getText(popTag(), textMode)
-        }
 
         fun decodeCommentList(): List<Comment> {
             val element = selectElement(tag = currentTag)

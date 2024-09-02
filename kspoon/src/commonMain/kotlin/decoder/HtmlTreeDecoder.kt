@@ -175,15 +175,15 @@ internal class HtmlTreeDecoder internal constructor(
 
         fun decodeElements(): Elements = selectElements(tag = currentTag)
 
+        fun decodeDocument() = elements.firstOrNull() as? Document
+            ?: error("Current Element is not a Document. Document type works only on root")
+
         fun decodeCommentList(): List<Comment> {
             val element = selectElement(tag = currentTag)
             return element?.nodeStream()
-                ?.toList()
                 ?.filterIsInstance<Comment>()
                 .orEmpty()
+                .toList()
         }
-
-        fun decodeDocument() = elements.firstOrNull() as? Document
-            ?: error("Current Element is not a Document. Document type works only on root")
     }
 }

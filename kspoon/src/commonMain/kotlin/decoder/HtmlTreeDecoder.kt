@@ -178,9 +178,9 @@ internal class HtmlTreeDecoder internal constructor(
         fun decodeDocument() = elements.firstOrNull() as? Document
             ?: error("Current Element is not a Document. Document type works only on root")
 
-        fun decodeCommentList(): List<Comment> {
+        fun decodeCommentList(includeNested: Boolean = true): List<Comment> {
             val element = selectElement(tag = currentTag)
-            return element?.nodeStream()
+            return (if (includeNested) element?.nodeStream() else element?.childNodes()?.asSequence())
                 ?.filterIsInstance<Comment>()
                 .orEmpty()
                 .toList()

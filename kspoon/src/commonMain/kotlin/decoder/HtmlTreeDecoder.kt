@@ -22,6 +22,7 @@ import kotlinx.serialization.internal.TaggedDecoder
 import kotlinx.serialization.modules.EmptySerializersModule
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
+import kotlinx.serialization.modules.overwriteWith
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
@@ -38,8 +39,7 @@ internal class HtmlTreeDecoder internal constructor(
         contextual(ElementSerializer)
         contextual(ElementsSerializer)
         contextual(DocumentSerializer)
-        this.include(extraSerializersModule)
-    }
+    } overwriteWith extraSerializersModule
     private var elementIndex = 0
 
     override fun SerialDescriptor.getTag(index: Int): HtmlTag {

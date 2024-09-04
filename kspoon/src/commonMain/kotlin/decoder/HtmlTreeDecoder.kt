@@ -7,6 +7,8 @@ import com.fleeksoft.ksoup.select.Elements
 import dev.burnoo.ksoup.HtmlTextMode
 import dev.burnoo.ksoup.annotation.Selector
 import dev.burnoo.ksoup.configuration.KspoonConfiguration
+import dev.burnoo.ksoup.exception.KspoonParseException
+import dev.burnoo.ksoup.exception.kspoonError
 import dev.burnoo.ksoup.serializer.DocumentSerializer
 import dev.burnoo.ksoup.serializer.ElementSerializer
 import dev.burnoo.ksoup.serializer.ElementsSerializer
@@ -54,7 +56,10 @@ internal class HtmlTreeDecoder(
             selectorAnnotation != null -> selectorAnnotation.toHtmlTag()
             newIndex != null -> HtmlTag.Index(newIndex)
             isElementADocument(index) -> Selector(":root").toHtmlTag()
-            else -> error("Selector annotation not added for ${getElementDescriptor(index).serialName}")
+            else -> kspoonError(
+                "Selector annotation not added to ${getElementDescriptor(index).serialName}," +
+                    " parent selector: ${getSelectorFullPath(tag = null)}",
+            )
         }
     }
 
@@ -115,7 +120,9 @@ internal class HtmlTreeDecoder(
         val text = getText(tag)
         val index = enumDescriptor.elementNames.indexOfFirst { it == text }
         return if (index == -1) {
-            throw IllegalStateException("Can't parse value \"$text\" for enum ${enumDescriptor.serialName}")
+            kspoonError(
+                "Can't parse value '$text' for enum '${enumDescriptor.serialName}' at selector: ${getSelectorFullPath(tag)}",
+            )
         } else index
     }
 
@@ -149,14 +156,18 @@ internal class HtmlTreeDecoder(
                 HtmlTextMode.Data -> element.data()
             }.withRegexIfPresent(tag)
         } catch (e: Exception) {
-            if (tag !is HtmlTag.Selector || tag.defaultValue == null) throw e
-            tag.defaultValue
+            if (tag is HtmlTag.Selector && tag.defaultValue != null) return tag.defaultValue
+            if (e is KspoonParseException) {
+                throw e
+            } else {
+                kspoonError("Error getting text for selector: ${getSelectorFullPath(tag)}", e)
+            }
         }
     }
 
     private fun selectElementOrThrow(tag: HtmlTag): Element {
         return when (val element = selectElement(tag)) {
-            null -> throw IllegalStateException("Element not found for selector: ${getSelectorFullPath(tag)}")
+            null -> kspoonError("Element not found for selector: ${getSelectorFullPath(tag)}")
             else -> element
         }
     }
@@ -165,7 +176,7 @@ internal class HtmlTreeDecoder(
         if (tag !is HtmlTag.Selector) return this
         if (tag.regex == null) return this
         val matchResult = tag.regex.find(this)
-            ?: error("Regex '${tag.regex}' not found for current selector: ${getSelectorFullPath(tag)}")
+            ?: kspoonError("Regex '${tag.regex}' not found for current selector: ${getSelectorFullPath(tag)}")
         return if (matchResult.groupValues.size > 1) matchResult.groupValues[1] else matchResult.value
     }
 
@@ -180,7 +191,9 @@ internal class HtmlTreeDecoder(
 
     private fun Elements.getAtAsElements(index: Int) = getOrNull(index)?.let(::Elements) ?: Elements()
 
-    private fun getSelectorFullPath(tag: HtmlTag) = (tagHierarchy + tag).joinToString(" -> ", prefix = "[", postfix = "]")
+    private fun getSelectorFullPath(tag: HtmlTag?) = (tagHierarchy + tag)
+        .filterNotNull()
+        .joinToString(" -> ", prefix = "[", postfix = "]")
 
     inner class SerializerDecoder {
 
@@ -191,7 +204,7 @@ internal class HtmlTreeDecoder(
         fun decodeElements(): Elements = selectElements(tag = currentTag)
 
         fun decodeDocument() = elements.firstOrNull() as? Document
-            ?: error("Current Element is not a Document. Document type works only on root")
+            ?: kspoonError("Current Element is not a Document. Document type works only on root")
 
         fun decodeCommentList(includeNested: Boolean = true): List<Comment> {
             val element = selectElement(tag = currentTag)

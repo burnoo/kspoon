@@ -3,6 +3,8 @@ package dev.burnoo.ksoup
 import com.fleeksoft.ksoup.nodes.Element
 import com.fleeksoft.ksoup.select.Elements
 import dev.burnoo.ksoup.annotation.Selector
+import dev.burnoo.ksoup.exception.KspoonParseException
+import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
@@ -96,5 +98,20 @@ class KspoonElementTest {
             "<li>2</li>",
             "<li>3</li>",
         )
+    }
+
+    @Test
+    fun shouldThrowOnNotFoundElement() {
+        @Serializable
+        data class Model(
+            @Selector("p")
+            @Contextual
+            val element: Element,
+        )
+
+        val body = """<div></div>""".trimIndent()
+        shouldThrowWithMessage<KspoonParseException>(message = "Element not found for selector: ['p']") {
+            Kspoon.parse<Model>(body)
+        }
     }
 }

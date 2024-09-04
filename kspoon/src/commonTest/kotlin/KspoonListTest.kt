@@ -93,4 +93,18 @@ class KspoonListTest {
             ),
         )
     }
+
+    @Test
+    fun shouldParseEmptyList() {
+        @Serializable
+        data class Model(
+            @Selector("ul > li")
+            val elements: List<Int>,
+        )
+
+        val body = ""
+        val model = Kspoon.parse<Model>(body)
+
+        model shouldBe Model(emptyList())
+    }
 }

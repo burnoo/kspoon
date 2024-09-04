@@ -42,7 +42,7 @@ internal fun Selector.toHtmlTag() = HtmlTag.Selector(
         SelectorHtmlTextMode.Default -> null
     },
     attribute = attr.handleNullability(),
-    index = index,
+    index = maxOf(index, 0),
     defaultValue = defValue.handleNullability(),
     regex = regex.handleNullability()?.toRegex(),
 )

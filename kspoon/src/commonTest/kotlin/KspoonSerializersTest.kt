@@ -76,13 +76,7 @@ class SerializersModuleTest {
             val tag: String,
         )
 
-        val kspoon = Kspoon {
-            serializersModule = SerializersModule {
-                contextual(StringWrapperSerializer)
-            }
-        }
-
-        val model = kspoon.parse<Model>("""<p class="class1">text</p>""")
+        val model = Kspoon.parse<Model>("""<p class="class1">text</p>""")
 
         model shouldBe Model("p")
     }

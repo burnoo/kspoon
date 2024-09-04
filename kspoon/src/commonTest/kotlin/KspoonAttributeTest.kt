@@ -20,4 +20,19 @@ class KspoonAttributeTest {
 
         model shouldBe Model("https://github.com/burnoo")
     }
+
+    @Test
+    fun shouldReturnEmptyStringForMissingAttribute() {
+        @Serializable
+        data class Model(
+            @Selector("a", attr = "src")
+            val src: String,
+        )
+
+        val body = """<a href="https://github.com/burnoo">Click here</a>"""
+
+        val model = Kspoon.parse<Model>(body)
+
+        model shouldBe Model("")
+    }
 }

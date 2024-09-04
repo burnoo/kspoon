@@ -1,6 +1,8 @@
 package dev.burnoo.ksoup
 
 import dev.burnoo.ksoup.annotation.Selector
+import dev.burnoo.ksoup.exception.KspoonParseException
+import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Serializable
 import kotlin.test.Test
@@ -87,5 +89,19 @@ class KspoonCoerceTest {
         val model = kspoon.parse<Model>(body)
 
         model shouldBe Model(text2 = "text")
+    }
+
+    @Test
+    fun shouldThrowWhenCoercingIsDisabled() {
+        @Serializable
+        data class Model(
+            @Selector("span")
+            val text: String = "not found",
+        )
+
+        val body = "<p></p>"
+        shouldThrowWithMessage<KspoonParseException>(message = "Element not found for selector: ['span']") {
+            Kspoon { coerceInputValues = false }.parse<Model>(body)
+        }
     }
 }

@@ -4,7 +4,10 @@ package dev.burnoo.ksoup
 
 import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
+import dev.burnoo.ksoup.annotation.Selector
+import dev.burnoo.ksoup.exception.KspoonParseException
 import dev.burnoo.ksoup.type.KspoonDocument
+import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.ContextualSerializer
@@ -42,5 +45,25 @@ class KspoonDocumentTest {
         val model = Kspoon.parse<Model>(body)
 
         model.document.html() shouldBe Ksoup.parse(body).html()
+    }
+
+    @Test
+    fun shouldThrowOnNestedDocument() {
+        @Serializable
+        data class Nested(
+            @Contextual
+            val document: Document,
+        )
+
+        @Serializable
+        data class Model(
+            @Selector(":root")
+            val document: Nested,
+        )
+
+        val body = """<html><head></head><body></body></html>"""
+        shouldThrowWithMessage<KspoonParseException>(message = "Current Element is not a Document. Document type works only on root") {
+            Kspoon.parse<Model>(body)
+        }
     }
 }

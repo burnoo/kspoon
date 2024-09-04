@@ -116,14 +116,14 @@ internal class HtmlTreeDecoder(
 
     override fun decodeSequentially() = !configuration.coerceInputValues
 
-    override fun decodeTaggedLong(tag: HtmlTag) = getText(tag).toLong()
-    override fun decodeTaggedShort(tag: HtmlTag) = getText(tag).toShort()
-    override fun decodeTaggedByte(tag: HtmlTag) = getText(tag).toByte()
-    override fun decodeTaggedFloat(tag: HtmlTag) = getText(tag).toFloat()
-    override fun decodeTaggedDouble(tag: HtmlTag) = getText(tag).toDouble()
-    override fun decodeTaggedBoolean(tag: HtmlTag) = getText(tag).toBoolean()
+    override fun decodeTaggedLong(tag: HtmlTag) = getTextAndMap(tag) { toLong() }
+    override fun decodeTaggedShort(tag: HtmlTag) = getTextAndMap(tag) { toShort() }
+    override fun decodeTaggedByte(tag: HtmlTag) = getTextAndMap(tag) { toByte() }
+    override fun decodeTaggedFloat(tag: HtmlTag) = getTextAndMap(tag) { toFloat() }
+    override fun decodeTaggedDouble(tag: HtmlTag) = getTextAndMap(tag) { toDouble() }
+    override fun decodeTaggedBoolean(tag: HtmlTag) = getTextAndMap(tag) { toBoolean() }
     override fun decodeTaggedChar(tag: HtmlTag) = getText(tag).first()
-    override fun decodeTaggedInt(tag: HtmlTag) = getText(tag).toInt()
+    override fun decodeTaggedInt(tag: HtmlTag) = getTextAndMap(tag) { toInt() }
     override fun decodeTaggedString(tag: HtmlTag) = getText(tag)
     override fun decodeTaggedEnum(tag: HtmlTag, enumDescriptor: SerialDescriptor): Int {
         val text = getText(tag)
@@ -133,6 +133,15 @@ internal class HtmlTreeDecoder(
                 "Can't parse value '$text' for enum '${enumDescriptor.serialName}' at selector: ${getSelectorFullPath(tag)}",
             )
         } else index
+    }
+
+    private inline fun <reified T> getTextAndMap(tag: HtmlTag, map: String.() -> T): T {
+        val text = getText(tag)
+        return try {
+            text.map()
+        } catch (e: Throwable) {
+            kspoonError("Error while converting 'text' to '${T::class}' for selector ${getSelectorFullPath(tag)}", e)
+        }
     }
 
     private fun selectElements(tag: HtmlTag): Elements {

@@ -2,7 +2,6 @@ package dev.burnoo.ksoup
 
 import dev.burnoo.ksoup.annotation.Selector
 import dev.burnoo.ksoup.exception.KspoonParseException
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.matchers.shouldBe
 import kotlinx.datetime.LocalDate
@@ -163,7 +162,7 @@ class KspoonSimpleTest {
         )
 
         val body = "<p>a</p>"
-        shouldThrow<NumberFormatException> {
+        shouldThrowWithMessage<KspoonParseException>("Error while converting 'text' to 'class kotlin.Int' for selector ['p']") {
             Kspoon.parse<Model>(body)
         }
     }

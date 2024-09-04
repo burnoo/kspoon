@@ -1,4 +1,4 @@
-package dev.burnoo.ksoup.type
+package dev.burnoo.ksoup.model
 
 import com.fleeksoft.ksoup.nodes.Document
 import dev.burnoo.ksoup.serializer.DocumentSerializer

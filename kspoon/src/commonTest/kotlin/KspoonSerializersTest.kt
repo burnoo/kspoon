@@ -1,7 +1,7 @@
 package dev.burnoo.ksoup
 
 import dev.burnoo.ksoup.annotation.Selector
-import dev.burnoo.ksoup.decoder.HtmlTreeDecoder
+import dev.burnoo.ksoup.decoder.KspoonDecoder
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.KSerializer
@@ -36,7 +36,7 @@ object TagSerializer : KSerializer<String> {
         PrimitiveSerialDescriptor("dev.burnoo.ksoup.type.CustomString", PrimitiveKind.STRING)
 
     override fun deserialize(decoder: Decoder): String {
-        val element = (decoder as HtmlTreeDecoder).SerializerDecoder().decodeElement()
+        val element = (decoder as KspoonDecoder).decodeElement()
         val tag = element?.tag()?.name ?: "tag not found"
         return tag
     }

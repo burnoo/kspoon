@@ -6,7 +6,7 @@ import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
 import dev.burnoo.ksoup.annotation.Selector
 import dev.burnoo.ksoup.exception.KspoonParseException
-import dev.burnoo.ksoup.type.KspoonDocument
+import dev.burnoo.ksoup.model.KspoonDocument
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Contextual

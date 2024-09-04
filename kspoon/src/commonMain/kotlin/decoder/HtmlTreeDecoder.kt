@@ -1,6 +1,5 @@
 package dev.burnoo.ksoup.decoder
 
-import com.fleeksoft.ksoup.nodes.Comment
 import com.fleeksoft.ksoup.nodes.Document
 import com.fleeksoft.ksoup.nodes.Element
 import com.fleeksoft.ksoup.select.Elements
@@ -33,7 +32,7 @@ internal class HtmlTreeDecoder(
     private val configuration: KspoonConfiguration,
     extraSerializersModule: SerializersModule = EmptySerializersModule(),
     private val tagHierarchy: List<HtmlTag> = emptyList(),
-) : TaggedDecoder<HtmlTag>() {
+) : TaggedDecoder<HtmlTag>(), KspoonDecoder {
 
     private val textMode = configuration.defaultTextMode
     private val coerceInputValues: Boolean = configuration.coerceInputValues
@@ -204,23 +203,13 @@ internal class HtmlTreeDecoder(
         .filterNotNull()
         .joinToString(" -> ", prefix = "[", postfix = "]")
 
-    inner class SerializerDecoder {
+    // KspoonDecoder implementation
+    override fun decodeElement(): Element? = selectElement(tag = currentTag)
 
-        fun decodeElement(): Element? = selectElement(tag = currentTag)
+    override fun decodeElementOrThrow(): Element = selectElementOrThrow(tag = currentTag)
 
-        fun decodeElementOrThrow(): Element = selectElementOrThrow(tag = currentTag)
+    override fun decodeElements(): Elements = selectElements(tag = currentTag)
 
-        fun decodeElements(): Elements = selectElements(tag = currentTag)
-
-        fun decodeDocument() = elements.firstOrNull() as? Document
-            ?: kspoonError("Current Element is not a Document. Document type works only on root")
-
-        fun decodeCommentList(includeNested: Boolean = true): List<Comment> {
-            val element = selectElement(tag = currentTag)
-            return (if (includeNested) element?.nodeStream() else element?.childNodes()?.asSequence())
-                ?.filterIsInstance<Comment>()
-                .orEmpty()
-                .toList()
-        }
-    }
+    override fun decodeDocument() = elements.firstOrNull() as? Document
+        ?: kspoonError("Current Element is not a Document. Document type works only on root")
 }

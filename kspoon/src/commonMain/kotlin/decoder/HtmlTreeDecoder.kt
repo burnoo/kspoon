@@ -63,6 +63,15 @@ internal class HtmlTreeDecoder(
         }
     }
 
+    private fun SerialDescriptor.getElementSelectorAnnotation(index: Int): Selector? {
+        return getElementAnnotations(index).filterIsInstance<Selector>().firstOrNull()
+    }
+
+    private fun SerialDescriptor.isElementADocument(index: Int): Boolean {
+        val elementDescriptor = getElementDescriptor(index)
+        return elementDescriptor.serialName == "com.fleeksoft.ksoup.nodes.Document" || elementDescriptor.capturedKClass == Document::class
+    }
+
     override fun decodeElementIndex(descriptor: SerialDescriptor): Int {
         val isList = descriptor.kind == StructureKind.LIST
         val maxCount = if (isList) elements.size else descriptor.elementsCount
@@ -178,15 +187,6 @@ internal class HtmlTreeDecoder(
         val matchResult = tag.regex.find(this)
             ?: kspoonError("Regex '${tag.regex}' not found for current selector: ${getSelectorFullPath(tag)}")
         return if (matchResult.groupValues.size > 1) matchResult.groupValues[1] else matchResult.value
-    }
-
-    private fun SerialDescriptor.getElementSelectorAnnotation(index: Int): Selector? {
-        return getElementAnnotations(index).filterIsInstance<Selector>().firstOrNull()
-    }
-
-    private fun SerialDescriptor.isElementADocument(index: Int): Boolean {
-        val elementDescriptor = getElementDescriptor(index)
-        return elementDescriptor.serialName == "com.fleeksoft.ksoup.nodes.Document" || elementDescriptor.capturedKClass == Document::class
     }
 
     private fun Elements.getAtAsElements(index: Int) = getOrNull(index)?.let(::Elements) ?: Elements()

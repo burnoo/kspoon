@@ -35,7 +35,7 @@ kotlin {
         browser()
         nodejs()
     }
-    if (currentVariant.type != Variant.Type.Ktor2) {
+    if (currentVariant.type !in setOf(Variant.Type.Ktor2, Variant.Type.Okio)) {
         @OptIn(ExperimentalWasmDsl::class)
         wasmJs {
             browser()

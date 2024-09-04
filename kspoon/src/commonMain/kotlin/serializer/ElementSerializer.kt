@@ -19,6 +19,6 @@ object ElementSerializer : KSerializer<Element> {
     }
 
     override fun serialize(encoder: Encoder, value: Element) {
-        error("Serialization is not supported")
+        kspoonEncodeError()
     }
 }

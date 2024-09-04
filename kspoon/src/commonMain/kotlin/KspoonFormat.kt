@@ -1,5 +1,6 @@
 package dev.burnoo.ksoup
 
+import dev.burnoo.ksoup.serializer.kspoonEncodeError
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.StringFormat
@@ -17,6 +18,6 @@ class KspoonFormat internal constructor(
 
     override fun <T> encodeToString(serializer: SerializationStrategy<T>, value: T): String {
         return encodeStringFormatDelegate?.encodeToString(serializer, value)
-            ?: error("Serialization is not supported")
+            ?: kspoonEncodeError()
     }
 }

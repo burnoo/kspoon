@@ -3,6 +3,7 @@ package dev.burnoo.ksoup
 import dev.burnoo.ksoup.annotation.Selector
 import dev.burnoo.ksoup.decoder.KspoonDecoder
 import dev.burnoo.ksoup.exception.KspoonParseException
+import dev.burnoo.ksoup.serializer.kspoonEncodeError
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Contextual
@@ -29,7 +30,7 @@ object StringWrapperSerializer : KSerializer<StringWrapper> {
     }
 
     override fun serialize(encoder: Encoder, value: StringWrapper) {
-        error("serialization is not supported")
+        kspoonEncodeError()
     }
 }
 
@@ -46,7 +47,7 @@ object TagSerializer : KSerializer<String> {
     }
 
     override fun serialize(encoder: Encoder, value: String) {
-        error("serialization is not supported")
+        kspoonEncodeError()
     }
 }
 

@@ -18,7 +18,5 @@ object DocumentSerializer : KSerializer<Document> {
         return (decoder as KspoonDecoder).decodeDocument()
     }
 
-    override fun serialize(encoder: Encoder, value: Document) {
-        error("Serialization is not supported")
-    }
+    override fun serialize(encoder: Encoder, value: Document) = kspoonEncodeError()
 }

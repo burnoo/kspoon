@@ -14,9 +14,22 @@ internal sealed class HtmlTag {
         val defaultValue: String?,
         val index: Int,
         val regex: Regex?,
-    ) : HtmlTag()
+    ) : HtmlTag() {
 
-    data class Index(val index: Int) : HtmlTag()
+        override fun toString() = buildString {
+            append("'$selector'")
+            if (index > 0) append(" at index $index")
+            if (attribute != null) append(" attr='$attribute'")
+            if (regex != null) append(" regex='$regex'")
+        }
+    }
+
+    data class Index(
+        val index: Int,
+    ) : HtmlTag() {
+
+        override fun toString() = "List at index $index"
+    }
 }
 
 internal fun Selector.toHtmlTag() = HtmlTag.Selector(

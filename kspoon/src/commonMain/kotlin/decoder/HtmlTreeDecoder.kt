@@ -26,10 +26,11 @@ import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
 @OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)
-internal class HtmlTreeDecoder internal constructor(
+internal class HtmlTreeDecoder(
     private val elements: Elements,
     private val configuration: KspoonConfiguration,
     extraSerializersModule: SerializersModule = EmptySerializersModule(),
+    private val tagHierarchy: List<HtmlTag> = emptyList(),
 ) : TaggedDecoder<HtmlTag>() {
 
     private val textMode = configuration.defaultTextMode
@@ -88,7 +89,7 @@ internal class HtmlTreeDecoder internal constructor(
     override fun beginStructure(descriptor: SerialDescriptor): CompositeDecoder {
         val tag = currentTagOrNull ?: return this
         val selectedElements = selectElements(tag)
-        return HtmlTreeDecoder(selectedElements, configuration)
+        return HtmlTreeDecoder(selectedElements, configuration, tagHierarchy = tagHierarchy + tag)
     }
 
     override fun decodeCollectionSize(descriptor: SerialDescriptor): Int = elements.size
@@ -155,7 +156,7 @@ internal class HtmlTreeDecoder internal constructor(
 
     private fun selectElementOrThrow(tag: HtmlTag): Element {
         return when (val element = selectElement(tag)) {
-            null -> throw IllegalStateException("Element not found for tag \"${tag.selector}\" at index ${tag.index}")
+            null -> throw IllegalStateException("Element not found for selector: ${getSelectorFullPath(tag)}")
             else -> element
         }
     }
@@ -163,7 +164,8 @@ internal class HtmlTreeDecoder internal constructor(
     private fun String.withRegexIfPresent(tag: HtmlTag): String {
         if (tag !is HtmlTag.Selector) return this
         if (tag.regex == null) return this
-        val matchResult = tag.regex.find(this) ?: error("Regex ${tag.regex} not found for tag ${tag.selector}")
+        val matchResult = tag.regex.find(this)
+            ?: error("Regex '${tag.regex}' not found for current selector: ${getSelectorFullPath(tag)}")
         return if (matchResult.groupValues.size > 1) matchResult.groupValues[1] else matchResult.value
     }
 
@@ -177,6 +179,8 @@ internal class HtmlTreeDecoder internal constructor(
     }
 
     private fun Elements.getAtAsElements(index: Int) = getOrNull(index)?.let(::Elements) ?: Elements()
+
+    private fun getSelectorFullPath(tag: HtmlTag) = (tagHierarchy + tag).joinToString(" -> ", prefix = "[", postfix = "]")
 
     inner class SerializerDecoder {
 

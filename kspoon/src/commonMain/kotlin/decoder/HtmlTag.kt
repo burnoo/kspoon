@@ -19,20 +19,17 @@ internal sealed class HtmlTag {
     data class Index(val index: Int) : HtmlTag()
 }
 
-internal fun createSelectorHtmlTag(
-    selector: String,
-    selectorAnnotation: Selector?,
-) = HtmlTag.Selector(
-    selector = selector,
-    textMode = when (selectorAnnotation?.textMode) {
+internal fun Selector.toHtmlTag() = HtmlTag.Selector(
+    selector = value,
+    textMode = when (textMode) {
         SelectorHtmlTextMode.Text -> HtmlTextMode.Text
         SelectorHtmlTextMode.InnerHtml -> HtmlTextMode.InnerHtml
         SelectorHtmlTextMode.OuterHtml -> HtmlTextMode.OuterHtml
         SelectorHtmlTextMode.Data -> HtmlTextMode.Data
-        SelectorHtmlTextMode.Default, null -> null
+        SelectorHtmlTextMode.Default -> null
     },
-    attribute = selectorAnnotation?.attr?.handleNullability(),
-    index = selectorAnnotation?.index ?: 0,
-    defaultValue = selectorAnnotation?.defValue?.handleNullability(),
-    regex = selectorAnnotation?.regex?.handleNullability()?.toRegex(),
+    attribute = attr.handleNullability(),
+    index = index,
+    defaultValue = defValue.handleNullability(),
+    regex = regex.handleNullability()?.toRegex(),
 )

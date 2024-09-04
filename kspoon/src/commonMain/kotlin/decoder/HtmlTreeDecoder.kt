@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
-
 package dev.burnoo.ksoup.decoder
 
 import com.fleeksoft.ksoup.nodes.Comment
@@ -16,6 +14,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.StructureKind
+import kotlinx.serialization.descriptors.capturedKClass
 import kotlinx.serialization.descriptors.elementNames
 import kotlinx.serialization.encoding.CompositeDecoder
 import kotlinx.serialization.internal.TaggedDecoder
@@ -26,6 +25,7 @@ import kotlinx.serialization.modules.overwriteWith
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
+@OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)
 internal class HtmlTreeDecoder internal constructor(
     private val elements: Elements,
     private val configuration: KspoonConfiguration,
@@ -43,11 +43,17 @@ internal class HtmlTreeDecoder internal constructor(
     private var elementIndex = 0
 
     override fun SerialDescriptor.getTag(index: Int): HtmlTag {
-        val selectorAnnotation = getSelectorAnnotations(index)
-        val selector = selectorAnnotation?.value ?: getElementName(index)
-        return when (val newIndex = selector.toIntOrNull()) {
-            null -> createSelectorHtmlTag(selector, selectorAnnotation)
-            else -> HtmlTag.Index(newIndex)
+        val selectorAnnotation = getElementSelectorAnnotation(index)
+        val newIndex = if (selectorAnnotation == null) {
+            getElementName(index).toIntOrNull()
+        } else {
+            null
+        }
+        return when {
+            selectorAnnotation != null -> selectorAnnotation.toHtmlTag()
+            newIndex != null -> HtmlTag.Index(newIndex)
+            isElementADocument(index) -> Selector(":root").toHtmlTag()
+            else -> error("Selector annotation not added for ${getElementDescriptor(index).serialName}")
         }
     }
 
@@ -161,8 +167,13 @@ internal class HtmlTreeDecoder internal constructor(
         return if (matchResult.groupValues.size > 1) matchResult.groupValues[1] else matchResult.value
     }
 
-    private fun SerialDescriptor.getSelectorAnnotations(index: Int): Selector? {
+    private fun SerialDescriptor.getElementSelectorAnnotation(index: Int): Selector? {
         return getElementAnnotations(index).filterIsInstance<Selector>().firstOrNull()
+    }
+
+    private fun SerialDescriptor.isElementADocument(index: Int): Boolean {
+        val elementDescriptor = getElementDescriptor(index)
+        return elementDescriptor.serialName == "com.fleeksoft.ksoup.nodes.Document" || elementDescriptor.capturedKClass == Document::class
     }
 
     private fun Elements.getAtAsElements(index: Int) = getOrNull(index)?.let(::Elements) ?: Elements()

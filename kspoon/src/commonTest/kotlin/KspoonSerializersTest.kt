@@ -2,6 +2,8 @@ package dev.burnoo.ksoup
 
 import dev.burnoo.ksoup.annotation.Selector
 import dev.burnoo.ksoup.decoder.KspoonDecoder
+import dev.burnoo.ksoup.exception.KspoonParseException
+import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.KSerializer
@@ -36,8 +38,10 @@ object TagSerializer : KSerializer<String> {
         PrimitiveSerialDescriptor("dev.burnoo.ksoup.type.CustomString", PrimitiveKind.STRING)
 
     override fun deserialize(decoder: Decoder): String {
-        val element = (decoder as KspoonDecoder).decodeElement()
-        val tag = element?.tag()?.name ?: "tag not found"
+        val kspoonDecoder = decoder as KspoonDecoder
+        val element = decoder.decodeElement()
+        val tag = element?.tag()?.name
+            ?: throw KspoonParseException("Could not get tag name for selector: ${kspoonDecoder.getSelectorFullPath()}")
         return tag
     }
 
@@ -79,5 +83,19 @@ class SerializersModuleTest {
         val model = Kspoon.parse<Model>("""<p class="class1">text</p>""")
 
         model shouldBe Model("p")
+    }
+
+    @Test
+    fun shouldThrowWithFullPathTagMessage() {
+        @Serializable
+        data class Model(
+            @Selector(".class1")
+            @Serializable(TagSerializer::class)
+            val tag: String,
+        )
+
+        shouldThrowWithMessage<KspoonParseException>(message = "Could not get tag name for selector: ['.class1']") {
+            Kspoon.parse<Model>("")
+        }
     }
 }

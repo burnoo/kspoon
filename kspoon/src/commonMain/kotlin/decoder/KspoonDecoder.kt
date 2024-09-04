@@ -13,4 +13,6 @@ interface KspoonDecoder {
     fun decodeElements(): Elements
 
     fun decodeDocument(): Document
+
+    fun getSelectorFullPath(): String
 }

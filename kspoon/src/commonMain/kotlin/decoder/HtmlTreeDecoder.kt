@@ -212,4 +212,6 @@ internal class HtmlTreeDecoder(
 
     override fun decodeDocument() = elements.firstOrNull() as? Document
         ?: kspoonError("Current Element is not a Document. Document type works only on root")
+
+    override fun getSelectorFullPath(): String = getSelectorFullPath(tag = currentTagOrNull)
 }

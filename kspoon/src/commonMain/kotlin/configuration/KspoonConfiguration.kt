@@ -7,7 +7,7 @@ import kotlinx.serialization.modules.EmptySerializersModule
 import kotlinx.serialization.modules.SerializersModule
 
 @PublishedApi
-internal data class KspoonConfiguration(
+internal class KspoonConfiguration(
     val parse: Ksoup.(html: String) -> Document = { parse(it) },
     val defaultTextMode: HtmlTextMode = HtmlTextMode.Text,
     val coerceInputValues: Boolean = false,

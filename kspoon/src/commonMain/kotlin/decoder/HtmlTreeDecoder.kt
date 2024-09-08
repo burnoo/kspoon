@@ -15,7 +15,6 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.StructureKind
-import kotlinx.serialization.descriptors.capturedKClass
 import kotlinx.serialization.descriptors.elementNames
 import kotlinx.serialization.encoding.CompositeDecoder
 import kotlinx.serialization.internal.TaggedDecoder
@@ -54,7 +53,6 @@ internal class HtmlTreeDecoder(
         return when {
             selectorAnnotation != null -> selectorAnnotation.toHtmlTag()
             newIndex != null -> HtmlTag.Index(newIndex)
-            isElementADocument(index) -> Selector(":root").toHtmlTag()
             else -> kspoonError(
                 "Selector annotation not added to ${getElementDescriptor(index).serialName}," +
                     " parent selector: ${getSelectorFullPath(tag = null)}",
@@ -64,11 +62,6 @@ internal class HtmlTreeDecoder(
 
     private fun SerialDescriptor.getElementSelectorAnnotation(index: Int): Selector? {
         return getElementAnnotations(index).filterIsInstance<Selector>().firstOrNull()
-    }
-
-    private fun SerialDescriptor.isElementADocument(index: Int): Boolean {
-        val elementDescriptor = getElementDescriptor(index)
-        return elementDescriptor.serialName == "com.fleeksoft.ksoup.nodes.Document" || elementDescriptor.capturedKClass == Document::class
     }
 
     override fun decodeElementIndex(descriptor: SerialDescriptor): Int {

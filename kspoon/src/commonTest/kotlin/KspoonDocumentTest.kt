@@ -38,6 +38,7 @@ class KspoonDocumentTest {
         @Serializable
         data class Model(
             @Contextual
+            @Selector(":root")
             val document: Document,
         )
 
@@ -52,6 +53,7 @@ class KspoonDocumentTest {
         @Serializable
         data class Nested(
             @Contextual
+            @Selector(":root")
             val document: Document,
         )
 

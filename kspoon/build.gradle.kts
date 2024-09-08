@@ -5,6 +5,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.kotlinx.binaryCompatibilityValidator)
     alias(libs.plugins.dokka)
     `maven-publish`
     signing

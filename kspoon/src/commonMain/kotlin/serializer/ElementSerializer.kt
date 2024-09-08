@@ -1,8 +1,10 @@
 package dev.burnoo.ksoup.serializer
 
 import com.fleeksoft.ksoup.nodes.Element
+import dev.burnoo.ksoup.Kspoon
 import dev.burnoo.ksoup.decoder.KspoonDecoder
 import dev.burnoo.ksoup.exception.KspoonParseException
+import kotlinx.serialization.ContextualSerializer
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
@@ -13,6 +15,9 @@ import kotlinx.serialization.encoding.Encoder
 /**
  * Serializer for [Element]. Will throw [KspoonParseException] if element is not found for not nullable Element,
  * and return null for nullable Element?.
+ *
+ * This Serializer is also registered by [Kspoon] as [ContextualSerializer], so it's possible to use it by annotating
+ * `@Contextual` on a field.
  *
  * Example:
  * ```

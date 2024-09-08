@@ -6,7 +6,7 @@ import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.StringFormat
 import kotlinx.serialization.modules.SerializersModule
 
-class KspoonFormat internal constructor(
+internal class KspoonFormat(
     private val kspoon: Kspoon,
     override val serializersModule: SerializersModule,
     private val encodeStringFormatDelegate: StringFormat?,

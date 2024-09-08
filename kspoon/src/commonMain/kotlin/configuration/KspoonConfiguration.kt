@@ -6,7 +6,8 @@ import dev.burnoo.ksoup.HtmlTextMode
 import kotlinx.serialization.modules.EmptySerializersModule
 import kotlinx.serialization.modules.SerializersModule
 
-data class KspoonConfiguration(
+@PublishedApi
+internal data class KspoonConfiguration(
     val parse: Ksoup.(html: String) -> Document = { parse(it) },
     val defaultTextMode: HtmlTextMode = HtmlTextMode.Text,
     val coerceInputValues: Boolean = false,

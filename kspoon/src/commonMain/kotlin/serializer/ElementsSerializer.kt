@@ -9,7 +9,23 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-object ElementsSerializer : KSerializer<Elements> {
+/**
+ * Serializer for [Elements].
+ *
+ * Example:
+ * ```
+ * @Serializable
+ * data class Model(
+ *     @Selector("ul > li")
+ *     @Serializable(ElementsSerializer::class) // or @Contextual
+ *     val element: Elements,
+ * )
+ *
+ * // Elements contains 3x Element
+ * val elements = Kspoon.parse<Model>("<ul><li>1</li><li>2</li><li>3</li></ul>").elements
+ * ```
+ */
+public object ElementsSerializer : KSerializer<Elements> {
 
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("com.fleeksoft.ksoup.select.Elements", PrimitiveKind.STRING)

@@ -29,6 +29,8 @@ val currentVariant = when (properties["variant"]?.toString()) {
 }
 
 kotlin {
+    explicitApi()
+
     jvm()
 
     js {

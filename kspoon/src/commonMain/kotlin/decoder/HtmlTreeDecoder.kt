@@ -54,14 +54,15 @@ internal class HtmlTreeDecoder(
             selectorAnnotation != null -> selectorAnnotation.toHtmlTag()
             newIndex != null -> HtmlTag.Index(newIndex)
             else -> kspoonError(
-                "Selector annotation not added to ${getElementDescriptor(index).serialName}," +
+                "Selector annotation not found for ${getElementDescriptor(index).serialName}," +
                     " parent selector: ${getSelectorFullPath(tag = null)}",
             )
         }
     }
 
     private fun SerialDescriptor.getElementSelectorAnnotation(index: Int): Selector? {
-        return getElementAnnotations(index).filterIsInstance<Selector>().firstOrNull()
+        val annotations = getElementAnnotations(index) + getElementDescriptor(index).annotations
+        return annotations.filterIsInstance<Selector>().firstOrNull()
     }
 
     override fun decodeElementIndex(descriptor: SerialDescriptor): Int {

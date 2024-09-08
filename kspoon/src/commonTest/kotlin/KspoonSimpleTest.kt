@@ -70,6 +70,30 @@ class KspoonSimpleTest {
     }
 
     @Test
+    fun shouldParseNestedTextWithAnnotationOnClass() {
+        @Selector("p.class1")
+        @Serializable
+        data class Span(
+            @Selector("span")
+            val text: String,
+        )
+
+        @Serializable
+        data class Model(
+            val text: Span,
+        )
+
+        val body =
+            """
+            <p class="class1"><span>text</span>1</p>
+            <p class="class1"><span>text</span>2</p>
+            """.trimIndent()
+        val model = Kspoon.parse<Model>(body)
+
+        model shouldBe Model(Span("text"))
+    }
+
+    @Test
     fun shouldParseRoot() {
         @Serializable
         data class Root(

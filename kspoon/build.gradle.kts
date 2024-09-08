@@ -123,7 +123,7 @@ extensions.findByType<PublishingExtension>()?.apply {
         artifactId = libraryName
         pom {
             name = libraryName
-            description = "Annotation based HTML to Kotlin parser, jspoon successor"
+            description = "Annotation based HTML to Kotlin class parser with KMP support, jspoon successor"
             url = "https://github.com/burnoo/ksoup"
             if (isRelease) {
                 version = version.replace("-SNAPSHOT", "")

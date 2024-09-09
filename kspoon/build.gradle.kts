@@ -1,3 +1,4 @@
+import kotlinx.validation.ExperimentalBCVApi
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import java.util.Properties
@@ -58,6 +59,13 @@ kotlin {
     iosSimulatorArm64()
     iosX64()
     mingwX64()
+}
+
+apiValidation {
+    @OptIn(ExperimentalBCVApi::class)
+    klib {
+        enabled = true
+    }
 }
 
 tasks.withType<Test> { useJUnitPlatform() }

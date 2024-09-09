@@ -1,0 +1,159 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64, js, linuxArm64, linuxX64, macosArm64, macosX64, mingwX64, tvosArm64, tvosSimulatorArm64, tvosX64, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <dev.burnoo.kspoon:kspoon>
+open annotation class dev.burnoo.ksoup.annotation/Selector : kotlin/Annotation { // dev.burnoo.ksoup.annotation/Selector|null[0]
+    constructor <init>(kotlin/String, dev.burnoo.ksoup/SelectorHtmlTextMode = ..., kotlin/String = ..., kotlin/String = ..., kotlin/Int = ..., kotlin/String = ...) // dev.burnoo.ksoup.annotation/Selector.<init>|<init>(kotlin.String;dev.burnoo.ksoup.SelectorHtmlTextMode;kotlin.String;kotlin.String;kotlin.Int;kotlin.String){}[0]
+
+    final val attr // dev.burnoo.ksoup.annotation/Selector.attr|{}attr[0]
+        final fun <get-attr>(): kotlin/String // dev.burnoo.ksoup.annotation/Selector.attr.<get-attr>|<get-attr>(){}[0]
+    final val defValue // dev.burnoo.ksoup.annotation/Selector.defValue|{}defValue[0]
+        final fun <get-defValue>(): kotlin/String // dev.burnoo.ksoup.annotation/Selector.defValue.<get-defValue>|<get-defValue>(){}[0]
+    final val index // dev.burnoo.ksoup.annotation/Selector.index|{}index[0]
+        final fun <get-index>(): kotlin/Int // dev.burnoo.ksoup.annotation/Selector.index.<get-index>|<get-index>(){}[0]
+    final val regex // dev.burnoo.ksoup.annotation/Selector.regex|{}regex[0]
+        final fun <get-regex>(): kotlin/String // dev.burnoo.ksoup.annotation/Selector.regex.<get-regex>|<get-regex>(){}[0]
+    final val textMode // dev.burnoo.ksoup.annotation/Selector.textMode|{}textMode[0]
+        final fun <get-textMode>(): dev.burnoo.ksoup/SelectorHtmlTextMode // dev.burnoo.ksoup.annotation/Selector.textMode.<get-textMode>|<get-textMode>(){}[0]
+    final val value // dev.burnoo.ksoup.annotation/Selector.value|{}value[0]
+        final fun <get-value>(): kotlin/String // dev.burnoo.ksoup.annotation/Selector.value.<get-value>|<get-value>(){}[0]
+}
+
+final enum class dev.burnoo.ksoup/HtmlTextMode : kotlin/Enum<dev.burnoo.ksoup/HtmlTextMode> { // dev.burnoo.ksoup/HtmlTextMode|null[0]
+    enum entry Data // dev.burnoo.ksoup/HtmlTextMode.Data|null[0]
+    enum entry InnerHtml // dev.burnoo.ksoup/HtmlTextMode.InnerHtml|null[0]
+    enum entry OuterHtml // dev.burnoo.ksoup/HtmlTextMode.OuterHtml|null[0]
+    enum entry Text // dev.burnoo.ksoup/HtmlTextMode.Text|null[0]
+
+    final val entries // dev.burnoo.ksoup/HtmlTextMode.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.burnoo.ksoup/HtmlTextMode> // dev.burnoo.ksoup/HtmlTextMode.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.burnoo.ksoup/HtmlTextMode // dev.burnoo.ksoup/HtmlTextMode.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.burnoo.ksoup/HtmlTextMode> // dev.burnoo.ksoup/HtmlTextMode.values|values#static(){}[0]
+}
+
+final enum class dev.burnoo.ksoup/SelectorHtmlTextMode : kotlin/Enum<dev.burnoo.ksoup/SelectorHtmlTextMode> { // dev.burnoo.ksoup/SelectorHtmlTextMode|null[0]
+    enum entry Data // dev.burnoo.ksoup/SelectorHtmlTextMode.Data|null[0]
+    enum entry Default // dev.burnoo.ksoup/SelectorHtmlTextMode.Default|null[0]
+    enum entry InnerHtml // dev.burnoo.ksoup/SelectorHtmlTextMode.InnerHtml|null[0]
+    enum entry OuterHtml // dev.burnoo.ksoup/SelectorHtmlTextMode.OuterHtml|null[0]
+    enum entry Text // dev.burnoo.ksoup/SelectorHtmlTextMode.Text|null[0]
+
+    final val entries // dev.burnoo.ksoup/SelectorHtmlTextMode.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.burnoo.ksoup/SelectorHtmlTextMode> // dev.burnoo.ksoup/SelectorHtmlTextMode.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.burnoo.ksoup/SelectorHtmlTextMode // dev.burnoo.ksoup/SelectorHtmlTextMode.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.burnoo.ksoup/SelectorHtmlTextMode> // dev.burnoo.ksoup/SelectorHtmlTextMode.values|values#static(){}[0]
+}
+
+abstract interface dev.burnoo.ksoup.decoder/KspoonDecoder : kotlinx.serialization.encoding/Decoder { // dev.burnoo.ksoup.decoder/KspoonDecoder|null[0]
+    abstract fun decodeDocument(): com.fleeksoft.ksoup.nodes/Document // dev.burnoo.ksoup.decoder/KspoonDecoder.decodeDocument|decodeDocument(){}[0]
+    abstract fun decodeElement(): com.fleeksoft.ksoup.nodes/Element? // dev.burnoo.ksoup.decoder/KspoonDecoder.decodeElement|decodeElement(){}[0]
+    abstract fun decodeElementOrThrow(): com.fleeksoft.ksoup.nodes/Element // dev.burnoo.ksoup.decoder/KspoonDecoder.decodeElementOrThrow|decodeElementOrThrow(){}[0]
+    abstract fun decodeElements(): com.fleeksoft.ksoup.select/Elements // dev.burnoo.ksoup.decoder/KspoonDecoder.decodeElements|decodeElements(){}[0]
+    abstract fun getSelectorFullPath(): kotlin/String // dev.burnoo.ksoup.decoder/KspoonDecoder.getSelectorFullPath|getSelectorFullPath(){}[0]
+}
+
+final class dev.burnoo.ksoup.configuration/KspoonBuilder { // dev.burnoo.ksoup.configuration/KspoonBuilder|null[0]
+    final var coerceInputValues // dev.burnoo.ksoup.configuration/KspoonBuilder.coerceInputValues|{}coerceInputValues[0]
+        final fun <get-coerceInputValues>(): kotlin/Boolean // dev.burnoo.ksoup.configuration/KspoonBuilder.coerceInputValues.<get-coerceInputValues>|<get-coerceInputValues>(){}[0]
+        final fun <set-coerceInputValues>(kotlin/Boolean) // dev.burnoo.ksoup.configuration/KspoonBuilder.coerceInputValues.<set-coerceInputValues>|<set-coerceInputValues>(kotlin.Boolean){}[0]
+    final var defaultTextMode // dev.burnoo.ksoup.configuration/KspoonBuilder.defaultTextMode|{}defaultTextMode[0]
+        final fun <get-defaultTextMode>(): dev.burnoo.ksoup/HtmlTextMode // dev.burnoo.ksoup.configuration/KspoonBuilder.defaultTextMode.<get-defaultTextMode>|<get-defaultTextMode>(){}[0]
+        final fun <set-defaultTextMode>(dev.burnoo.ksoup/HtmlTextMode) // dev.burnoo.ksoup.configuration/KspoonBuilder.defaultTextMode.<set-defaultTextMode>|<set-defaultTextMode>(dev.burnoo.ksoup.HtmlTextMode){}[0]
+    final var parse // dev.burnoo.ksoup.configuration/KspoonBuilder.parse|{}parse[0]
+        final fun <get-parse>(): kotlin/Function2<com.fleeksoft.ksoup/Ksoup, kotlin/String, com.fleeksoft.ksoup.nodes/Document> // dev.burnoo.ksoup.configuration/KspoonBuilder.parse.<get-parse>|<get-parse>(){}[0]
+        final fun <set-parse>(kotlin/Function2<com.fleeksoft.ksoup/Ksoup, kotlin/String, com.fleeksoft.ksoup.nodes/Document>) // dev.burnoo.ksoup.configuration/KspoonBuilder.parse.<set-parse>|<set-parse>(kotlin.Function2<com.fleeksoft.ksoup.Ksoup,kotlin.String,com.fleeksoft.ksoup.nodes.Document>){}[0]
+    final var serializersModule // dev.burnoo.ksoup.configuration/KspoonBuilder.serializersModule|{}serializersModule[0]
+        final fun <get-serializersModule>(): kotlinx.serialization.modules/SerializersModule // dev.burnoo.ksoup.configuration/KspoonBuilder.serializersModule.<get-serializersModule>|<get-serializersModule>(){}[0]
+        final fun <set-serializersModule>(kotlinx.serialization.modules/SerializersModule) // dev.burnoo.ksoup.configuration/KspoonBuilder.serializersModule.<set-serializersModule>|<set-serializersModule>(kotlinx.serialization.modules.SerializersModule){}[0]
+}
+
+final class dev.burnoo.ksoup.configuration/KspoonConfiguration { // dev.burnoo.ksoup.configuration/KspoonConfiguration|null[0]
+    constructor <init>(kotlin/Function2<com.fleeksoft.ksoup/Ksoup, kotlin/String, com.fleeksoft.ksoup.nodes/Document> = ..., dev.burnoo.ksoup/HtmlTextMode = ..., kotlin/Boolean = ..., kotlinx.serialization.modules/SerializersModule = ...) // dev.burnoo.ksoup.configuration/KspoonConfiguration.<init>|<init>(kotlin.Function2<com.fleeksoft.ksoup.Ksoup,kotlin.String,com.fleeksoft.ksoup.nodes.Document>;dev.burnoo.ksoup.HtmlTextMode;kotlin.Boolean;kotlinx.serialization.modules.SerializersModule){}[0]
+
+    final val coerceInputValues // dev.burnoo.ksoup.configuration/KspoonConfiguration.coerceInputValues|{}coerceInputValues[0]
+        final fun <get-coerceInputValues>(): kotlin/Boolean // dev.burnoo.ksoup.configuration/KspoonConfiguration.coerceInputValues.<get-coerceInputValues>|<get-coerceInputValues>(){}[0]
+    final val defaultTextMode // dev.burnoo.ksoup.configuration/KspoonConfiguration.defaultTextMode|{}defaultTextMode[0]
+        final fun <get-defaultTextMode>(): dev.burnoo.ksoup/HtmlTextMode // dev.burnoo.ksoup.configuration/KspoonConfiguration.defaultTextMode.<get-defaultTextMode>|<get-defaultTextMode>(){}[0]
+    final val parse // dev.burnoo.ksoup.configuration/KspoonConfiguration.parse|{}parse[0]
+        final fun <get-parse>(): kotlin/Function2<com.fleeksoft.ksoup/Ksoup, kotlin/String, com.fleeksoft.ksoup.nodes/Document> // dev.burnoo.ksoup.configuration/KspoonConfiguration.parse.<get-parse>|<get-parse>(){}[0]
+    final val serializersModule // dev.burnoo.ksoup.configuration/KspoonConfiguration.serializersModule|{}serializersModule[0]
+        final fun <get-serializersModule>(): kotlinx.serialization.modules/SerializersModule // dev.burnoo.ksoup.configuration/KspoonConfiguration.serializersModule.<get-serializersModule>|<get-serializersModule>(){}[0]
+}
+
+final class dev.burnoo.ksoup.exception/KspoonParseException : kotlin/IllegalStateException { // dev.burnoo.ksoup.exception/KspoonParseException|null[0]
+    constructor <init>(kotlin/String?, kotlin/Throwable? = ...) // dev.burnoo.ksoup.exception/KspoonParseException.<init>|<init>(kotlin.String?;kotlin.Throwable?){}[0]
+
+    final val cause // dev.burnoo.ksoup.exception/KspoonParseException.cause|{}cause[0]
+        final fun <get-cause>(): kotlin/Throwable? // dev.burnoo.ksoup.exception/KspoonParseException.cause.<get-cause>|<get-cause>(){}[0]
+    final val message // dev.burnoo.ksoup.exception/KspoonParseException.message|{}message[0]
+        final fun <get-message>(): kotlin/String? // dev.burnoo.ksoup.exception/KspoonParseException.message.<get-message>|<get-message>(){}[0]
+}
+
+final class dev.burnoo.ksoup.model/KspoonDocument { // dev.burnoo.ksoup.model/KspoonDocument|null[0]
+    constructor <init>(com.fleeksoft.ksoup.nodes/Document) // dev.burnoo.ksoup.model/KspoonDocument.<init>|<init>(com.fleeksoft.ksoup.nodes.Document){}[0]
+
+    final val document // dev.burnoo.ksoup.model/KspoonDocument.document|{}document[0]
+        final fun <get-document>(): com.fleeksoft.ksoup.nodes/Document // dev.burnoo.ksoup.model/KspoonDocument.document.<get-document>|<get-document>(){}[0]
+
+    final fun component1(): com.fleeksoft.ksoup.nodes/Document // dev.burnoo.ksoup.model/KspoonDocument.component1|component1(){}[0]
+    final fun copy(com.fleeksoft.ksoup.nodes/Document = ...): dev.burnoo.ksoup.model/KspoonDocument // dev.burnoo.ksoup.model/KspoonDocument.copy|copy(com.fleeksoft.ksoup.nodes.Document){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.burnoo.ksoup.model/KspoonDocument.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.burnoo.ksoup.model/KspoonDocument.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.burnoo.ksoup.model/KspoonDocument.toString|toString(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<dev.burnoo.ksoup.model/KspoonDocument> { // dev.burnoo.ksoup.model/KspoonDocument.$serializer|null[0]
+        final val descriptor // dev.burnoo.ksoup.model/KspoonDocument.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // dev.burnoo.ksoup.model/KspoonDocument.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // dev.burnoo.ksoup.model/KspoonDocument.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): dev.burnoo.ksoup.model/KspoonDocument // dev.burnoo.ksoup.model/KspoonDocument.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, dev.burnoo.ksoup.model/KspoonDocument) // dev.burnoo.ksoup.model/KspoonDocument.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;dev.burnoo.ksoup.model.KspoonDocument){}[0]
+    }
+
+    final object Companion { // dev.burnoo.ksoup.model/KspoonDocument.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<dev.burnoo.ksoup.model/KspoonDocument> // dev.burnoo.ksoup.model/KspoonDocument.Companion.serializer|serializer(){}[0]
+    }
+}
+
+sealed class dev.burnoo.ksoup/Kspoon { // dev.burnoo.ksoup/Kspoon|null[0]
+    final val configuration // dev.burnoo.ksoup/Kspoon.configuration|{}configuration[0]
+        final fun <get-configuration>(): dev.burnoo.ksoup.configuration/KspoonConfiguration // dev.burnoo.ksoup/Kspoon.configuration.<get-configuration>|<get-configuration>(){}[0]
+
+    final fun <#A1: kotlin/Any?> parse(kotlinx.serialization/DeserializationStrategy<#A1>, kotlin/String): #A1 // dev.burnoo.ksoup/Kspoon.parse|parse(kotlinx.serialization.DeserializationStrategy<0:0>;kotlin.String){0§<kotlin.Any?>}[0]
+    final fun toFormat(kotlinx.serialization/StringFormat? = ...): kotlinx.serialization/StringFormat // dev.burnoo.ksoup/Kspoon.toFormat|toFormat(kotlinx.serialization.StringFormat?){}[0]
+    final inline fun <#A1: reified kotlin/Any?> parse(kotlin/String): #A1 // dev.burnoo.ksoup/Kspoon.parse|parse(kotlin.String){0§<kotlin.Any?>}[0]
+
+    final object Default : dev.burnoo.ksoup/Kspoon // dev.burnoo.ksoup/Kspoon.Default|null[0]
+}
+
+final object dev.burnoo.ksoup.serializer/DocumentSerializer : kotlinx.serialization/KSerializer<com.fleeksoft.ksoup.nodes/Document> { // dev.burnoo.ksoup.serializer/DocumentSerializer|null[0]
+    final val descriptor // dev.burnoo.ksoup.serializer/DocumentSerializer.descriptor|{}descriptor[0]
+        final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // dev.burnoo.ksoup.serializer/DocumentSerializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+    final fun deserialize(kotlinx.serialization.encoding/Decoder): com.fleeksoft.ksoup.nodes/Document // dev.burnoo.ksoup.serializer/DocumentSerializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+    final fun serialize(kotlinx.serialization.encoding/Encoder, com.fleeksoft.ksoup.nodes/Document) // dev.burnoo.ksoup.serializer/DocumentSerializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.fleeksoft.ksoup.nodes.Document){}[0]
+}
+
+final object dev.burnoo.ksoup.serializer/ElementSerializer : kotlinx.serialization/KSerializer<com.fleeksoft.ksoup.nodes/Element> { // dev.burnoo.ksoup.serializer/ElementSerializer|null[0]
+    final val descriptor // dev.burnoo.ksoup.serializer/ElementSerializer.descriptor|{}descriptor[0]
+        final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // dev.burnoo.ksoup.serializer/ElementSerializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+    final fun deserialize(kotlinx.serialization.encoding/Decoder): com.fleeksoft.ksoup.nodes/Element // dev.burnoo.ksoup.serializer/ElementSerializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+    final fun serialize(kotlinx.serialization.encoding/Encoder, com.fleeksoft.ksoup.nodes/Element) // dev.burnoo.ksoup.serializer/ElementSerializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.fleeksoft.ksoup.nodes.Element){}[0]
+}
+
+final object dev.burnoo.ksoup.serializer/ElementsSerializer : kotlinx.serialization/KSerializer<com.fleeksoft.ksoup.select/Elements> { // dev.burnoo.ksoup.serializer/ElementsSerializer|null[0]
+    final val descriptor // dev.burnoo.ksoup.serializer/ElementsSerializer.descriptor|{}descriptor[0]
+        final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // dev.burnoo.ksoup.serializer/ElementsSerializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+    final fun deserialize(kotlinx.serialization.encoding/Decoder): com.fleeksoft.ksoup.select/Elements // dev.burnoo.ksoup.serializer/ElementsSerializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+    final fun serialize(kotlinx.serialization.encoding/Encoder, com.fleeksoft.ksoup.select/Elements) // dev.burnoo.ksoup.serializer/ElementsSerializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.fleeksoft.ksoup.select.Elements){}[0]
+}
+
+final fun dev.burnoo.ksoup/Kspoon(dev.burnoo.ksoup/Kspoon = ..., kotlin/Function1<dev.burnoo.ksoup.configuration/KspoonBuilder, kotlin/Unit>): dev.burnoo.ksoup/Kspoon // dev.burnoo.ksoup/Kspoon|Kspoon(dev.burnoo.ksoup.Kspoon;kotlin.Function1<dev.burnoo.ksoup.configuration.KspoonBuilder,kotlin.Unit>){}[0]

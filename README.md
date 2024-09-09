@@ -1,16 +1,16 @@
 # kspoon 🥄
 
-kspoon is a Kotlin Multiplatform library that provides parsing HTML into Kotlin objects basing on CSS selectors.
-It uses [ksoup](https://github.com/fleeksoft/ksoup) as a HTML parser and
-[kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) to create objects.
-It's the [jspoon](https://github.com/DroidsOnRoids/jspoon/]) successor.
+kspoon is a Kotlin Multiplatform library for parsing HTML into Kotlin objects. It
+uses [ksoup](https://github.com/fleeksoft/ksoup) as an HTML parser
+and [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) to create objects. This library is a
+successor to [jspoon](https://github.com/DroidsOnRoids/jspoon/).
 
-Big shoutout to @itboy87 for porting Jsoup to KMP. This library couldn't exist without his amazing work.
-Check out the [Ksoup repoitory](https://github.com/fleeksoft/ksoup)!
+A big shoutout to [@itboy87](https://github.com/itboy87) for porting Jsoup to KMP - this library wouldn't exist without
+his amazing work. Check out the [Ksoup repository](https://github.com/fleeksoft/ksoup)!
 
 ## Installation
 
-Add the following dependency into your project's `build.gradle.kts`/`build.gradle` file:
+Add the following dependency to your project's `build.gradle.kts`/`build.gradle` file:
 
 ```kotlin
 dependencies {
@@ -19,17 +19,19 @@ dependencies {
 ```
 
 Above library uses [kotlinx-io](https://github.com/Kotlin/kotlinx-io) and [Ktor 3.x](https://github.com/ktorio/ktor),
-but it has other variants that can be used.
-Check [Ksoup README](https://github.com/fleeksoft/ksoup?tab=readme-ov-file#ksoup-is-published-on-maven-central)
-for more details. Other variants:
+but there are other variants available for use. Check
+the [Ksoup README](https://github.com/fleeksoft/ksoup?tab=readme-ov-file#ksoup-is-published-on-maven-central) for more
+details. Other variants:
 
 - `dev.burnoo.kspoon:kspoon-korlibs`
-- `dev.burnoo.kspoon:kspoon-ktor2` (should be used when ktor2 is used in project, wasm js is not supported)
-- `dev.burnoo.kspoon:kspoon-okio` (wasm js is not supported)
+- `dev.burnoo.kspoon:kspoon-ktor2` (should be used when Ktor 2.x is used in the project; wasm js target is not
+  supported)
+- `dev.burnoo.kspoon:kspoon-okio` (wasm js target is not supported)
 
 ## Usage
 
-kspoon works on any serializable class. Adding `@Selector` annotations on its serializable fields, enables HTML parsing:
+kspoon works with any serializable class. Adding `@Selector` annotations on its serializable fields, enables HTML
+parsing:
 
 ```kotlin
 @Serializable
@@ -40,35 +42,35 @@ data class Page(
 )
 ```
 
-Then `Kspoon` instance can be used to create objects:
+You can then use a `Kspoon` instance to create objects:
 
 ```kotlin
 val htmlContent = """<div>
-    <p id='header'>Title</p>
-    <ul>
-    <li class='class1'>1</li>
-    <li>2</li>
-    <li class='class1'>3</li>
-    </ul>
-    <img id='image1' src='image.bmp' />
-    </div>""".trimIndent()
+  <p id='header'>Title</p>
+  <ul>
+  <li class='class1'>1</li>
+  <li>2</li>
+  <li class='class1'>3</li>
+  </ul>
+  <img id='image1' src='image.bmp' />
+  </div>""".trimIndent()
 
 val page = Kspoon.parse<Page>(htmlContent)
 println(page) // Page(header=Title, intList=[1, 3], imageSource=image.bmp)
 ```
 
-It looks for the first occurrence with CSS selector in HTML and sets its value to a field.
+The library looks for the first occurrence with CSS selector in the HTML and sets its value to the corresponding field.
 
 ### Configuration
 
-kspoon can be configured using `Kspoon {}` factory function. It returns kspoon instance that can be used for parsing.
+kspoon can be configured using the `Kspoon {}` factory function, which returns an instance that can be used for parsing.
 All available options with default values are listed below:
 
 ```kotlin
 val kspoon = Kspoon {
-  // Specifies Ksoup function that is used for parsing. Type: Ksoup.(String) -> Document
+  // Specifies the Ksoup function used for parsing. Type: Ksoup.(String) -> Document
   parse = { html: String -> parse(html) }
-  // Default text mode using for parsing.
+  // Default text mode used for parsing.
   defaultTextMode = HtmlTextMode.Text
   // Enables coercing values when the selected HTML element is not found.
   coerceInputValues = false
@@ -80,9 +82,10 @@ kspoon.parse(HTML_CONTENT)
 
 ### Selecting content
 
-By default, the HTML's `textContent` value is used to get data. This behavior can be changed either in configuration or
-by `textMode` parameter in the `@Selector` annotation. It can be `InnerHtml`, `OuterHtml`
-or `Data` (for scripts and styles):
+By default, the HTML's `textContent` value is used to extract data. This behavior can be changed either in the
+configuration or by using the `textMode` parameter in the `@Selector` annotation. Options include `InnerHtml`,
+`OuterHtml`, or `Data` (for scripts and styles):
+
 ```kotlin
 @Serializable
 data class Page(
@@ -95,14 +98,14 @@ val page = Kspoon.parse<Page>(htmlContent)
 println(page) // Page(content=<p><span>Text</span></p>)
 ```
 
-It is also possible to get an attribute value by setting an `attr` parameter in the `@Selector` annotation
-(see [Usage](#Usage) for the example).
+It is also possible to get an attribute value by setting the `attr` parameter in the `@Selector` annotation (
+see [Usage](#usage) for an example).
 
 ### Regex
 
-Regex can be set up by passing `regex` parameter to the `@Selector` annotation.
-Then after parsing text (with html text mode or attribute), regex will be applied on the string.
-The returned string will be the first matched group or the whole match, if no group was added.
+Regex can be set up by passing the `regex` parameter to the `@Selector` annotation. After parsing the text (with HTML
+text mode or attribute), the regex is applied to the string. The returned string will be the first matched group or the
+entire match if no group is specified.
 
 ```kotlin
 data class Page(
@@ -113,31 +116,31 @@ data class Page(
 
 ### Default values
 
-There are 3 ways to set default values:
+There are three ways to set default values:
 
 - `@Selector("#tag", defValue = "default")` - if the HTML element is not found, the default value will be used as a
   parsed string
-- nullable field - in case HTML is not found value will be set to null
-- `coerceInputValues = true` in `Kspoon {}` configuration - it enables coercing to default value
+- Nullable field - if the HTML element is not found, the value will be set to `null`
+- `coerceInputValues = true` in the `Kspoon {}` configuration - enables coercing to a default value
   ```kotlin
   @Serializable
   data class Model(
-      @Selector("span")
-      val text: String = "not found"
+    @Selector("span")
+    val text: String = "not found"
   ) 
-   val body = "<p></p>"
-   val text = Kspoon { coerceInputValues = true }.parse<Model>(body).text
-   println(text) // prints "not found"
+  val body = "<p></p>"
+  val text = Kspoon { coerceInputValues = true }.parse<Model>(body).text
+  println(text) // prints "not found"
   ```
 
-It's worth mentioning that `defValue` has the best performance due to kotlinx serialization internal logic.
-Nullable fields does html selecting twice. Coercing input values does html selecting twice and also disables
+`defValue` offers the best performance due to the internal logic of kotlinx.serialization. Nullable fields does HTML
+selection twice. Coercing input values does html selecting twice and also disables
 [sequential decoding](https://kotlinlang.org/api/kotlinx.serialization/kotlinx-serialization-core/kotlinx.serialization.encoding/-composite-decoder/decode-sequentially.html).
 
 ### Serializers
 
-Any `KSerializer` can be applied to a field annotated with `@Selector` to customize serialization logic.
-For example date serializers from [`kotlinx-datetime`](https://github.com/Kotlin/kotlinx-datetime):
+Any `KSerializer` can be applied to a field annotated with `@Selector` to customize serialization logic. For example,
+date serializers from [`kotlinx-datetime`](https://github.com/Kotlin/kotlinx-datetime):
 
 ```kotlin
 @Serializable
@@ -148,9 +151,8 @@ data class Model(
 )
 ```
 
-Additionally, kspoon has built in serializers for Ksoup classes: `ElementSerializer`, `ElementsSerializer`, and
-`DocumentSerializer`.
-They can be used directly, or by using contextual serialization:
+Additionally, kspoon has built-in serializers for Ksoup classes: `ElementSerializer`, `ElementsSerializer`, and
+`DocumentSerializer`. They can be used directly or via contextual serialization:
 
 ```kotlin
 @Serializable
@@ -161,16 +163,15 @@ data class Model(
 )
 ```
 
-It is also possible to write custom kspoon serializers that can access selected `Element`.
-Read more here.
+It is also possible to write custom kspoon serializers that can access the selected `Element`. Read more here (TODO).
 
-### External libraries
+### External librarues
 
-The `Kspoon` class has `toFormat(): StringFormat` function that can be used with 3rd party libraries.
-For detailed integration instructions see following links:
+The `Kspoon` class has a `toFormat(): StringFormat` function that can be used with third-party libraries. For detailed
+integration instructions, see the following links:
 
-- ktor
-- Retrofit
+- Ktor (TODO)
+- Retrofit (TODO)
 
 ### Supported targets
 
@@ -178,10 +179,10 @@ For detailed integration instructions see following links:
   `macosArm64`, `iosArm64`, `iosSimulatorArm64`, `iosX64`, `mingwX64`
 - Only default and `korlibs` variants: `wasmjs`
 
-### Custom serializers
+### Custom serializers (TODO)
 
-### jspoon compatibility
+### jspoon compatibility (TODO)
 
 ### Changelog
 
-See [GitHub releases](https://github.com/burnoo/kspoon/releases)
+See [GitHub releases](https://github.com/burnoo/kspoon/releases).

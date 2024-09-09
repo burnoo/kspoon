@@ -34,7 +34,7 @@ public enum class HtmlTextMode {
     /**
      * Uses [Element.data] for extracting.
      * Get the combined data of this element. Data is e.g. the inside of a <script> tag. Note that data is NOT the text of the element.
-     * Use [Text] to get the text that would be visible to a user, and [Data] for the contents of scripts, comments, CSS styles, etc.
+     * Use [Text] to get the text that would be visible to a user, and [Data] for the contents of scripts, CSS styles, etc.
      */
     Data,
 }

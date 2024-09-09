@@ -14,7 +14,7 @@ Add the following dependency to your project's `build.gradle.kts`/`build.gradle`
 
 ```kotlin
 dependencies {
-  implementation("dev.burnoo.kspoon:kspoon:0.0.1-SNAPSHOT")
+    implementation("dev.burnoo.kspoon:kspoon:0.0.1-SNAPSHOT")
 }
 ```
 
@@ -36,9 +36,9 @@ parsing:
 ```kotlin
 @Serializable
 data class Page(
-  @Selector("#header") val header: String,
-  @Selector("li.class1") val intList: List<Int>,
-  @Selector(value = "#image1", attr = "src") val imageSource: String,
+    @Selector("#header") val header: String,
+    @Selector("li.class1") val intList: List<Int>,
+    @Selector(value = "#image1", attr = "src") val imageSource: String,
 )
 ```
 
@@ -46,14 +46,14 @@ You can then use a `Kspoon` instance to create objects:
 
 ```kotlin
 val htmlContent = """<div>
-  <p id='header'>Title</p>
-  <ul>
-  <li class='class1'>1</li>
-  <li>2</li>
-  <li class='class1'>3</li>
-  </ul>
-  <img id='image1' src='image.bmp' />
-  </div>""".trimIndent()
+    <p id='header'>Title</p>
+    <ul>
+    <li class='class1'>1</li>
+    <li>2</li>
+    <li class='class1'>3</li>
+    </ul>
+    <img id='image1' src='image.bmp' />
+    </div>""".trimIndent()
 
 val page = Kspoon.parse<Page>(htmlContent)
 println(page) // Page(header=Title, intList=[1, 3], imageSource=image.bmp)
@@ -68,14 +68,14 @@ All available options with default values are listed below:
 
 ```kotlin
 val kspoon = Kspoon {
-  // Specifies the Ksoup function used for parsing. Type: Ksoup.(String) -> Document
-  parse = { html: String -> parse(html) }
-  // Default text mode used for parsing.
-  defaultTextMode = HtmlTextMode.Text
-  // Enables coercing values when the selected HTML element is not found.
-  coerceInputValues = false
-  // Module with contextual and polymorphic serializers to be used.
-  serializersModule = EmptySerializersModule()
+    // Specifies the Ksoup function used for parsing. Type: Ksoup.(String) -> Document
+    parse = { html: String -> parse(html) }
+    // Default text mode used for parsing.
+    defaultTextMode = HtmlTextMode.Text
+    // Enables coercing values when the selected HTML element is not found.
+    coerceInputValues = false
+    // Module with contextual and polymorphic serializers to be used.
+    serializersModule = EmptySerializersModule()
 }
 kspoon.parse(HTML_CONTENT)
 ```
@@ -89,8 +89,8 @@ configuration or by using the `textMode` parameter in the `@Selector` annotation
 ```kotlin
 @Serializable
 data class Page(
-  @Selector("p", textMode = SelectorHtmlTextMode.OuterHtml)
-  val content: String
+    @Selector("p", textMode = SelectorHtmlTextMode.OuterHtml)
+    val content: String
 )
 
 val htmlContent = "<p><span>Text</span></p>"
@@ -109,8 +109,8 @@ entire match if no group is specified.
 
 ```kotlin
 data class Page(
-  @Selector(value = "#numbers", regex = "([0-9]+) ")
-  val starNumber: Int // <span id="numbers">31 stars</span> (31 will be parsed)
+    @Selector(value = "#numbers", regex = "([0-9]+) ")
+    val starNumber: Int // <span id="numbers">31 stars</span> (31 will be parsed)
 )
 ```
 
@@ -145,9 +145,9 @@ date serializers from [`kotlinx-datetime`](https://github.com/Kotlin/kotlinx-dat
 ```kotlin
 @Serializable
 data class Model(
-  @Serializable(LocalDateIso8601Serializer::class)
-  @Selector("span")
-  val date: LocalDate,
+    @Serializable(LocalDateIso8601Serializer::class)
+    @Selector("span")
+    val date: LocalDate,
 )
 ```
 
@@ -157,9 +157,9 @@ Additionally, kspoon has built-in serializers for Ksoup classes: `ElementSeriali
 ```kotlin
 @Serializable
 data class Model(
-  @Serializable(ElementSerializer::class) // or @Contextual
-  @Selector("div.class1")
-  val element: Element,
+    @Serializable(ElementSerializer::class) // or @Contextual
+    @Selector("div.class1")
+    val element: Element,
 )
 ```
 

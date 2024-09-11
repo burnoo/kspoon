@@ -118,7 +118,7 @@ data class Page(
 
 There are three ways to set default values:
 
-- `@Selector("#tag", defValue = "default")` - if the HTML element is not found, the default value will be used as a
+- `@Selector("#tag", defValue = "default")` - if the HTML element is not found, the `defValue` will be used as a
   parsed string
 - Nullable field - if the HTML element is not found, the value will be set to `null`
 - `coerceInputValues = true` in the `Kspoon {}` configuration - enables coercing to a default value
@@ -134,7 +134,7 @@ There are three ways to set default values:
   ```
 
 `defValue` offers the best performance due to the internal logic of kotlinx.serialization. Nullable fields does HTML
-selection twice. Coercing input values does html selecting twice and also disables
+selection twice. Coercing input values does HTML selection twice and also disables
 [sequential decoding](https://kotlinlang.org/api/kotlinx.serialization/kotlinx-serialization-core/kotlinx.serialization.encoding/-composite-decoder/decode-sequentially.html).
 
 ### Serializers
@@ -163,15 +163,15 @@ data class Model(
 )
 ```
 
-It is also possible to write custom kspoon serializers that can access the selected `Element`. Read more here (TODO).
+It is also possible to write custom kspoon serializers that can access the selected `Element`. Read more [here](/docs/custom-serializers.md).
 
 ### External librarues
 
 The `Kspoon` class has a `toFormat(): StringFormat` function that can be used with third-party libraries. For detailed
 integration instructions, see the following links:
 
-- Ktor (TODO)
-- Retrofit (TODO)
+- [Ktor](/docs/ktor.md)
+- [Retrofit](docs/retrofit.md)
 
 ### Supported targets
 
@@ -179,7 +179,7 @@ integration instructions, see the following links:
   `macosArm64`, `iosArm64`, `iosSimulatorArm64`, `iosX64`, `mingwX64`
 - Only default and `korlibs` variants: `wasmjs`
 
-### Custom serializers (TODO)
+### [Custom serializers](docs/custom-serializers.md)
 
 ### jspoon compatibility (TODO)
 

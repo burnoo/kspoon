@@ -6,9 +6,12 @@ import dev.burnoo.ksoup.configuration.KspoonBuilder
 import dev.burnoo.ksoup.configuration.KspoonConfiguration
 import dev.burnoo.ksoup.decoder.internal.HtmlTreeDecoder
 import dev.burnoo.ksoup.exception.KspoonParseException
+import dev.burnoo.ksoup.exception.kspoonError
 import kotlinx.serialization.DeserializationStrategy
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.StringFormat
+import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.serializer
 
@@ -64,6 +67,7 @@ import kotlinx.serialization.serializer
  * }
  * ```
  */
+@OptIn(ExperimentalSerializationApi::class)
 public sealed class Kspoon(
     @PublishedApi internal val configuration: KspoonConfiguration,
 ) {
@@ -122,6 +126,9 @@ public sealed class Kspoon(
      * @throws [IllegalArgumentException] if the parsed input cannot be represented as a valid instance of type [T]
      */
     public fun <T> parse(deserializer: DeserializationStrategy<T>, html: String): T {
+        if (deserializer.descriptor.kind is PrimitiveKind) {
+            kspoonError("Parsing is not supported for primitive types. Use class instead")
+        }
         val document = configuration.parse(Ksoup, html)
         val decoder = HtmlTreeDecoder(
             elements = Elements(document),

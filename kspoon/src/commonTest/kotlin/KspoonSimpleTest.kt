@@ -190,4 +190,12 @@ class KspoonSimpleTest {
             Kspoon.parse<Model>(body)
         }
     }
+
+    @Test
+    fun shouldThrowForPrimitiveTypes() {
+        val body = "<p>a</p>"
+        shouldThrowWithMessage<KspoonParseException>("Parsing is not supported for primitive types. Use class instead") {
+            println(Kspoon.parse<String>(body))
+        }
+    }
 }

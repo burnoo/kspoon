@@ -1,4 +1,4 @@
-package dev.burnoo.ksoup.decoder
+package dev.burnoo.ksoup.decoder.internal
 
 import dev.burnoo.ksoup.HtmlTextMode
 import dev.burnoo.ksoup.SelectorHtmlTextMode

@@ -1,4 +1,4 @@
-package dev.burnoo.ksoup.decoder
+package dev.burnoo.ksoup.decoder.internal
 
 import com.fleeksoft.ksoup.nodes.Document
 import com.fleeksoft.ksoup.nodes.Element
@@ -6,18 +6,17 @@ import com.fleeksoft.ksoup.select.Elements
 import dev.burnoo.ksoup.HtmlTextMode
 import dev.burnoo.ksoup.annotation.Selector
 import dev.burnoo.ksoup.configuration.KspoonConfiguration
+import dev.burnoo.ksoup.decoder.KspoonDecoder
 import dev.burnoo.ksoup.exception.KspoonParseException
 import dev.burnoo.ksoup.exception.kspoonError
 import dev.burnoo.ksoup.serializer.DocumentSerializer
 import dev.burnoo.ksoup.serializer.ElementSerializer
 import dev.burnoo.ksoup.serializer.ElementsSerializer
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.StructureKind
 import kotlinx.serialization.descriptors.elementNames
 import kotlinx.serialization.encoding.CompositeDecoder
-import kotlinx.serialization.internal.TaggedDecoder
 import kotlinx.serialization.modules.EmptySerializersModule
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
@@ -25,7 +24,7 @@ import kotlinx.serialization.modules.overwriteWith
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
-@OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)
+@OptIn(ExperimentalSerializationApi::class)
 internal class HtmlTreeDecoder(
     private val elements: Elements,
     private val configuration: KspoonConfiguration,

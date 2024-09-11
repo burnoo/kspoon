@@ -5,7 +5,7 @@ import com.fleeksoft.ksoup.nodes.Document
 import dev.burnoo.ksoup.HtmlTextMode
 import dev.burnoo.ksoup.Kspoon
 import dev.burnoo.ksoup.annotation.Selector
-import dev.burnoo.ksoup.decoder.HtmlTreeDecoder
+import dev.burnoo.ksoup.decoder.internal.HtmlTreeDecoder
 import kotlinx.serialization.encoding.CompositeDecoder
 import kotlinx.serialization.modules.SerializersModule
 

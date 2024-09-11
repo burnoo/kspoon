@@ -4,7 +4,7 @@ import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.select.Elements
 import dev.burnoo.ksoup.configuration.KspoonBuilder
 import dev.burnoo.ksoup.configuration.KspoonConfiguration
-import dev.burnoo.ksoup.decoder.HtmlTreeDecoder
+import dev.burnoo.ksoup.decoder.internal.HtmlTreeDecoder
 import dev.burnoo.ksoup.exception.KspoonParseException
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationException

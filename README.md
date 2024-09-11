@@ -10,7 +10,14 @@ his amazing work. Check out the [Ksoup repository](https://github.com/fleeksoft/
 
 ## Installation
 
-Add the following dependency to your project's `build.gradle.kts`/`build.gradle` file:
+Apply serialization plugin to your module `build.gradle.kts`/`build.gradle`:
+```kotlin
+plugins {
+    kotlin("plugin.serialization") version "<kotlin version>"
+}
+```
+
+Add the following dependency to your module `build.gradle.kts`/`build.gradle` file:
 
 ```kotlin
 dependencies {

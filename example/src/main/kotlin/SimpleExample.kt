@@ -1,6 +1,6 @@
 
-import dev.burnoo.ksoup.Kspoon
-import dev.burnoo.ksoup.annotation.Selector
+import dev.burnoo.kspoon.Kspoon
+import dev.burnoo.kspoon.annotation.Selector
 import kotlinx.serialization.Serializable
 import model.GithubProfile
 
@@ -26,12 +26,12 @@ data class FakeGitHubProfile(
 )
 
 fun simpleExample() {
-    val ksoup = Kspoon {
+    val kspoon = Kspoon {
         parse = { html -> parse(html, baseUri = "https://github.com/") }
         coerceInputValues = true
     }
 
-    val profile = ksoup.parse<FakeGitHubProfile>(HTML_CONTENT)
+    val profile = kspoon.parse<FakeGitHubProfile>(HTML_CONTENT)
 
     println("Display name: ${profile.username}")
     println("Avatar url: ${profile.avatarUrl}")

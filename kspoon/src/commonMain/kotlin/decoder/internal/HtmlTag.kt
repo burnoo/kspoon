@@ -1,9 +1,9 @@
-package dev.burnoo.ksoup.decoder.internal
+package dev.burnoo.kspoon.decoder.internal
 
-import dev.burnoo.ksoup.HtmlTextMode
-import dev.burnoo.ksoup.SelectorHtmlTextMode
-import dev.burnoo.ksoup.annotation.Selector
-import dev.burnoo.ksoup.annotation.handleNullability
+import dev.burnoo.kspoon.HtmlTextMode
+import dev.burnoo.kspoon.SelectorHtmlTextMode
+import dev.burnoo.kspoon.annotation.Selector
+import dev.burnoo.kspoon.annotation.handleNullability
 
 internal sealed class HtmlTag {
 

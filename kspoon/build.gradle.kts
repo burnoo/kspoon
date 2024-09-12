@@ -132,7 +132,7 @@ extensions.findByType<PublishingExtension>()?.apply {
         pom {
             name = libraryName
             description = "Annotation based HTML to Kotlin class parser with KMP support, jspoon successor"
-            url = "https://github.com/burnoo/ksoup"
+            url = "https://github.com/burnoo/kspoon"
             if (isRelease) {
                 version = version.replace("-SNAPSHOT", "")
             }
@@ -154,8 +154,8 @@ extensions.findByType<PublishingExtension>()?.apply {
             }
 
             scm {
-                connection = "scm:git:git@github.com:burnoo/ksoup.git"
-                url = "https://github.com/burnoo/ksoup"
+                connection = "scm:git:git@github.com:burnoo/kspoon.git"
+                url = "https://github.com/burnoo/kspoon"
                 tag = "HEAD"
             }
         }

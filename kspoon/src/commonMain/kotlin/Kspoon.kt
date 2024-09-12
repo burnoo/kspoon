@@ -1,12 +1,12 @@
-package dev.burnoo.ksoup
+package dev.burnoo.kspoon
 
 import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.select.Elements
-import dev.burnoo.ksoup.configuration.KspoonBuilder
-import dev.burnoo.ksoup.configuration.KspoonConfiguration
-import dev.burnoo.ksoup.decoder.internal.HtmlTreeDecoder
-import dev.burnoo.ksoup.exception.KspoonParseException
-import dev.burnoo.ksoup.exception.kspoonError
+import dev.burnoo.kspoon.configuration.KspoonBuilder
+import dev.burnoo.kspoon.configuration.KspoonConfiguration
+import dev.burnoo.kspoon.decoder.internal.HtmlTreeDecoder
+import dev.burnoo.kspoon.exception.KspoonParseException
+import dev.burnoo.kspoon.exception.kspoonError
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerializationException
@@ -47,12 +47,12 @@ import kotlinx.serialization.serializer
  *     </ul>
  * """
  *
- * val ksoup = Kspoon {
+ * val kspoon = Kspoon {
  *     parse = { html -> parse(html, baseUri = "https://github.com/") }
  *     coerceInputValues = true
  * }
  *
- * val profile = ksoup.parse<GitHubProfile>(htmlContent)
+ * val profile = kspoon.parse<GitHubProfile>(htmlContent)
  * ```
  *
  * Kspoon format configuration can be refined using the corresponding constructor:

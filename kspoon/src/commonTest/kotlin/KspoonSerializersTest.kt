@@ -1,9 +1,9 @@
-package dev.burnoo.ksoup
+package dev.burnoo.kspoon
 
-import dev.burnoo.ksoup.annotation.Selector
-import dev.burnoo.ksoup.decoder.KspoonDecoder
-import dev.burnoo.ksoup.exception.KspoonParseException
-import dev.burnoo.ksoup.serializer.kspoonEncodeError
+import dev.burnoo.kspoon.annotation.Selector
+import dev.burnoo.kspoon.decoder.KspoonDecoder
+import dev.burnoo.kspoon.exception.KspoonParseException
+import dev.burnoo.kspoon.serializer.kspoonEncodeError
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Contextual
@@ -22,7 +22,7 @@ data class StringWrapper(val text: String)
 
 object StringWrapperSerializer : KSerializer<StringWrapper> {
     override val descriptor: SerialDescriptor =
-        PrimitiveSerialDescriptor("dev.burnoo.ksoup.type.CustomString", PrimitiveKind.STRING)
+        PrimitiveSerialDescriptor("dev.burnoo.kspoon.type.CustomString", PrimitiveKind.STRING)
 
     override fun deserialize(decoder: Decoder): StringWrapper {
         val value = decoder.decodeString()
@@ -36,7 +36,7 @@ object StringWrapperSerializer : KSerializer<StringWrapper> {
 
 object TagSerializer : KSerializer<String> {
     override val descriptor: SerialDescriptor =
-        PrimitiveSerialDescriptor("dev.burnoo.ksoup.type.CustomString", PrimitiveKind.STRING)
+        PrimitiveSerialDescriptor("dev.burnoo.kspoon.type.CustomString", PrimitiveKind.STRING)
 
     override fun deserialize(decoder: Decoder): String {
         val kspoonDecoder = decoder as KspoonDecoder

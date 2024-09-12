@@ -1,4 +1,4 @@
-import dev.burnoo.ksoup.Kspoon
+import dev.burnoo.kspoon.Kspoon
 import model.GithubProfile
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit

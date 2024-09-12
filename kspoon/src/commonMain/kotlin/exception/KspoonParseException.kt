@@ -1,4 +1,4 @@
-package dev.burnoo.ksoup.exception
+package dev.burnoo.kspoon.exception
 
 /**
  * Exception thrown by Kspoon on errors.

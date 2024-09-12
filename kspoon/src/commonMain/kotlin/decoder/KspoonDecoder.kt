@@ -1,11 +1,11 @@
-package dev.burnoo.ksoup.decoder
+package dev.burnoo.kspoon.decoder
 
 import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
 import com.fleeksoft.ksoup.nodes.Element
 import com.fleeksoft.ksoup.select.Elements
-import dev.burnoo.ksoup.annotation.Selector
-import dev.burnoo.ksoup.exception.KspoonParseException
+import dev.burnoo.kspoon.annotation.Selector
+import dev.burnoo.kspoon.exception.KspoonParseException
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encoding.Decoder
 

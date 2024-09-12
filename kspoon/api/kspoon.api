@@ -1,83 +1,83 @@
-public final class dev/burnoo/ksoup/HtmlTextMode : java/lang/Enum {
-	public static final field Data Ldev/burnoo/ksoup/HtmlTextMode;
-	public static final field InnerHtml Ldev/burnoo/ksoup/HtmlTextMode;
-	public static final field OuterHtml Ldev/burnoo/ksoup/HtmlTextMode;
-	public static final field Text Ldev/burnoo/ksoup/HtmlTextMode;
+public final class dev/burnoo/kspoon/HtmlTextMode : java/lang/Enum {
+	public static final field Data Ldev/burnoo/kspoon/HtmlTextMode;
+	public static final field InnerHtml Ldev/burnoo/kspoon/HtmlTextMode;
+	public static final field OuterHtml Ldev/burnoo/kspoon/HtmlTextMode;
+	public static final field Text Ldev/burnoo/kspoon/HtmlTextMode;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Ldev/burnoo/ksoup/HtmlTextMode;
-	public static fun values ()[Ldev/burnoo/ksoup/HtmlTextMode;
+	public static fun valueOf (Ljava/lang/String;)Ldev/burnoo/kspoon/HtmlTextMode;
+	public static fun values ()[Ldev/burnoo/kspoon/HtmlTextMode;
 }
 
-public abstract class dev/burnoo/ksoup/Kspoon {
-	public static final field Default Ldev/burnoo/ksoup/Kspoon$Default;
-	public synthetic fun <init> (Ldev/burnoo/ksoup/configuration/KspoonConfiguration;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getConfiguration ()Ldev/burnoo/ksoup/configuration/KspoonConfiguration;
+public abstract class dev/burnoo/kspoon/Kspoon {
+	public static final field Default Ldev/burnoo/kspoon/Kspoon$Default;
+	public synthetic fun <init> (Ldev/burnoo/kspoon/configuration/KspoonConfiguration;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getConfiguration ()Ldev/burnoo/kspoon/configuration/KspoonConfiguration;
 	public final fun parse (Lkotlinx/serialization/DeserializationStrategy;Ljava/lang/String;)Ljava/lang/Object;
 	public final fun toFormat (Lkotlinx/serialization/StringFormat;)Lkotlinx/serialization/StringFormat;
-	public static synthetic fun toFormat$default (Ldev/burnoo/ksoup/Kspoon;Lkotlinx/serialization/StringFormat;ILjava/lang/Object;)Lkotlinx/serialization/StringFormat;
+	public static synthetic fun toFormat$default (Ldev/burnoo/kspoon/Kspoon;Lkotlinx/serialization/StringFormat;ILjava/lang/Object;)Lkotlinx/serialization/StringFormat;
 }
 
-public final class dev/burnoo/ksoup/Kspoon$Default : dev/burnoo/ksoup/Kspoon {
+public final class dev/burnoo/kspoon/Kspoon$Default : dev/burnoo/kspoon/Kspoon {
 }
 
-public final class dev/burnoo/ksoup/KspoonKt {
-	public static final fun Kspoon (Ldev/burnoo/ksoup/Kspoon;Lkotlin/jvm/functions/Function1;)Ldev/burnoo/ksoup/Kspoon;
-	public static synthetic fun Kspoon$default (Ldev/burnoo/ksoup/Kspoon;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ldev/burnoo/ksoup/Kspoon;
+public final class dev/burnoo/kspoon/KspoonKt {
+	public static final fun Kspoon (Ldev/burnoo/kspoon/Kspoon;Lkotlin/jvm/functions/Function1;)Ldev/burnoo/kspoon/Kspoon;
+	public static synthetic fun Kspoon$default (Ldev/burnoo/kspoon/Kspoon;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ldev/burnoo/kspoon/Kspoon;
 }
 
-public final class dev/burnoo/ksoup/SelectorHtmlTextMode : java/lang/Enum {
-	public static final field Data Ldev/burnoo/ksoup/SelectorHtmlTextMode;
-	public static final field Default Ldev/burnoo/ksoup/SelectorHtmlTextMode;
-	public static final field InnerHtml Ldev/burnoo/ksoup/SelectorHtmlTextMode;
-	public static final field OuterHtml Ldev/burnoo/ksoup/SelectorHtmlTextMode;
-	public static final field Text Ldev/burnoo/ksoup/SelectorHtmlTextMode;
+public final class dev/burnoo/kspoon/SelectorHtmlTextMode : java/lang/Enum {
+	public static final field Data Ldev/burnoo/kspoon/SelectorHtmlTextMode;
+	public static final field Default Ldev/burnoo/kspoon/SelectorHtmlTextMode;
+	public static final field InnerHtml Ldev/burnoo/kspoon/SelectorHtmlTextMode;
+	public static final field OuterHtml Ldev/burnoo/kspoon/SelectorHtmlTextMode;
+	public static final field Text Ldev/burnoo/kspoon/SelectorHtmlTextMode;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Ldev/burnoo/ksoup/SelectorHtmlTextMode;
-	public static fun values ()[Ldev/burnoo/ksoup/SelectorHtmlTextMode;
+	public static fun valueOf (Ljava/lang/String;)Ldev/burnoo/kspoon/SelectorHtmlTextMode;
+	public static fun values ()[Ldev/burnoo/kspoon/SelectorHtmlTextMode;
 }
 
-public abstract interface annotation class dev/burnoo/ksoup/annotation/Selector : java/lang/annotation/Annotation {
+public abstract interface annotation class dev/burnoo/kspoon/annotation/Selector : java/lang/annotation/Annotation {
 	public abstract fun attr ()Ljava/lang/String;
 	public abstract fun defValue ()Ljava/lang/String;
 	public abstract fun index ()I
 	public abstract fun regex ()Ljava/lang/String;
-	public abstract fun textMode ()Ldev/burnoo/ksoup/SelectorHtmlTextMode;
+	public abstract fun textMode ()Ldev/burnoo/kspoon/SelectorHtmlTextMode;
 	public abstract fun value ()Ljava/lang/String;
 }
 
-public synthetic class dev/burnoo/ksoup/annotation/Selector$Impl : dev/burnoo/ksoup/annotation/Selector {
-	public fun <init> (Ljava/lang/String;Ldev/burnoo/ksoup/SelectorHtmlTextMode;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ldev/burnoo/ksoup/SelectorHtmlTextMode;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+public synthetic class dev/burnoo/kspoon/annotation/Selector$Impl : dev/burnoo/kspoon/annotation/Selector {
+	public fun <init> (Ljava/lang/String;Ldev/burnoo/kspoon/SelectorHtmlTextMode;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ldev/burnoo/kspoon/SelectorHtmlTextMode;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final synthetic fun attr ()Ljava/lang/String;
 	public final synthetic fun defValue ()Ljava/lang/String;
 	public final synthetic fun index ()I
 	public final synthetic fun regex ()Ljava/lang/String;
-	public final synthetic fun textMode ()Ldev/burnoo/ksoup/SelectorHtmlTextMode;
+	public final synthetic fun textMode ()Ldev/burnoo/kspoon/SelectorHtmlTextMode;
 	public final synthetic fun value ()Ljava/lang/String;
 }
 
-public final class dev/burnoo/ksoup/configuration/KspoonBuilder {
+public final class dev/burnoo/kspoon/configuration/KspoonBuilder {
 	public final fun getCoerceInputValues ()Z
-	public final fun getDefaultTextMode ()Ldev/burnoo/ksoup/HtmlTextMode;
+	public final fun getDefaultTextMode ()Ldev/burnoo/kspoon/HtmlTextMode;
 	public final fun getParse ()Lkotlin/jvm/functions/Function2;
 	public final fun getSerializersModule ()Lkotlinx/serialization/modules/SerializersModule;
 	public final fun setCoerceInputValues (Z)V
-	public final fun setDefaultTextMode (Ldev/burnoo/ksoup/HtmlTextMode;)V
+	public final fun setDefaultTextMode (Ldev/burnoo/kspoon/HtmlTextMode;)V
 	public final fun setParse (Lkotlin/jvm/functions/Function2;)V
 	public final fun setSerializersModule (Lkotlinx/serialization/modules/SerializersModule;)V
 }
 
-public final class dev/burnoo/ksoup/configuration/KspoonConfiguration {
+public final class dev/burnoo/kspoon/configuration/KspoonConfiguration {
 	public fun <init> ()V
-	public fun <init> (Lkotlin/jvm/functions/Function2;Ldev/burnoo/ksoup/HtmlTextMode;ZLkotlinx/serialization/modules/SerializersModule;)V
-	public synthetic fun <init> (Lkotlin/jvm/functions/Function2;Ldev/burnoo/ksoup/HtmlTextMode;ZLkotlinx/serialization/modules/SerializersModule;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lkotlin/jvm/functions/Function2;Ldev/burnoo/kspoon/HtmlTextMode;ZLkotlinx/serialization/modules/SerializersModule;)V
+	public synthetic fun <init> (Lkotlin/jvm/functions/Function2;Ldev/burnoo/kspoon/HtmlTextMode;ZLkotlinx/serialization/modules/SerializersModule;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getCoerceInputValues ()Z
-	public final fun getDefaultTextMode ()Ldev/burnoo/ksoup/HtmlTextMode;
+	public final fun getDefaultTextMode ()Ldev/burnoo/kspoon/HtmlTextMode;
 	public final fun getParse ()Lkotlin/jvm/functions/Function2;
 	public final fun getSerializersModule ()Lkotlinx/serialization/modules/SerializersModule;
 }
 
-public abstract interface class dev/burnoo/ksoup/decoder/KspoonDecoder : kotlinx/serialization/encoding/Decoder {
+public abstract interface class dev/burnoo/kspoon/decoder/KspoonDecoder : kotlinx/serialization/encoding/Decoder {
 	public abstract fun decodeDocument ()Lcom/fleeksoft/ksoup/nodes/Document;
 	public abstract fun decodeElement ()Lcom/fleeksoft/ksoup/nodes/Element;
 	public abstract fun decodeElementOrThrow ()Lcom/fleeksoft/ksoup/nodes/Element;
@@ -85,47 +85,47 @@ public abstract interface class dev/burnoo/ksoup/decoder/KspoonDecoder : kotlinx
 	public abstract fun getSelectorFullPath ()Ljava/lang/String;
 }
 
-public final class dev/burnoo/ksoup/decoder/KspoonDecoder$DefaultImpls {
-	public static fun decodeNullableSerializableValue (Ldev/burnoo/ksoup/decoder/KspoonDecoder;Lkotlinx/serialization/DeserializationStrategy;)Ljava/lang/Object;
-	public static fun decodeSerializableValue (Ldev/burnoo/ksoup/decoder/KspoonDecoder;Lkotlinx/serialization/DeserializationStrategy;)Ljava/lang/Object;
+public final class dev/burnoo/kspoon/decoder/KspoonDecoder$DefaultImpls {
+	public static fun decodeNullableSerializableValue (Ldev/burnoo/kspoon/decoder/KspoonDecoder;Lkotlinx/serialization/DeserializationStrategy;)Ljava/lang/Object;
+	public static fun decodeSerializableValue (Ldev/burnoo/kspoon/decoder/KspoonDecoder;Lkotlinx/serialization/DeserializationStrategy;)Ljava/lang/Object;
 }
 
-public final class dev/burnoo/ksoup/exception/KspoonParseException : java/lang/IllegalStateException {
+public final class dev/burnoo/kspoon/exception/KspoonParseException : java/lang/IllegalStateException {
 	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun getCause ()Ljava/lang/Throwable;
 	public fun getMessage ()Ljava/lang/String;
 }
 
-public final class dev/burnoo/ksoup/model/KspoonDocument {
-	public static final field Companion Ldev/burnoo/ksoup/model/KspoonDocument$Companion;
+public final class dev/burnoo/kspoon/model/KspoonDocument {
+	public static final field Companion Ldev/burnoo/kspoon/model/KspoonDocument$Companion;
 	public fun <init> (Lcom/fleeksoft/ksoup/nodes/Document;)V
 	public final fun component1 ()Lcom/fleeksoft/ksoup/nodes/Document;
-	public final fun copy (Lcom/fleeksoft/ksoup/nodes/Document;)Ldev/burnoo/ksoup/model/KspoonDocument;
-	public static synthetic fun copy$default (Ldev/burnoo/ksoup/model/KspoonDocument;Lcom/fleeksoft/ksoup/nodes/Document;ILjava/lang/Object;)Ldev/burnoo/ksoup/model/KspoonDocument;
+	public final fun copy (Lcom/fleeksoft/ksoup/nodes/Document;)Ldev/burnoo/kspoon/model/KspoonDocument;
+	public static synthetic fun copy$default (Ldev/burnoo/kspoon/model/KspoonDocument;Lcom/fleeksoft/ksoup/nodes/Document;ILjava/lang/Object;)Ldev/burnoo/kspoon/model/KspoonDocument;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDocument ()Lcom/fleeksoft/ksoup/nodes/Document;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class dev/burnoo/ksoup/model/KspoonDocument$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Ldev/burnoo/ksoup/model/KspoonDocument$$serializer;
+public synthetic class dev/burnoo/kspoon/model/KspoonDocument$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Ldev/burnoo/kspoon/model/KspoonDocument$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ldev/burnoo/ksoup/model/KspoonDocument;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ldev/burnoo/kspoon/model/KspoonDocument;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Ldev/burnoo/ksoup/model/KspoonDocument;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Ldev/burnoo/kspoon/model/KspoonDocument;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
-public final class dev/burnoo/ksoup/model/KspoonDocument$Companion {
+public final class dev/burnoo/kspoon/model/KspoonDocument$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class dev/burnoo/ksoup/serializer/DocumentSerializer : kotlinx/serialization/KSerializer {
-	public static final field INSTANCE Ldev/burnoo/ksoup/serializer/DocumentSerializer;
+public final class dev/burnoo/kspoon/serializer/DocumentSerializer : kotlinx/serialization/KSerializer {
+	public static final field INSTANCE Ldev/burnoo/kspoon/serializer/DocumentSerializer;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/fleeksoft/ksoup/nodes/Document;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
@@ -133,8 +133,8 @@ public final class dev/burnoo/ksoup/serializer/DocumentSerializer : kotlinx/seri
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 }
 
-public final class dev/burnoo/ksoup/serializer/ElementSerializer : kotlinx/serialization/KSerializer {
-	public static final field INSTANCE Ldev/burnoo/ksoup/serializer/ElementSerializer;
+public final class dev/burnoo/kspoon/serializer/ElementSerializer : kotlinx/serialization/KSerializer {
+	public static final field INSTANCE Ldev/burnoo/kspoon/serializer/ElementSerializer;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/fleeksoft/ksoup/nodes/Element;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
@@ -142,8 +142,8 @@ public final class dev/burnoo/ksoup/serializer/ElementSerializer : kotlinx/seria
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 }
 
-public final class dev/burnoo/ksoup/serializer/ElementsSerializer : kotlinx/serialization/KSerializer {
-	public static final field INSTANCE Ldev/burnoo/ksoup/serializer/ElementsSerializer;
+public final class dev/burnoo/kspoon/serializer/ElementsSerializer : kotlinx/serialization/KSerializer {
+	public static final field INSTANCE Ldev/burnoo/kspoon/serializer/ElementsSerializer;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/fleeksoft/ksoup/select/Elements;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;

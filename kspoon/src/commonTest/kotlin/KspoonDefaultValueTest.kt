@@ -1,6 +1,6 @@
-package dev.burnoo.ksoup
+package dev.burnoo.kspoon
 
-import dev.burnoo.ksoup.annotation.Selector
+import dev.burnoo.kspoon.annotation.Selector
 import io.kotest.matchers.shouldBe
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable

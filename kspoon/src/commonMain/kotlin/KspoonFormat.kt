@@ -1,6 +1,6 @@
-package dev.burnoo.ksoup
+package dev.burnoo.kspoon
 
-import dev.burnoo.ksoup.serializer.kspoonEncodeError
+import dev.burnoo.kspoon.serializer.kspoonEncodeError
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.StringFormat

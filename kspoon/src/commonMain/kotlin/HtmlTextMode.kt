@@ -1,7 +1,7 @@
-package dev.burnoo.ksoup
+package dev.burnoo.kspoon
 
 import com.fleeksoft.ksoup.nodes.Element
-import dev.burnoo.ksoup.annotation.Selector
+import dev.burnoo.kspoon.annotation.Selector
 
 /**
  * Mode used for extracting content from [Element].

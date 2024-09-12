@@ -1,8 +1,8 @@
-package dev.burnoo.ksoup.configuration
+package dev.burnoo.kspoon.configuration
 
 import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
-import dev.burnoo.ksoup.HtmlTextMode
+import dev.burnoo.kspoon.HtmlTextMode
 import kotlinx.serialization.modules.EmptySerializersModule
 import kotlinx.serialization.modules.SerializersModule
 

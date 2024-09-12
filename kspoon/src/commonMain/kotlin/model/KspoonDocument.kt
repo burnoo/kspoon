@@ -1,8 +1,8 @@
-package dev.burnoo.ksoup.model
+package dev.burnoo.kspoon.model
 
 import com.fleeksoft.ksoup.nodes.Document
-import dev.burnoo.ksoup.annotation.Selector
-import dev.burnoo.ksoup.serializer.DocumentSerializer
+import dev.burnoo.kspoon.annotation.Selector
+import dev.burnoo.kspoon.serializer.DocumentSerializer
 import kotlinx.serialization.Serializable
 
 /**

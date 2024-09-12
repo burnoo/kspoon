@@ -1,11 +1,11 @@
-package dev.burnoo.ksoup.configuration
+package dev.burnoo.kspoon.configuration
 
 import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
-import dev.burnoo.ksoup.HtmlTextMode
-import dev.burnoo.ksoup.Kspoon
-import dev.burnoo.ksoup.annotation.Selector
-import dev.burnoo.ksoup.decoder.internal.HtmlTreeDecoder
+import dev.burnoo.kspoon.HtmlTextMode
+import dev.burnoo.kspoon.Kspoon
+import dev.burnoo.kspoon.annotation.Selector
+import dev.burnoo.kspoon.decoder.internal.HtmlTreeDecoder
 import kotlinx.serialization.encoding.CompositeDecoder
 import kotlinx.serialization.modules.SerializersModule
 

@@ -1,6 +1,6 @@
 package model
 
-import dev.burnoo.ksoup.annotation.Selector
+import dev.burnoo.kspoon.annotation.Selector
 import kotlinx.serialization.Serializable
 
 @Serializable

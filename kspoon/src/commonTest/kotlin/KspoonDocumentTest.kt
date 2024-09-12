@@ -1,12 +1,12 @@
 @file:OptIn(ExperimentalSerializationApi::class)
 
-package dev.burnoo.ksoup
+package dev.burnoo.kspoon
 
 import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
-import dev.burnoo.ksoup.annotation.Selector
-import dev.burnoo.ksoup.exception.KspoonParseException
-import dev.burnoo.ksoup.model.KspoonDocument
+import dev.burnoo.kspoon.annotation.Selector
+import dev.burnoo.kspoon.exception.KspoonParseException
+import dev.burnoo.kspoon.model.KspoonDocument
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Contextual

@@ -6,7 +6,7 @@
 @file:OptIn(ExperimentalSerializationApi::class)
 @file:Suppress("ktlint")
 
-package dev.burnoo.ksoup.decoder.internal
+package dev.burnoo.kspoon.decoder.internal
 
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.ExperimentalSerializationApi

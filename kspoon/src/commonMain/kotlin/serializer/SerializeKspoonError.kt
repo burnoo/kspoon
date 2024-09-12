@@ -1,6 +1,6 @@
-package dev.burnoo.ksoup.serializer
+package dev.burnoo.kspoon.serializer
 
-import dev.burnoo.ksoup.exception.kspoonError
+import dev.burnoo.kspoon.exception.kspoonError
 
 internal fun kspoonEncodeError(): Nothing {
     kspoonError("Encoding is not supported by kspoon")

@@ -1,7 +1,7 @@
-package dev.burnoo.ksoup
+package dev.burnoo.kspoon
 
-import dev.burnoo.ksoup.annotation.Selector
-import dev.burnoo.ksoup.exception.KspoonParseException
+import dev.burnoo.kspoon.annotation.Selector
+import dev.burnoo.kspoon.exception.KspoonParseException
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.SerialName
@@ -43,7 +43,7 @@ class KspoonEnumTest {
 
         val body = "<p>D</p>"
         shouldThrowWithMessage<KspoonParseException>(
-            message = "Can't parse value 'D' for enum 'dev.burnoo.ksoup.Enum' at selector: ['p']",
+            message = "Can't parse value 'D' for enum 'dev.burnoo.kspoon.Enum' at selector: ['p']",
         ) {
             Kspoon.parse<Model>(body)
         }

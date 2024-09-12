@@ -1,7 +1,7 @@
-package dev.burnoo.ksoup.jspoon
+package dev.burnoo.kspoon.jspoon
 
-import dev.burnoo.ksoup.Kspoon
-import dev.burnoo.ksoup.annotation.Selector
+import dev.burnoo.kspoon.Kspoon
+import dev.burnoo.kspoon.annotation.Selector
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Serializable
 import kotlin.test.Test

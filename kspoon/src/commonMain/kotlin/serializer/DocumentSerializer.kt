@@ -1,9 +1,9 @@
-package dev.burnoo.ksoup.serializer
+package dev.burnoo.kspoon.serializer
 
 import com.fleeksoft.ksoup.nodes.Document
-import dev.burnoo.ksoup.Kspoon
-import dev.burnoo.ksoup.decoder.KspoonDecoder
-import dev.burnoo.ksoup.model.KspoonDocument
+import dev.burnoo.kspoon.Kspoon
+import dev.burnoo.kspoon.decoder.KspoonDecoder
+import dev.burnoo.kspoon.model.KspoonDocument
 import kotlinx.serialization.ContextualSerializer
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind

@@ -1,17 +1,17 @@
-package dev.burnoo.ksoup.decoder.internal
+package dev.burnoo.kspoon.decoder.internal
 
 import com.fleeksoft.ksoup.nodes.Document
 import com.fleeksoft.ksoup.nodes.Element
 import com.fleeksoft.ksoup.select.Elements
-import dev.burnoo.ksoup.HtmlTextMode
-import dev.burnoo.ksoup.annotation.Selector
-import dev.burnoo.ksoup.configuration.KspoonConfiguration
-import dev.burnoo.ksoup.decoder.KspoonDecoder
-import dev.burnoo.ksoup.exception.KspoonParseException
-import dev.burnoo.ksoup.exception.kspoonError
-import dev.burnoo.ksoup.serializer.DocumentSerializer
-import dev.burnoo.ksoup.serializer.ElementSerializer
-import dev.burnoo.ksoup.serializer.ElementsSerializer
+import dev.burnoo.kspoon.HtmlTextMode
+import dev.burnoo.kspoon.annotation.Selector
+import dev.burnoo.kspoon.configuration.KspoonConfiguration
+import dev.burnoo.kspoon.decoder.KspoonDecoder
+import dev.burnoo.kspoon.exception.KspoonParseException
+import dev.burnoo.kspoon.exception.kspoonError
+import dev.burnoo.kspoon.serializer.DocumentSerializer
+import dev.burnoo.kspoon.serializer.ElementSerializer
+import dev.burnoo.kspoon.serializer.ElementsSerializer
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.StructureKind

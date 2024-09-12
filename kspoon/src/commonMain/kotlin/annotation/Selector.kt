@@ -1,7 +1,7 @@
-package dev.burnoo.ksoup.annotation
+package dev.burnoo.kspoon.annotation
 
-import dev.burnoo.ksoup.Kspoon
-import dev.burnoo.ksoup.SelectorHtmlTextMode
+import dev.burnoo.kspoon.Kspoon
+import dev.burnoo.kspoon.SelectorHtmlTextMode
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialInfo
 import kotlinx.serialization.Serializable

@@ -188,7 +188,7 @@ integration instructions, see the following links:
 
 ### [Custom serializers](docs/custom-serializers.md)
 
-### jspoon compatibility (TODO)
+### [jspoon compatibility](docs/jspoon-compatibility.md)
 
 ### Changelog
 

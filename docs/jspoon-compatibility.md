@@ -16,7 +16,8 @@ jspoon was compatible with Java and Kotlin JVM. kspoon, on the other hand, is co
 
 ## Migration guide
 
-1. Replace jspoon dependency with kspoon and apply the serialization plugin (see [Installation](/README.md#installation)). See [Selecting content](/README.md#selecting-content).
+1. Replace jspoon dependency with kspoon and apply the serialization plugin.
+   See [Installation](/README.md#installation).
 2. Add `@Serializable` to each class that should be parsed.
 3. Replace `import pl.droidsonroids.jspoon.annotation.Selector` with `import dev.burnoo.kspoon.annotation.Selector`.
 4. Replace usages of `@Selector.attr = "innerhtml"` (or `"html"`/`"outerHtml"`) with `@Selector.textMode = SelectorHtmlTextMode.InnerHtml` (or `SelectorHtmlTextMode.OuterHtml`). See [Selecting content](/README.md#selecting-content).

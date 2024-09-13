@@ -66,7 +66,7 @@ jobs:
           ORG_GRADLE_PROJECT_sonatypeStagingRepositoryId: ${{ steps.create-nexus-staging.outputs.repository_id }}
 
       - name: Discard Nexus staging repository
-        if: ${{ failure() && steps.publish.conclusion == 'failure' }}
+        if: ${{ failure() && (steps.publish-default.conclusion == 'failure' || steps.publish-korlibs.conclusion == 'failure' || steps.publish-ktor2.conclusion == 'failure' || steps.publish-okio.conclusion == 'failure') }}
         run: ./scripts/drop-nexus-staging.sh
         env:
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}

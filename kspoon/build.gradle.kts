@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "dev.burnoo.kspoon"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.2-SNAPSHOT"
 
 data class Variant(
     val type: Type,

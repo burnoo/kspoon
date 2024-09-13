@@ -1,5 +1,7 @@
 # kspoon 🥄
 
+[![Maven Central](https://img.shields.io/maven-central/v/dev.burnoo.kspoon/kspoon)](https://search.maven.org/search?q=dev.burnoo.kspoon) [![javadoc](https://javadoc.io/badge2/dev.burnoo.kspoon/kspoon/javadoc.svg?label=dokka&logo=)](https://javadoc.io/doc/dev.burnoo.kspoon/kspoon/latest/kspoon/dev.burnoo.kspoon/-kspoon/index.html)
+
 kspoon is a Kotlin Multiplatform library for parsing HTML into Kotlin objects. It
 uses [ksoup](https://github.com/fleeksoft/ksoup) as an HTML parser
 and [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) to create objects. This library is a
@@ -11,6 +13,7 @@ his amazing work. Check out the [Ksoup repository](https://github.com/fleeksoft/
 ## Installation
 
 Apply serialization plugin to your module `build.gradle.kts`/`build.gradle`:
+
 ```kotlin
 plugins {
     kotlin("plugin.serialization") version "<kotlin version>"
@@ -21,7 +24,7 @@ Add the following dependency to your module `build.gradle.kts`/`build.gradle` fi
 
 ```kotlin
 dependencies {
-  implementation("dev.burnoo.kspoon:kspoon:0.0.1")
+    implementation("dev.burnoo.kspoon:kspoon:0.0.1")
 }
 ```
 
@@ -132,8 +135,8 @@ There are three ways to set default values:
   ```kotlin
   @Serializable
   data class Model(
-    @Selector("span")
-    val text: String = "not found"
+      @Selector("span")
+      val text: String = "not found"
   ) 
   val body = "<p></p>"
   val text = Kspoon { coerceInputValues = true }.parse<Model>(body).text
@@ -170,7 +173,8 @@ data class Model(
 )
 ```
 
-It is also possible to write custom kspoon serializers that can access the selected `Element`. Read more [here](/docs/custom-serializers.md).
+It is also possible to write custom kspoon serializers that can access the selected `Element`. Read
+more [here](/docs/custom-serializers.md).
 
 ### External librarues
 

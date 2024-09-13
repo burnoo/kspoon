@@ -42,25 +42,25 @@ jobs:
           SONATYPE_DESCRIPTION: Created by GitHub Actions
 
       - name: Publish default artifacts to Sonatype
-        id: publish
+        id: publish-default
         run: ./gradlew publishAllPublicationsToSonatypeRepository
         env:
           ORG_GRADLE_PROJECT_sonatypeStagingRepositoryId: ${{ steps.create-nexus-staging.outputs.repository_id }}
 
       - name: Publish korlibs artifacts to Sonatype
-        id: publish
+        id: publish-korlibs
         run: ./gradlew publishAllPublicationsToSonatypeRepository -Pvariant=korlibs
         env:
           ORG_GRADLE_PROJECT_sonatypeStagingRepositoryId: ${{ steps.create-nexus-staging.outputs.repository_id }}
 
-      - name: Publish korlibs artifacts to Sonatype
-        id: publish
+      - name: Publish ktor2 artifacts to Sonatype
+        id: publish-ktor2
         run: ./gradlew publishAllPublicationsToSonatypeRepository -Pvariant=ktor2
         env:
           ORG_GRADLE_PROJECT_sonatypeStagingRepositoryId: ${{ steps.create-nexus-staging.outputs.repository_id }}
 
-      - name: Publish korlibs artifacts to Sonatype
-        id: publish
+      - name: Publish okio artifacts to Sonatype
+        id: publish-okio
         run: ./gradlew publishAllPublicationsToSonatypeRepository -Pvariant=okio
         env:
           ORG_GRADLE_PROJECT_sonatypeStagingRepositoryId: ${{ steps.create-nexus-staging.outputs.repository_id }}

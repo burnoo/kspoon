@@ -8,13 +8,15 @@ import retrofit2.http.Path
 
 interface GitHubService {
     @GET("{username}")
-    suspend fun getProfile(@Path("username") username: String): GithubProfile
+    suspend fun getProfile(
+        @Path("username") username: String,
+    ): GithubProfile
 }
 
 suspend fun retrofitExample() {
     val retrofit = Retrofit.Builder()
         .addConverterFactory(
-            Kspoon.toFormat().asConverterFactory("text/html; charset=UTF8".toMediaType())
+            Kspoon.toFormat().asConverterFactory("text/html; charset=UTF8".toMediaType()),
         )
         .baseUrl("https://github.com/")
         .build()

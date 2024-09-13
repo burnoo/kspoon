@@ -1,0 +1,38 @@
+name: Post-Release updates
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  post-release-updates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Bump patch version
+        run: ./scripts/bump-version.sh patch
+
+      - name: Update README with current version
+        run: |
+          sed -i "s/dev.burnoo:kspoon:[0-9.]*/dev.burnoo:kspoon:${{ github.event.release.tag_name }}/g" README.md
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: |
+            Add post-release updates (`${{ github.event.release.tag_name }}`)
+          body: |
+            Post-release updates:
+            - Update README with `${{ github.event.release.tag_name }}` version
+            - Bump library version to `${{ env.NEW_VERSION }}-SNAPSHOT`
+          commit-message: |
+            [skip ci] Update version in README and bump to ${{ env.NEW_VERSION }}-SNAPSHOT
+          branch: post-release-updates/${{ github.event.release.tag_name }}
+          base: main

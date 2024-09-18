@@ -66,22 +66,22 @@ final class dev.burnoo.kspoon.configuration/KspoonBuilder { // dev.burnoo.kspoon
         final fun <get-defaultTextMode>(): dev.burnoo.kspoon/HtmlTextMode // dev.burnoo.kspoon.configuration/KspoonBuilder.defaultTextMode.<get-defaultTextMode>|<get-defaultTextMode>(){}[0]
         final fun <set-defaultTextMode>(dev.burnoo.kspoon/HtmlTextMode) // dev.burnoo.kspoon.configuration/KspoonBuilder.defaultTextMode.<set-defaultTextMode>|<set-defaultTextMode>(dev.burnoo.kspoon.HtmlTextMode){}[0]
     final var parse // dev.burnoo.kspoon.configuration/KspoonBuilder.parse|{}parse[0]
-        final fun <get-parse>(): kotlin/Function2<com.fleeksoft.ksoup/Ksoup, kotlin/String, com.fleeksoft.ksoup.nodes/Document> // dev.burnoo.kspoon.configuration/KspoonBuilder.parse.<get-parse>|<get-parse>(){}[0]
-        final fun <set-parse>(kotlin/Function2<com.fleeksoft.ksoup/Ksoup, kotlin/String, com.fleeksoft.ksoup.nodes/Document>) // dev.burnoo.kspoon.configuration/KspoonBuilder.parse.<set-parse>|<set-parse>(kotlin.Function2<com.fleeksoft.ksoup.Ksoup,kotlin.String,com.fleeksoft.ksoup.nodes.Document>){}[0]
+        final fun <get-parse>(): kotlin/Function1<kotlin/String, com.fleeksoft.ksoup.nodes/Document> // dev.burnoo.kspoon.configuration/KspoonBuilder.parse.<get-parse>|<get-parse>(){}[0]
+        final fun <set-parse>(kotlin/Function1<kotlin/String, com.fleeksoft.ksoup.nodes/Document>) // dev.burnoo.kspoon.configuration/KspoonBuilder.parse.<set-parse>|<set-parse>(kotlin.Function1<kotlin.String,com.fleeksoft.ksoup.nodes.Document>){}[0]
     final var serializersModule // dev.burnoo.kspoon.configuration/KspoonBuilder.serializersModule|{}serializersModule[0]
         final fun <get-serializersModule>(): kotlinx.serialization.modules/SerializersModule // dev.burnoo.kspoon.configuration/KspoonBuilder.serializersModule.<get-serializersModule>|<get-serializersModule>(){}[0]
         final fun <set-serializersModule>(kotlinx.serialization.modules/SerializersModule) // dev.burnoo.kspoon.configuration/KspoonBuilder.serializersModule.<set-serializersModule>|<set-serializersModule>(kotlinx.serialization.modules.SerializersModule){}[0]
 }
 
 final class dev.burnoo.kspoon.configuration/KspoonConfiguration { // dev.burnoo.kspoon.configuration/KspoonConfiguration|null[0]
-    constructor <init>(kotlin/Function2<com.fleeksoft.ksoup/Ksoup, kotlin/String, com.fleeksoft.ksoup.nodes/Document> = ..., dev.burnoo.kspoon/HtmlTextMode = ..., kotlin/Boolean = ..., kotlinx.serialization.modules/SerializersModule = ...) // dev.burnoo.kspoon.configuration/KspoonConfiguration.<init>|<init>(kotlin.Function2<com.fleeksoft.ksoup.Ksoup,kotlin.String,com.fleeksoft.ksoup.nodes.Document>;dev.burnoo.kspoon.HtmlTextMode;kotlin.Boolean;kotlinx.serialization.modules.SerializersModule){}[0]
+    constructor <init>(kotlin/Function1<kotlin/String, com.fleeksoft.ksoup.nodes/Document> = ..., dev.burnoo.kspoon/HtmlTextMode = ..., kotlin/Boolean = ..., kotlinx.serialization.modules/SerializersModule = ...) // dev.burnoo.kspoon.configuration/KspoonConfiguration.<init>|<init>(kotlin.Function1<kotlin.String,com.fleeksoft.ksoup.nodes.Document>;dev.burnoo.kspoon.HtmlTextMode;kotlin.Boolean;kotlinx.serialization.modules.SerializersModule){}[0]
 
     final val coerceInputValues // dev.burnoo.kspoon.configuration/KspoonConfiguration.coerceInputValues|{}coerceInputValues[0]
         final fun <get-coerceInputValues>(): kotlin/Boolean // dev.burnoo.kspoon.configuration/KspoonConfiguration.coerceInputValues.<get-coerceInputValues>|<get-coerceInputValues>(){}[0]
     final val defaultTextMode // dev.burnoo.kspoon.configuration/KspoonConfiguration.defaultTextMode|{}defaultTextMode[0]
         final fun <get-defaultTextMode>(): dev.burnoo.kspoon/HtmlTextMode // dev.burnoo.kspoon.configuration/KspoonConfiguration.defaultTextMode.<get-defaultTextMode>|<get-defaultTextMode>(){}[0]
     final val parse // dev.burnoo.kspoon.configuration/KspoonConfiguration.parse|{}parse[0]
-        final fun <get-parse>(): kotlin/Function2<com.fleeksoft.ksoup/Ksoup, kotlin/String, com.fleeksoft.ksoup.nodes/Document> // dev.burnoo.kspoon.configuration/KspoonConfiguration.parse.<get-parse>|<get-parse>(){}[0]
+        final fun <get-parse>(): kotlin/Function1<kotlin/String, com.fleeksoft.ksoup.nodes/Document> // dev.burnoo.kspoon.configuration/KspoonConfiguration.parse.<get-parse>|<get-parse>(){}[0]
     final val serializersModule // dev.burnoo.kspoon.configuration/KspoonConfiguration.serializersModule|{}serializersModule[0]
         final fun <get-serializersModule>(): kotlinx.serialization.modules/SerializersModule // dev.burnoo.kspoon.configuration/KspoonConfiguration.serializersModule.<get-serializersModule>|<get-serializersModule>(){}[0]
 }

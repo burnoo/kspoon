@@ -59,21 +59,21 @@ public synthetic class dev/burnoo/kspoon/annotation/Selector$Impl : dev/burnoo/k
 public final class dev/burnoo/kspoon/configuration/KspoonBuilder {
 	public final fun getCoerceInputValues ()Z
 	public final fun getDefaultTextMode ()Ldev/burnoo/kspoon/HtmlTextMode;
-	public final fun getParse ()Lkotlin/jvm/functions/Function2;
+	public final fun getParse ()Lkotlin/jvm/functions/Function1;
 	public final fun getSerializersModule ()Lkotlinx/serialization/modules/SerializersModule;
 	public final fun setCoerceInputValues (Z)V
 	public final fun setDefaultTextMode (Ldev/burnoo/kspoon/HtmlTextMode;)V
-	public final fun setParse (Lkotlin/jvm/functions/Function2;)V
+	public final fun setParse (Lkotlin/jvm/functions/Function1;)V
 	public final fun setSerializersModule (Lkotlinx/serialization/modules/SerializersModule;)V
 }
 
 public final class dev/burnoo/kspoon/configuration/KspoonConfiguration {
 	public fun <init> ()V
-	public fun <init> (Lkotlin/jvm/functions/Function2;Ldev/burnoo/kspoon/HtmlTextMode;ZLkotlinx/serialization/modules/SerializersModule;)V
-	public synthetic fun <init> (Lkotlin/jvm/functions/Function2;Ldev/burnoo/kspoon/HtmlTextMode;ZLkotlinx/serialization/modules/SerializersModule;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lkotlin/jvm/functions/Function1;Ldev/burnoo/kspoon/HtmlTextMode;ZLkotlinx/serialization/modules/SerializersModule;)V
+	public synthetic fun <init> (Lkotlin/jvm/functions/Function1;Ldev/burnoo/kspoon/HtmlTextMode;ZLkotlinx/serialization/modules/SerializersModule;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getCoerceInputValues ()Z
 	public final fun getDefaultTextMode ()Ldev/burnoo/kspoon/HtmlTextMode;
-	public final fun getParse ()Lkotlin/jvm/functions/Function2;
+	public final fun getParse ()Lkotlin/jvm/functions/Function1;
 	public final fun getSerializersModule ()Lkotlinx/serialization/modules/SerializersModule;
 }
 

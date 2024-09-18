@@ -27,11 +27,5 @@ jobs:
           java-version: '17'
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
-      - name: Publish default variant to Sonatype Snapshot repository
+      - name: Publish to Sonatype Snapshot repository
         run: ./gradlew publishAllPublicationsToSonatypeSnapshotRepository
-      - name: Publish korlibs variant to Sonatype Snapshot repository
-        run: ./gradlew publishAllPublicationsToSonatypeSnapshotRepository -Pvariant=korlibs
-      - name: Publish ktor2 variant to Sonatype Snapshot repository
-        run: ./gradlew publishAllPublicationsToSonatypeSnapshotRepository -Pvariant=ktor2
-      - name: Publish okio variant to Sonatype Snapshot repository
-        run: ./gradlew publishAllPublicationsToSonatypeSnapshotRepository -Pvariant=okio

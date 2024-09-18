@@ -41,32 +41,14 @@ jobs:
           SONATYPE_STAGING_PROFILE_ID: ${{ secrets.SONATYPE_STAGING_PROFILE_ID }}
           SONATYPE_DESCRIPTION: Created by GitHub Actions
 
-      - name: Publish default artifacts to Sonatype
-        id: publish-default
+      - name: Publish artifact to Sonatype Repository
+        id: publish
         run: ./gradlew publishAllPublicationsToSonatypeRepository
         env:
           ORG_GRADLE_PROJECT_sonatypeStagingRepositoryId: ${{ steps.create-nexus-staging.outputs.repository_id }}
 
-      - name: Publish korlibs artifacts to Sonatype
-        id: publish-korlibs
-        run: ./gradlew publishAllPublicationsToSonatypeRepository -Pvariant=korlibs
-        env:
-          ORG_GRADLE_PROJECT_sonatypeStagingRepositoryId: ${{ steps.create-nexus-staging.outputs.repository_id }}
-
-      - name: Publish ktor2 artifacts to Sonatype
-        id: publish-ktor2
-        run: ./gradlew publishAllPublicationsToSonatypeRepository -Pvariant=ktor2
-        env:
-          ORG_GRADLE_PROJECT_sonatypeStagingRepositoryId: ${{ steps.create-nexus-staging.outputs.repository_id }}
-
-      - name: Publish okio artifacts to Sonatype
-        id: publish-okio
-        run: ./gradlew publishAllPublicationsToSonatypeRepository -Pvariant=okio
-        env:
-          ORG_GRADLE_PROJECT_sonatypeStagingRepositoryId: ${{ steps.create-nexus-staging.outputs.repository_id }}
-
       - name: Discard Nexus staging repository
-        if: ${{ failure() && (steps.publish-default.conclusion == 'failure' || steps.publish-korlibs.conclusion == 'failure' || steps.publish-ktor2.conclusion == 'failure' || steps.publish-okio.conclusion == 'failure') }}
+        if: ${{ failure() && steps.publish.conclusion == 'failure' }}
         run: ./scripts/drop-nexus-staging.sh
         env:
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}

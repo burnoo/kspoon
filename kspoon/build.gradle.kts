@@ -15,21 +15,6 @@ plugins {
 group = "dev.burnoo.kspoon"
 version = "0.0.2-SNAPSHOT"
 
-data class Variant(
-    val type: Type,
-    val ksoupDependency: Provider<MinimalExternalModuleDependency>,
-    val suffix: String,
-) {
-    enum class Type { Default, Korlibs, Ktor2, Okio }
-}
-
-val currentVariant = when (properties["variant"]?.toString()) {
-    "korlibs" -> Variant(Variant.Type.Korlibs, libs.ksoup.korlibs, "-korlibs")
-    "ktor2" -> Variant(Variant.Type.Ktor2, libs.ksoup.ktor2, "-ktor2")
-    "okio" -> Variant(Variant.Type.Okio, libs.ksoup.okio, "-okio")
-    else -> Variant(Variant.Type.Default, libs.ksoup.default, "")
-}
-
 kotlin {
     explicitApi()
 
@@ -39,13 +24,11 @@ kotlin {
         browser()
         nodejs()
     }
-    if (currentVariant.type !in setOf(Variant.Type.Ktor2, Variant.Type.Okio)) {
-        @OptIn(ExperimentalWasmDsl::class)
-        wasmJs {
-            browser()
-            nodejs()
-            d8()
-        }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+        nodejs()
+        d8()
     }
 
     linuxX64()
@@ -71,7 +54,7 @@ apiValidation {
 tasks.withType<Test> { useJUnitPlatform() }
 
 dependencies {
-    commonMainApi(currentVariant.ksoupDependency)
+    commonMainApi(libs.ksoup.lite)
     commonMainImplementation(libs.kotlinx.serialization.core)
 
     commonTestImplementation(libs.kotlin.test)
@@ -88,7 +71,6 @@ val isRelease: Boolean
 
 tasks.withType<DokkaTask>().configureEach {
     if (isRelease) {
-        moduleName = moduleName.get() + currentVariant.suffix
         moduleVersion = moduleVersion.get().replace("-SNAPSHOT", "")
     }
 }
@@ -127,10 +109,7 @@ extensions.findByType<PublishingExtension>()?.apply {
             archiveBaseName.set("${archiveBaseName.get()}-${publication.name}")
         }
         artifact(dokkaJar)
-        val libraryName = artifactId.replace(project.name, project.name + currentVariant.suffix)
-        artifactId = libraryName
         pom {
-            name = libraryName
             description = "Annotation based HTML to Kotlin class parser with KMP support, jspoon successor"
             url = "https://github.com/burnoo/kspoon"
             if (isRelease) {

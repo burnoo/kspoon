@@ -10,10 +10,7 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
     implementation("io.ktor:kotlinx-serialization-core:$ktor_version")
     
-    // For Ktor 3+
     implementation("dev.burnoo.kspoon:kspoon:$kspoon_version")
-    // For Ktor 2.x
-    // implementation("dev.burnoo.kspoon:kspoon-ktor2:$kspoon_version")
 }
 ```
 

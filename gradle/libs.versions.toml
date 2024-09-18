@@ -18,10 +18,7 @@ retrofit = "2.11.0"
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
-ksoup-default = { module = "com.fleeksoft.ksoup:ksoup", version.ref = "ksoup" }
-ksoup-korlibs = { module = "com.fleeksoft.ksoup:ksoup-korlibs", version.ref = "ksoup" }
-ksoup-ktor2 = { module = "com.fleeksoft.ksoup:ksoup-ktor2", version.ref = "ksoup" }
-ksoup-okio = { module = "com.fleeksoft.ksoup:ksoup-okio", version.ref = "ksoup" }
+ksoup-lite = { module = "com.fleeksoft.ksoup:ksoup-lite", version.ref = "ksoup" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 
 # Test dependencies

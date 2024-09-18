@@ -28,15 +28,12 @@ dependencies {
 }
 ```
 
-Above library uses [kotlinx-io](https://github.com/Kotlin/kotlinx-io) and [Ktor 3.x](https://github.com/ktorio/ktor),
-but there are other variants available for use. Check
-the [Ksoup README](https://github.com/fleeksoft/ksoup?tab=readme-ov-file#ksoup-is-published-on-maven-central) for more
-details. Other variants:
-
-- `dev.burnoo.kspoon:kspoon-korlibs`
-- `dev.burnoo.kspoon:kspoon-ktor2` (should be used when Ktor 2.x is used in the project; wasm js target is not
-  supported)
-- `dev.burnoo.kspoon:kspoon-okio` (wasm js target is not supported)
+This library uses
+the [ksoup-lite](https://github.com/fleeksoft/ksoup/?tab=readme-ov-file#ksoup-is-published-on-maven-central)
+variant of Ksoup. If you plan to use other variants of the Ksoup library within the same project, you may need to
+replace `ksoup-lite` with
+your preferred variant by using
+Gradle's [dependency substitution](https://docs.gradle.org/current/userguide/resolution_rules.html#sec:variant_aware_substitutions).
 
 ## Usage
 
@@ -186,9 +183,8 @@ integration instructions, see the following links:
 
 ### Supported targets
 
-- All variants: `jvm`, `js`, `linuxX64`, `linuxArm64`, `tvosArm64`, `tvosX64`, `tvosSimulatorArm64`, `macosX64`,
+`jvm`, `js`, `wasmjs` `linuxX64`, `linuxArm64`, `tvosArm64`, `tvosX64`, `tvosSimulatorArm64`, `macosX64`,
   `macosArm64`, `iosArm64`, `iosSimulatorArm64`, `iosX64`, `mingwX64`
-- Only default and `korlibs` variants: `wasmjs`
 
 ### [Custom serializers](docs/custom-serializers.md)
 

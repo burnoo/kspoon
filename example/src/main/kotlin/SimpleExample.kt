@@ -1,4 +1,4 @@
-
+import com.fleeksoft.ksoup.Ksoup
 import dev.burnoo.kspoon.Kspoon
 import dev.burnoo.kspoon.annotation.Selector
 import kotlinx.serialization.Serializable
@@ -27,7 +27,7 @@ data class FakeGitHubProfile(
 
 fun simpleExample() {
     val kspoon = Kspoon {
-        parse = { html -> parse(html, baseUri = "https://github.com/") }
+        parse = { html -> Ksoup.parse(html, baseUri = "https://github.com/") }
         coerceInputValues = true
     }
 

@@ -75,8 +75,8 @@ All available options with default values are listed below:
 
 ```kotlin
 val kspoon = Kspoon {
-    // Specifies the Ksoup function used for parsing. Type: Ksoup.(String) -> Document
-    parse = { html: String -> parse(html) }
+    // Specifies the parsing function. Type: (String) -> Document
+    parse = { html: String -> Ksoup.parse(html, baseUri = "") }
     // Default text mode used for parsing.
     defaultTextMode = HtmlTextMode.Text
     // Enables coercing values when the selected HTML element is not found.

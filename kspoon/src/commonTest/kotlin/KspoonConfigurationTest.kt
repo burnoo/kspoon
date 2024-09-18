@@ -1,5 +1,6 @@
 package dev.burnoo.kspoon
 
+import com.fleeksoft.ksoup.Ksoup
 import dev.burnoo.kspoon.annotation.Selector
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.Serializable
@@ -31,7 +32,7 @@ class KspoonConfigurationTest {
             val url: String,
         )
         val kspoon = Kspoon {
-            parse = { parse(it, baseUri = "https://github.com") }
+            parse = { html -> Ksoup.parse(html, baseUri = "https://github.com") }
         }
 
         val text = kspoon.parse<Model>("""<a href="burnoo">Click</a>""")

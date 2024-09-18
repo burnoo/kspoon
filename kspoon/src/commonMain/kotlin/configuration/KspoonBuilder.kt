@@ -1,7 +1,7 @@
 package dev.burnoo.kspoon.configuration
 
-import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
+import com.fleeksoft.ksoup.parser.Parser
 import dev.burnoo.kspoon.HtmlTextMode
 import dev.burnoo.kspoon.Kspoon
 import dev.burnoo.kspoon.annotation.Selector
@@ -21,7 +21,7 @@ import kotlinx.serialization.modules.SerializersModule
  */
 public class KspoonBuilder internal constructor(kspoon: Kspoon) {
     /**
-     * Specifies [Ksoup] function that is used for parsing. Allows to set up [Ksoup].
+     * Specifies parsing function. Allows to set up Ksoup or [Parser].
      *
      * Example:
      * ```
@@ -32,14 +32,14 @@ public class KspoonBuilder internal constructor(kspoon: Kspoon) {
      * )
      *
      * val kspoon = Kspoon {
-     *     parse = { html -> parse(html, baseUri = "https://github.com") }
+     *     parse = { html -> Ksoup.parse(html, baseUri = "https://github.com") }
      * }
      *
      * val url = kspoon.parse<Model>("""<a href="burnoo">Click</a>""").url
      * println(url) // prints "https://github.com/burnoo"
      * ```
      */
-    public var parse: Ksoup.(String) -> Document = kspoon.configuration.parse
+    public var parse: (String) -> Document = kspoon.configuration.parse
 
     /**
      * Specifies default [HtmlTextMode] that is used for parsing. Can be overridden by [Selector.textMode]

@@ -18,8 +18,9 @@ dependencies {
 Install Ktor content negotiation plugin on `HttpClient` and register `KotlinxSerializationConverter` with `Kspoon.toFormat()` for HTML content type:
 
 ```kotlin
+val baseUrl = "https://github.com/"
 val kspoon = Kspoon {
-    // Configure Kspoon
+    parse = { html -> Ksoup.parse(html, baseUri = baseUrl) }
 }
 val client = HttpClient {
     install(ContentNegotiation) {
@@ -39,6 +40,6 @@ data class GithubProfile(
     val avatarUrl: String,
 )
 
-val profile = client.get<Page>("https://github.com/burnoo").body()
+val profile = client.get<Page>("${baseUrl}burnoo").body()
 println(profile) // GithubProfile(displayName=burnoo (Bruno Wieczorek), avatarUrl=https://avatars.githubusercontent.com/u/17478192?v=4)
 ```

@@ -1,6 +1,5 @@
 package dev.burnoo.kspoon
 
-import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.select.Elements
 import dev.burnoo.kspoon.configuration.KspoonBuilder
 import dev.burnoo.kspoon.configuration.KspoonConfiguration
@@ -48,7 +47,7 @@ import kotlinx.serialization.serializer
  * """
  *
  * val kspoon = Kspoon {
- *     parse = { html -> parse(html, baseUri = "https://github.com/") }
+ *     parse = { html -> Ksoup.parse(html, baseUri = "https://github.com/") }
  *     coerceInputValues = true
  * }
  *
@@ -129,7 +128,7 @@ public sealed class Kspoon(
         if (deserializer.descriptor.kind is PrimitiveKind) {
             kspoonError("Parsing is not supported for primitive types. Use class instead")
         }
-        val document = configuration.parse(Ksoup, html)
+        val document = configuration.parse(html)
         val decoder = HtmlTreeDecoder(
             elements = Elements(document),
             configuration = configuration,

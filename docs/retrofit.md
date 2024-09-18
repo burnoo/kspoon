@@ -17,15 +17,16 @@ dependencies {
 Add `ConverterFactory` to your `Retrofit` instance. Use `asConverterFactory()` extension function on `Ksoup.toFormat()`:
 
 ```kotlin
+val baseUrl = "https://github.com/"
 val kspoon = Kspoon {
-    // Configure Kspoon
+    parse = { html -> Ksooup.parse(html, baseUri = baseUrl) }
 }
 
 val retrofit = Retrofit.Builder()
     .addConverterFactory(
         kspoon.toFormat().asConverterFactory("text/html; charset=UTF8".toMediaType())
     )
-    .baseUrl("https://github.com/")
+    .baseUrl(baseUrl)
     .build()
 ```
 

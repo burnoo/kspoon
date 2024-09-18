@@ -110,6 +110,7 @@ extensions.findByType<PublishingExtension>()?.apply {
         }
         artifact(dokkaJar)
         pom {
+            name = project.name
             description = "Annotation based HTML to Kotlin class parser with KMP support, jspoon successor"
             url = "https://github.com/burnoo/kspoon"
             if (isRelease) {

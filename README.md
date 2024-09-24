@@ -24,7 +24,7 @@ Add the following dependency to your module `build.gradle.kts`/`build.gradle` fi
 
 ```kotlin
 dependencies {
-    implementation("dev.burnoo.kspoon:kspoon:0.0.1")
+    implementation("dev.burnoo.kspoon:kspoon:0.1.1")
 }
 ```
 

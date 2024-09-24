@@ -21,7 +21,7 @@ jobs:
 
       - name: Update README with current version
         run: |
-          sed -i "s/dev.burnoo:kspoon:[0-9.]*/dev.burnoo:kspoon:${{ github.event.release.tag_name }}/g" README.md
+          sed -i "s/dev.burnoo.kspoon:kspoon:[0-9.]*/dev.burnoo.kspoon:kspoon:${{ github.event.release.tag_name }}/g" README.md
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7

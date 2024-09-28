@@ -173,7 +173,7 @@ data class Model(
 It is also possible to write custom kspoon serializers that can access the selected `Element`. Read
 more [here](/docs/custom-serializers.md).
 
-### External librarues
+### External libraries
 
 The `Kspoon` class has a `toFormat(): StringFormat` function that can be used with third-party libraries. For detailed
 integration instructions, see the following links:

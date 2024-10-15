@@ -3,7 +3,7 @@ kotlin = "2.0.20"
 kotlinxSerialization = "1.7.3"
 ksoup = "0.1.9"
 dokka = "1.9.20"
-logback = "1.5.8"
+logback = "1.5.11"
 binaryCompatibilityValidator = "0.16.3"
 
 # Test dependencies

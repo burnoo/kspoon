@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.0.20"
+kotlin = "2.0.21"
 kotlinxSerialization = "1.7.3"
 ksoup = "0.1.9"
 dokka = "1.9.20"

@@ -29,9 +29,9 @@ dependencies {
 ```
 
 This library uses
-the [ksoup-lite](https://github.com/fleeksoft/ksoup/?tab=readme-ov-file#ksoup-is-published-on-maven-central)
+the [lightweight](https://github.com/fleeksoft/ksoup/?tab=readme-ov-file#ksoup-is-published-on-maven-central)
 variant of Ksoup. If you plan to use other variants of the Ksoup library within the same project, you may need to
-replace `ksoup-lite` with
+replace `:ksoup` with
 your preferred variant by using
 Gradle's [dependency substitution](https://docs.gradle.org/current/userguide/resolution_rules.html#sec:variant_aware_substitutions).
 

@@ -54,7 +54,7 @@ apiValidation {
 tasks.withType<Test> { useJUnitPlatform() }
 
 dependencies {
-    commonMainApi(libs.ksoup.lite)
+    commonMainApi(libs.ksoup)
     commonMainImplementation(libs.kotlinx.serialization.core)
 
     commonTestImplementation(libs.kotlin.test)

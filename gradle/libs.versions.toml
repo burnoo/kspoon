@@ -1,7 +1,7 @@
 [versions]
 kotlin = "2.1.0"
 kotlinxSerialization = "1.7.3"
-ksoup = "0.2.0"
+ksoup = "0.2.1"
 dokka = "2.0.0"
 logback = "1.5.15"
 binaryCompatibilityValidator = "0.17.0"
@@ -18,7 +18,7 @@ retrofit = "2.11.0"
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
-ksoup-lite = { module = "com.fleeksoft.ksoup:ksoup-lite", version.ref = "ksoup" }
+ksoup = { module = "com.fleeksoft.ksoup:ksoup", version.ref = "ksoup" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 
 # Test dependencies

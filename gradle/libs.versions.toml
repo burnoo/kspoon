@@ -2,7 +2,7 @@
 kotlin = "2.1.0"
 kotlinxSerialization = "1.7.3"
 ksoup = "0.2.0"
-dokka = "1.9.20"
+dokka = "2.0.0"
 logback = "1.5.15"
 binaryCompatibilityValidator = "0.16.3"
 

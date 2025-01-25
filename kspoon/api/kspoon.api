@@ -85,11 +85,6 @@ public abstract interface class dev/burnoo/kspoon/decoder/KspoonDecoder : kotlin
 	public abstract fun getSelectorFullPath ()Ljava/lang/String;
 }
 
-public final class dev/burnoo/kspoon/decoder/KspoonDecoder$DefaultImpls {
-	public static fun decodeNullableSerializableValue (Ldev/burnoo/kspoon/decoder/KspoonDecoder;Lkotlinx/serialization/DeserializationStrategy;)Ljava/lang/Object;
-	public static fun decodeSerializableValue (Ldev/burnoo/kspoon/decoder/KspoonDecoder;Lkotlinx/serialization/DeserializationStrategy;)Ljava/lang/Object;
-}
-
 public final class dev/burnoo/kspoon/exception/KspoonParseException : java/lang/IllegalStateException {
 	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -117,7 +112,6 @@ public synthetic class dev/burnoo/kspoon/model/KspoonDocument$$serializer : kotl
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Ldev/burnoo/kspoon/model/KspoonDocument;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class dev/burnoo/kspoon/model/KspoonDocument$Companion {

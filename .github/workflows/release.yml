@@ -39,7 +39,7 @@ jobs:
       - name: Notify Sonatype Central to process artifacts
         run: |
           curl -X POST \
-            -H "Authorization: Basic $(echo -n '${{ secrets.SONATYPE_USERNAME }}:${{ secrets.SONATYPE_PASSWORD }}' | base64)" \
+            -u "${{ secrets.SONATYPE_USERNAME }}:${{ secrets.SONATYPE_PASSWORD }}" \
             -H "Content-Type: application/json" \
             https://central.sonatype.com/api/v1/publisher/manual/upload/defaultRepository/dev.burnoo
 

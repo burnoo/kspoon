@@ -32,36 +32,16 @@ jobs:
       - name: Setup jq
         uses: dcarbone/install-jq-action@v3
 
-      - name: Create Nexus staging repository
-        id: create-nexus-staging
-        run: ./scripts/create-nexus-staging-repo.sh
-        env:
-          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-          SONATYPE_STAGING_PROFILE_ID: ${{ secrets.SONATYPE_STAGING_PROFILE_ID }}
-          SONATYPE_DESCRIPTION: Created by GitHub Actions
-
       - name: Publish artifact to Sonatype Repository
         id: publish
         run: ./gradlew publishAllPublicationsToSonatypeRepository
-        env:
-          ORG_GRADLE_PROJECT_sonatypeStagingRepositoryId: ${{ steps.create-nexus-staging.outputs.repository_id }}
 
-      - name: Discard Nexus staging repository
-        if: ${{ failure() && steps.publish.conclusion == 'failure' }}
-        run: ./scripts/drop-nexus-staging.sh
-        env:
-          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-          SONATYPE_REPOSITORY_ID: ${{ steps.create-nexus-staging.outputs.repository_id }}
-
-      - name: Release Nexus repository
-        run: ./scripts/release-nexus-staging.sh
-        env:
-          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-          SONATYPE_REPOSITORY_ID: ${{ steps.create-nexus-staging.outputs.repository_id }}
-          SONATYPE_DESCRIPTION: Closed by GitHub Actions
+      - name: Notify Sonatype Central to process artifacts
+        run: |
+          curl -X POST \
+            -H "Authorization: Basic $(echo -n '${{ secrets.SONATYPE_USERNAME }}:${{ secrets.SONATYPE_PASSWORD }}' | base64)" \
+            -H "Content-Type: application/json" \
+            https://central.sonatype.com/api/v1/publisher/manual/upload/defaultRepository/dev.burnoo
 
       - name: Extract version from build.gradle.kts
         id: extract_version

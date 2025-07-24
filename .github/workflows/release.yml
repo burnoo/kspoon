@@ -41,7 +41,7 @@ jobs:
           curl -X POST \
             -u "${{ secrets.SONATYPE_USERNAME }}:${{ secrets.SONATYPE_PASSWORD }}" \
             -H "Content-Type: application/json" \
-            https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/dev.burnoo
+            "https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/dev.burnoo?publishing_type=automatic"
 
       - name: Extract version from build.gradle.kts
         id: extract_version

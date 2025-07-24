@@ -41,7 +41,7 @@ object TagSerializer : KSerializer<String> {
     override fun deserialize(decoder: Decoder): String {
         val kspoonDecoder = decoder as KspoonDecoder
         val element = decoder.decodeElement()
-        val tag = element?.tag()?.name
+        val tag = element?.tag()?.name()
             ?: throw KspoonParseException("Could not get tag name for selector: ${kspoonDecoder.getSelectorFullPath()}")
         return tag
     }

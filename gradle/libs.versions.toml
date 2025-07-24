@@ -4,7 +4,7 @@ kotlinxSerialization = "1.8.0"
 ksoup = "0.2.2"
 dokka = "2.0.0"
 logback = "1.5.18"
-binaryCompatibilityValidator = "0.17.0"
+binaryCompatibilityValidator = "0.18.1"
 
 # Test dependencies
 kotlinxDatetime = "0.6.2"

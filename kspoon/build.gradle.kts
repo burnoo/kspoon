@@ -78,9 +78,9 @@ extensions.findByType<PublishingExtension>()?.apply {
             val repositoryId = currentProperties["sonatypeStagingRepositoryId"]?.toString()
             url = uri(
                 if (repositoryId != null) {
-                    "https://s01.oss.sonatype.org/service/local/staging/deployByRepositoryId/$repositoryId/"
+                    "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deployByRepositoryId/$repositoryId/"
                 } else {
-                    "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                    "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
                 },
             )
             credentials {
@@ -90,7 +90,7 @@ extensions.findByType<PublishingExtension>()?.apply {
         }
         maven {
             name = "sonatypeSnapshot"
-            url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            url = uri("https://central.sonatype.com/repository/maven-snapshots/")
             credentials {
                 username = currentProperties["sonatypeUsername"]?.toString()
                 password = currentProperties["sonatypePassword"]?.toString()

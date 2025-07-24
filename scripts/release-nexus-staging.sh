@@ -2,7 +2,7 @@
 
 closingRepository=$(
   curl -s --request POST -u "$SONATYPE_USERNAME:$SONATYPE_PASSWORD" \
-    --url https://s01.oss.sonatype.org/service/local/staging/bulk/close \
+    --url https://ossrh-staging-api.central.sonatype.com/service/local/staging/bulk/close \
     --header 'Accept: application/json' \
     --header 'Content-Type: application/json' \
     --data '{ "data" : {"stagedRepositoryIds":["'"$SONATYPE_REPOSITORY_ID"'"], "description":"'"$SONATYPE_DESCRIPTION"'" } }'
@@ -23,7 +23,7 @@ while true ; do
   fi
 
   rules=$(curl -s --request GET -u "$SONATYPE_USERNAME:$SONATYPE_PASSWORD" \
-        --url https://s01.oss.sonatype.org/service/local/staging/repository/"$SONATYPE_REPOSITORY_ID"/activity \
+        --url https://ossrh-staging-api.central.sonatype.com/service/local/staging/repository/"$SONATYPE_REPOSITORY_ID"/activity \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/json')
 
@@ -57,7 +57,7 @@ while true ; do
   fi
 
   repository=$(curl -s --request GET -u "$SONATYPE_USERNAME:$SONATYPE_PASSWORD" \
-    --url https://s01.oss.sonatype.org/service/local/staging/repository/"$SONATYPE_REPOSITORY_ID" \
+    --url https://ossrh-staging-api.central.sonatype.com/service/local/staging/repository/"$SONATYPE_REPOSITORY_ID" \
     --header 'Accept: application/json' \
     --header 'Content-Type: application/json')
 
@@ -71,7 +71,7 @@ while true ; do
 done
 
 release=$(curl -s --request POST -u "$SONATYPE_USERNAME:$SONATYPE_PASSWORD" \
-  --url https://s01.oss.sonatype.org/service/local/staging/bulk/promote \
+  --url https://ossrh-staging-api.central.sonatype.com/service/local/staging/bulk/promote \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
   --data '{ "data" : {"stagedRepositoryIds":["'"$SONATYPE_REPOSITORY_ID"'"], "autoDropAfterRelease" : true, "description":"Release '"$SONATYPE_REPOSITORY_ID"'." } }')

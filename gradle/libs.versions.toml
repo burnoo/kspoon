@@ -4,7 +4,6 @@ kotlinxSerialization = "1.8.0"
 ksoup = "0.2.2"
 dokka = "2.0.0"
 logback = "1.5.18"
-binaryCompatibilityValidator = "0.17.0"
 
 # Test dependencies
 kotlinxDatetime = "0.6.2"
@@ -36,4 +35,3 @@ retrofit-converter-kotlinxSerialization = { module = "com.squareup.retrofit2:con
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotlinx-binaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibilityValidator" }

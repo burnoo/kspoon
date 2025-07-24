@@ -6,7 +6,7 @@ dokka = "2.0.0"
 logback = "1.5.18"
 
 # Test dependencies
-kotlinxDatetime = "0.6.2"
+kotlinxDatetime = "0.7.1"
 kotest = "5.9.1"
 
 # Example

@@ -1,11 +1,10 @@
-import kotlinx.validation.ExperimentalBCVApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 import java.util.Properties
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.kotlinx.binaryCompatibilityValidator)
     alias(libs.plugins.dokka)
     `maven-publish`
     signing
@@ -41,11 +40,9 @@ kotlin {
     iosSimulatorArm64()
     iosX64()
     mingwX64()
-}
 
-apiValidation {
-    @OptIn(ExperimentalBCVApi::class)
-    klib {
+    @OptIn(ExperimentalAbiValidation::class)
+    abiValidation {
         enabled = true
     }
 }

@@ -32,7 +32,7 @@ jobs:
           ktlint-version: 1.7.1
 
       - name: Run apiCheck
-        run: ./gradlew apiCheck
+        run: ./gradlew checkLegacyAbi
 
       - name: Run Tests
         run: ./gradlew jvmTest

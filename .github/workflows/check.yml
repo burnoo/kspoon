@@ -29,7 +29,7 @@ jobs:
       - name: Run ktlint
         uses: musichin/ktlint-check@v3
         with:
-          ktlint-version: 1.3.1
+          ktlint-version: 1.7.1
 
       - name: Run apiCheck
         run: ./gradlew apiCheck

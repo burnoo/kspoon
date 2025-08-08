@@ -8,7 +8,7 @@ dependencies {
     
     implementation("io.ktor:ktor-client-core:$ktor_version")
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
-    implementation("io.ktor:kotlinx-serialization-core:$ktor_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$ktolinx_serialization_version")
     
     implementation("dev.burnoo.kspoon:kspoon:$kspoon_version")
 }

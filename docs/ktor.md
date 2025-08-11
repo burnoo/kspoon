@@ -8,7 +8,7 @@ dependencies {
     
     implementation("io.ktor:ktor-client-core:$ktor_version")
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
-    implementation("io.ktor:kotlinx-serialization-core:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx:$ktor_version")
     
     implementation("dev.burnoo.kspoon:kspoon:$kspoon_version")
 }
@@ -40,6 +40,6 @@ data class GithubProfile(
     val avatarUrl: String,
 )
 
-val profile = client.get<Page>("${baseUrl}burnoo").body()
+val profile = client.get<GithubProfile>("${baseUrl}burnoo").body()
 println(profile) // GithubProfile(displayName=burnoo (Bruno Wieczorek), avatarUrl=https://avatars.githubusercontent.com/u/17478192?v=4)
 ```

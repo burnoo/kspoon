@@ -7,7 +7,7 @@ logback = "1.5.18"
 
 # Test dependencies
 kotlinxDatetime = "0.7.1"
-kotest = "6.0.2"
+kotest = "6.0.3"
 
 # Example
 ktor = "3.2.3"

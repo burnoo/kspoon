@@ -10,7 +10,7 @@ kotlinxDatetime = "0.7.1"
 kotest = "6.0.2"
 
 # Example
-ktor = "3.2.3"
+ktor = "3.3.0"
 retrofit = "3.0.0"
 
 [libraries]

@@ -1,7 +1,7 @@
 [versions]
 kotlin = "2.3.21"
 kotlinxSerialization = "1.11.0"
-ksoup = "0.2.5"
+ksoup = "0.2.6"
 dokka = "2.2.0"
 logback = "1.5.32"
 

@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "dev.burnoo.kspoon"
-version = "0.2.4-SNAPSHOT"
+version = "0.2.5-SNAPSHOT"
 
 kotlin {
     explicitApi()

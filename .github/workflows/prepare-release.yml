@@ -22,7 +22,7 @@ jobs:
       - name: Run bump version script
         run: ./scripts/bump-version.sh ${{ github.event.inputs.name }}
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           title: |
             [skip ci] Prepare the release (`${{ env.NEW_VERSION }}`)

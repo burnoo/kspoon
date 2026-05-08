@@ -27,7 +27,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Run ktlint
-        uses: musichin/ktlint-check@v3
+        uses: musichin/ktlint-check@v4
         with:
           ktlint-version: 1.7.1
 

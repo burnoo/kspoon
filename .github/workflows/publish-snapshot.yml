@@ -26,6 +26,6 @@ jobs:
           distribution: 'corretto'
           java-version: '21'
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
       - name: Publish to Sonatype Snapshot repository
         run: ./gradlew publishAllPublicationsToSonatypeSnapshotRepository
